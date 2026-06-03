@@ -5,6 +5,8 @@ CLI:
     python -m profit_priority scan            # live: Kalshi + The Odds API (needs ODDS_API_KEY)
     python -m profit_priority report          # summarize the candidate log (the learning loop)
     python -m profit_priority fees 0.40 100   # show Kalshi all-in cost for a price/size
+    python -m profit_priority dashboard       # write docs/data.json for the live board (demo)
+    python -m profit_priority dashboard live  # ...from live feeds (needs ODDS_API_KEY)
 """
 
 from __future__ import annotations
@@ -67,6 +69,22 @@ def _fees(argv):
     print(f"   cost per $1 payout  {kalshi_cost_per_payout(price, config.KALSHI_FEE_RATE):.4f}  (vs raw {price:.2f})")
 
 
+def _dashboard(argv):
+    from . import export_dashboard
+    live = bool(argv) and argv[0] == "live"
+    if live:
+        from .feeds import build_live_markets
+        markets, signals = build_live_markets()
+        source = "live"
+    else:
+        markets, signals = engine.demo_markets()
+        source = "demo"
+    res = engine.run_on_markets(markets, signals, do_log=True)
+    path = export_dashboard.write_dashboard(res, source)
+    print(engine.format_report(res))
+    print(f"  dashboard data -> {path}\n  open docs/index.html (or serve docs/)")
+
+
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "demo"
     if cmd == "demo":
@@ -77,6 +95,8 @@ def main():
         _report()
     elif cmd == "fees":
         _fees(sys.argv[2:])
+    elif cmd == "dashboard":
+        _dashboard(sys.argv[2:])
     else:
         print(__doc__)
 

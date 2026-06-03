@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from ..pricing import assemble_market
+from ..signals import load_sharp_signals
 from . import odds_api, kalshi
 
 
 def build_live_markets():
     """Returns (markets, signals). Sportsbook is the spine (full slate, sharp anchor);
-    Kalshi prices are merged in by game key where they match."""
+    Kalshi prices are merged in by game key where they match; sharp-tracker steam/
+    divergence signals are joined for the manufactured-arb scorer."""
     books = odds_api.fetch_ml()           # {game: {sel: {book: american}}}
     try:
         kal = kalshi.fetch_ml()           # {game: {sel: {...}}}
@@ -23,5 +25,6 @@ def build_live_markets():
             book_americans_by_side=book_sides,
             seconds_to_first_pitch=None,
         ))
-    # Signals (steam/divergence) would be injected from the sharp tracker; empty here.
-    return markets, {}
+
+    signals = load_sharp_signals([m.game for m in markets])
+    return markets, signals

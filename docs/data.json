@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-06-03T10:33:37+00:00",
+  "source": "demo",
+  "kalshi_fee_rate": 0.07,
+  "thresholds": {
+    "pure_arb_roi": 0.01,
+    "thin_arb_roi": 0.025,
+    "value_edge": 0.03
+  },
+  "pure_arbs": [
+    {
+      "game": "ARI@LAD",
+      "leg_a": "ARI@kalshi(0.47)",
+      "leg_b": "LAD@book(2.06)",
+      "thin": false,
+      "roi": 0.0148,
+      "profit": 1.46,
+      "risk": 98.54,
+      "warnings": []
+    }
+  ],
+  "value": [],
+  "manufactured": [
+    {
+      "game": "SDP@PHI",
+      "selection": "SDP",
+      "entry_venue": "draftkings",
+      "entry_cost": 0.4545,
+      "target_hedge_cost": 0.5205,
+      "score": 1.78,
+      "rank": "B",
+      "open_prob": 0.43,
+      "move_toward": 0.03,
+      "sharp_divergence": 0.025
+    }
+  ],
+  "funnel": {
+    "by_kind": {
+      "manufactured": {
+        "logged": 1,
+        "accepted": 1
+      },
+      "pure_arb": {
+        "logged": 6,
+        "accepted": 1
+      },
+      "value": {
+        "logged": 6,
+        "accepted": 0
+      }
+    },
+    "top_reject_reasons": [
+      {
+        "reason": "roi -7.830%",
+        "n": 1
+      },
+      {
+        "reason": "edge 0.856%",
+        "n": 1
+      },
+      {
+        "reason": "edge 0.600%",
+        "n": 1
+      },
+      {
+        "reason": "roi -6.930%",
+        "n": 1
+      },
+      {
+        "reason": "roi -4.260%",
+        "n": 1
+      },
+      {
+        "reason": "edge 1.010%",
+        "n": 1
+      },
+      {
+        "reason": "edge -4.911%",
+        "n": 1
+      },
+      {
+        "reason": "roi -6.830%",
+        "n": 1
+      }
+    ]
+  }
+}

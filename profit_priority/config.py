@@ -20,6 +20,13 @@ KALSHI_BASE = "https://api.elections.kalshi.com/trade-api/v2"  # public read end
 DATA_DIR = Path(os.getenv("PP_DATA_DIR", Path(__file__).resolve().parent.parent / "data"))
 LOG_PATH = DATA_DIR / "candidates.jsonl"
 
+# Optional: the sharp-money-tracker's live steam/divergence output, joined into the
+# manufactured-arb scorer. Defaults to the sibling repo's data dir if present.
+SHARP_SIGNALS_CSV = os.getenv(
+    "PP_SHARP_SIGNALS",
+    str(Path(__file__).resolve().parent.parent.parent / "sharp-money-tracker" / "data" / "sharp_signals.csv"),
+)
+
 # ── Fees / execution realism ─────────────────────────────────────────────────
 KALSHI_FEE_RATE = float(os.getenv("KALSHI_FEE_RATE", "0.07"))   # set per market!
 SLIPPAGE_BUFFER = float(os.getenv("PP_SLIPPAGE", "0.005"))      # per-leg cushion on price

@@ -44,7 +44,21 @@ export ODDS_API_KEY=...             # PowerShell: $env:ODDS_API_KEY="..."
 export KALSHI_FEE_RATE=0.07         # set the EXACT rate for the market you trade
 python -m profit_priority scan
 python -m profit_priority report    # summarize the candidate funnel
+python -m profit_priority dashboard # write docs/data.json, then serve docs/ (or GitHub Pages)
 ```
+
+### Live sharp signals
+`scan` auto-joins the **sharp-money-tracker's** `sharp_signals.csv` (steam + sharp-vs-soft
+divergence) into the manufactured-arb scorer, matched by the same `crc32(date|away|home)`
+game key. Point at it with `PP_SHARP_SIGNALS=/path/to/sharp_signals.csv` (defaults to the
+sibling repo). The validated edge (vault Market-Edge-Engine): enter-at-open on **steam-up
+underdog** sides survived FDR at +20–48% ROI/u — the scorer rewards exactly that pattern.
+
+### Dashboard (Phase 6)
+`docs/index.html` renders four panels from `docs/data.json`: **Pure Arbs**, **Cross-Venue
+Value**, **Manufactured Candidates**, and a **Funnel/Postmortem** (logged vs accepted per
+class + top reject reasons). `python -m profit_priority dashboard` regenerates the data;
+serve `docs/` over HTTP or enable GitHub Pages (the `fetch` needs HTTP, not `file://`).
 
 ## Layout
 ```
