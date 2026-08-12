@@ -1,0 +1,63 @@
+{
+  "schema": "nfl-model/forecast/1",
+  "generated_at_utc": "2026-08-12T08:18:39+00:00",
+  "authority": "RESEARCH_ONLY",
+  "may_bet": false,
+  "unmet_gates": [
+    "out_of_sample_bets_at_least_300",
+    "timestamped_quote_coverage_at_least_0.98",
+    "model_log_loss_below_paired_no_vig_market",
+    "model_brier_below_paired_no_vig_market",
+    "roi_lower_confidence_bound_above_zero_after_cost",
+    "probability_space_clv_above_zero",
+    "deflated_sharpe_probability_at_least_0.95",
+    "probability_backtest_overfit_at_most_0.20",
+    "shadow_days_at_least_90"
+  ],
+  "lam": 0.0,
+  "evidence": "nfl-genesis reports/EMPIRICAL_BASELINE_2016_2025.md \u2014 anchored stacker -0.000173 log loss vs paired closing market; selected lam = 0.000 in all five folds 2021-2025, i.e. no incremental signal over the closing line",
+  "games": [
+    {
+      "game": "LAC@KC",
+      "home_team": "KC",
+      "away_team": "LAC",
+      "home_fair": 0.614035,
+      "away_fair": 0.385965,
+      "home_american": -159,
+      "away_american": 159,
+      "overround": 1.036364,
+      "lam": 0.0,
+      "structural_home": null,
+      "edge_vs_market": 0.0,
+      "action": "MONITOR",
+      "authority": "RESEARCH_ONLY",
+      "unmet_gates": 9,
+      "evidence": "nfl-genesis reports/EMPIRICAL_BASELINE_2016_2025.md (market-anchored stacker, selected lam = 0.000 for 2021-2025)"
+    },
+    {
+      "game": "DAL@SEA",
+      "home_team": "SEA",
+      "away_team": "DAL",
+      "home_fair": 0.585096,
+      "away_fair": 0.414904,
+      "home_american": -141,
+      "away_american": 141,
+      "overround": 1.038878,
+      "lam": 0.0,
+      "structural_home": null,
+      "edge_vs_market": 0.0,
+      "action": "MONITOR",
+      "authority": "RESEARCH_ONLY",
+      "unmet_gates": 9,
+      "evidence": "nfl-genesis reports/EMPIRICAL_BASELINE_2016_2025.md (market-anchored stacker, selected lam = 0.000 for 2021-2025)"
+    }
+  ],
+  "skipped": [
+    {
+      "game": "NYJ@BUF",
+      "action": "AVOID",
+      "reason": "KeyError: 'home_american'"
+    }
+  ],
+  "note": "lam = 0 means this forecast equals the paired no-vig market by construction. It is a calibrated price, not an edge."
+}
