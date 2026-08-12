@@ -39,11 +39,80 @@ def _funnel_from_log() -> dict:
     }
 
 
+def _structure_payload() -> dict:
+    """
+    Outcome-neutral panel: Kalshi partition/nesting state plus the Polymarket
+    mirror. Every sub-block is guarded — a venue being down must degrade one panel,
+    never blank the dashboard.
+    """
+    out: dict = {"partitions": [], "locks": [], "implications": [],
+                 "polymarket": [], "board": [], "fee_ref": {}, "errors": []}
+    try:
+        from . import fees, structure
+        board = structure.load_board()
+        locks, diags = structure.partition_locks(board, 350.0, 0.005)
+        nlocks, _ = structure.nesting_locks(board, 350.0, 0.005)
+        out["partitions"] = [
+            {"series": d["series"], "label": d["label"], "n": d["n"], "k": d["k"],
+             "sum_ask": round(d["sum_ask"], 4), "sum_bid": round(d["sum_bid"], 4),
+             "buy_gap": round(d["buy_gap"], 4), "sell_gap": round(d["sell_gap"], 4)}
+            for d in sorted(diags, key=lambda x: -max(x["buy_gap"], x["sell_gap"]))]
+        out["locks"] = [
+            {"kind": l.kind, "label": l.label, "legs": l.legs, "sets": l.sets,
+             "capital": round(l.capital, 2), "profit": round(l.profit, 2),
+             "roi": round(l.roi, 4), "detail": l.detail}
+            for l in (locks + nlocks)]
+        out["implications"] = structure.validate_implications(board)
+
+        # Per-contract board with the fee bar each spread must clear.
+        rows = []
+        for series, contracts in board.items():
+            for c in contracts:
+                mid = c.mid
+                if not 0.0 < mid < 1.0:
+                    continue
+                rows.append({
+                    "series": series, "team": c.team, "ticker": c.ticker,
+                    "bid": round(c.bid, 4), "ask": round(c.ask, 4),
+                    "spread": round(c.spread, 4), "mid": round(mid, 4),
+                    "bid_american": fees.prob_to_american(c.bid),
+                    "ask_american": fees.prob_to_american(c.ask),
+                    "taker_rt": round(fees.kalshi_round_trip(mid, 100) / 100, 4),
+                    "maker_rt": round(fees.kalshi_round_trip(
+                        mid, 100, entry_maker=True, exit_maker=True) / 100, 4),
+                })
+        out["board"] = sorted(rows, key=lambda r: -r["spread"])[:120]
+        out["fee_ref"] = {
+            "taker_rt_at_50": round(fees.kalshi_round_trip(0.50, 100) / 100, 4),
+            "maker_rt_at_50": round(fees.kalshi_round_trip(
+                0.50, 100, entry_maker=True, exit_maker=True) / 100, 4),
+            "two_leg_breakeven": round(fees.two_leg_breakeven(0.5, 0.5), 4),
+            "one_leg_breakeven": round(fees.one_leg_breakeven(0.5), 4),
+        }
+    except Exception as e:                       # noqa: BLE001 - panel must not break export
+        out["errors"].append(f"structure: {type(e).__name__}: {e}")
+
+    try:
+        from .feeds import polymarket
+        out["polymarket"] = [{
+            "label": f.label, "kalshi_series": f.kalshi_series, "sport": f.sport,
+            "n": f.n, "k": f.k, "sum_ask": f.sum_ask, "sum_bid": f.sum_bid,
+            "buy_gap": f.buy_gap, "sell_gap": f.sell_gap,
+            "legs": [{"q": l.question, "price": l.price, "bid": l.bid,
+                      "ask": l.ask, "volume": l.volume} for l in f.legs[:12]],
+        } for f in polymarket.fetch_families()]
+    except Exception as e:                       # noqa: BLE001
+        out["errors"].append(f"polymarket: {type(e).__name__}: {e}")
+
+    return out
+
+
 def build_payload(res: dict, source: str) -> dict:
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "source": source,
         "kalshi_fee_rate": config.KALSHI_FEE_RATE,
+        "structure": _structure_payload(),
         "thresholds": {
             "pure_arb_roi": config.MIN_PURE_ARB_ROI,
             "thin_arb_roi": config.MIN_THIN_ARB_ROI,

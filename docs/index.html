@@ -1,104 +1,324 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>profit-priority — executable edge board</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>profit-priority — Kalshi opportunity desk</title>
 <style>
-  :root{--bg:#0a0e16;--panel:#121a2b;--panel2:#0f1626;--ink:#e9eef7;--muted:#8a97ad;
-        --teal:#2dd4bf;--green:#22c55e;--red:#e0392e;--amber:#f59e0b;--purple:#9a6bff;--line:#1e293b;}
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;}
-  .wrap{max-width:1180px;margin:0 auto;padding:26px;}
-  h1{font-family:"Roboto Condensed",sans-serif;font-weight:700;letter-spacing:.5px;margin:0;font-size:28px;}
-  .sub{color:var(--muted);margin:4px 0 2px;max-width:820px;font-size:13.5px;}
-  .stamp{color:var(--muted);font-size:12px;margin-top:6px;}
-  .stamp b{color:var(--ink);}
-  h2{font-family:"Roboto Condensed",sans-serif;font-weight:600;letter-spacing:.4px;font-size:18px;margin:26px 0 10px;color:#cdd7e6;display:flex;align-items:center;gap:8px;}
-  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
-  table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
-  th{background:#0c0e18;color:#aeb4c6;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:11px 12px;text-align:left;border-bottom:1.5px solid #2a3147;}
-  td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.05);font-variant-numeric:tabular-nums;font-size:14px;}
-  tr:last-child td{border-bottom:none;}
-  tr:hover td{background:rgba(124,77,255,.07);}
-  .pos{color:var(--green);font-weight:700;} .neg{color:var(--red);font-weight:700;}
-  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:700;}
-  .rA{background:rgba(34,197,94,.18);color:#86efac;} .rB{background:rgba(245,158,11,.18);color:#fcd34d;}
-  .rC{background:rgba(154,107,255,.18);color:#c4b5fd;} .rD{background:rgba(224,57,46,.18);color:#fca5a5;}
-  .thin{background:rgba(245,158,11,.18);color:#fcd34d;margin-left:6px;}
-  .empty{color:var(--muted);padding:14px;background:var(--panel);border:1px dashed var(--line);border-radius:12px;font-size:13.5px;}
-  .grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:start;}
-  .meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;}
-  .chip{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:7px 12px;font-size:12.5px;color:var(--muted);}
-  .chip b{color:var(--ink);}
-  @media(max-width:820px){.grid2{grid-template-columns:1fr;}}
+  /* Palette: dataviz reference instance, dark mode. Categorical slots 1-3
+     validated against this surface (#12161d): worst adjacent CVD ΔE 9.4,
+     normal-vision 26.5, all >= 3:1 contrast. Status colours are state badges
+     paired with LABELS, never colour alone. */
+  :root{
+    --plane:#0b0e13; --surface:#12161d; --panel-2:#171d26; --line:#222a36;
+    --ink:#fff; --ink-2:#c3c2b7; --muted:#898781; --dim:#5b6371;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --good:#0ca30c; --warning:#fab219; --critical:#d03b3b;
+    --grid:#2c2c2a; --axis:#383835;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Roboto Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--plane);color:var(--ink);
+    font:13px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  header{position:sticky;top:0;z-index:20;background:rgba(11,14,19,.94);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+    padding:12px 18px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .brand{font-weight:650;font-size:15px}
+  .brand span{color:var(--muted);font-weight:400;font-size:12px}
+  .kpi{display:flex;flex-direction:column;line-height:1.2}
+  .kpi b{font-size:19px;font-weight:600}
+  .kpi i{font-style:normal;color:var(--dim);font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;margin-top:2px}
+  .chip{margin-left:auto;font-family:var(--mono);font-size:11px;padding:5px 11px;
+    border-radius:999px;border:1px solid var(--line);color:var(--muted);
+    display:inline-flex;align-items:center;gap:6px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--muted)}
+  .chip.ok{color:var(--good)} .chip.ok .dot{background:var(--good)}
+  .chip.stale{color:var(--warning)} .chip.stale .dot{background:var(--warning)}
+  main{padding:16px 18px 48px;max-width:1760px;display:grid;gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+    display:flex;flex-direction:column;overflow:hidden}
+  section.wide{grid-column:1/-1}
+  h2{margin:0;padding:11px 14px;font-size:11px;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-2);background:var(--panel-2);
+    border-bottom:1px solid var(--line)}
+  h2 em{font-style:normal;color:var(--dim);font-weight:400;letter-spacing:0;
+    text-transform:none;font-size:11px;margin-left:9px}
+  .lede{padding:0 14px 12px;color:var(--muted);font-size:12px;line-height:1.55}
+  .body{padding:14px}
+  svg{display:block;width:100%;overflow:visible}
+  .grid-line{stroke:var(--grid);stroke-width:1}
+  .axis-line{stroke:var(--axis);stroke-width:1}
+  .tick{fill:var(--muted);font-size:10px;font-family:var(--mono)}
+  .lbl{fill:var(--ink-2);font-size:11px}
+  .val{fill:var(--ink);font-size:11px;font-family:var(--mono)}
+  .ref{stroke-width:2;stroke-dasharray:5 3;fill:none}
+  .ref-lbl{font-size:10px;font-family:var(--mono)}
+  .bar:hover{opacity:.82}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;padding:0 14px 12px;
+    color:var(--ink-2);font-size:11px;align-items:center}
+  .legend i{width:11px;height:11px;border-radius:2px;display:inline-block;
+    margin-right:6px;vertical-align:-1px}
+  .legend .ln{width:16px;height:0;border-top:2px dashed;display:inline-block;
+    margin-right:6px;vertical-align:3px}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{text-align:right;padding:7px 11px;color:var(--dim);font-weight:500;font-size:10px;
+    letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--line);
+    white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  td{padding:6px 11px;border-bottom:1px solid #161b23;text-align:right;white-space:nowrap}
+  tbody tr:hover{background:#161c25}
+  .scroll{overflow-x:auto;max-height:440px;overflow-y:auto}
+  .badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;
+    font-family:var(--mono);padding:2px 7px;border-radius:4px;font-weight:600}
+  .badge.good{background:rgba(12,163,12,.16);color:var(--good)}
+  .badge.dead{background:rgba(208,59,59,.16);color:var(--critical)}
+  .badge.warn{background:rgba(250,178,25,.16);color:var(--warning)}
+  .empty{padding:26px 16px;color:var(--dim);text-align:center;line-height:1.65}
+  .empty b{display:block;color:var(--ink-2);margin-bottom:4px}
+  footer{padding:0 18px 40px;max-width:1760px;color:var(--dim);font-size:11px;line-height:1.7}
+  a{color:var(--s1)}
+  .tip{position:fixed;pointer-events:none;background:#0b0e13;border:1px solid var(--line);
+    border-radius:6px;padding:7px 10px;font-size:11px;font-family:var(--mono);
+    color:var(--ink);opacity:0;transition:opacity .1s;z-index:60;white-space:pre}
 </style>
 </head>
-<body>
-<div class="wrap">
-  <h1>profit-priority</h1>
-  <p class="sub">Executable, fee-aware MLB cross-venue edge. Every number is priced on the price you can actually hit, after real Kalshi fees — so a lock is a lock.</p>
-  <div class="meta" id="meta"></div>
-  <p class="stamp" id="stamp">Loading…</p>
+<body data-palette="#3987e5,#d95926,#199e70">
+<header>
+  <div class="brand">PROFIT-PRIORITY <span>· Kalshi opportunity desk</span></div>
+  <div class="kpi"><b id="k-maker">–</b><i>maker candidates</i></div>
+  <div class="kpi"><b id="k-locks">–</b><i>structural locks</i></div>
+  <div class="kpi"><b id="k-arbs">–</b><i>pure arbs</i></div>
+  <div class="kpi"><b id="k-wide">–</b><i>widest spread</i></div>
+  <div class="chip" id="k-fresh"><span class="dot"></span><span>loading…</span></div>
+</header>
 
-  <h2><span class="dot" style="background:var(--green)"></span>Pure Arbitrage — execute both legs now</h2>
-  <div id="arbs"></div>
-
-  <h2><span class="dot" style="background:var(--teal)"></span>Cross-Venue Value — cheaper than sharp fair (+EV, not a lock)</h2>
-  <div id="value"></div>
-
-  <div class="grid2" style="margin-top:6px">
-    <div>
-      <h2><span class="dot" style="background:var(--purple)"></span>Manufactured-Arb Candidates — staged R&amp;D (logged, not traded)</h2>
-      <div id="manu"></div>
+<main>
+  <section class="wide">
+    <h2>Maker opportunity <em>spread vs what it costs to trade it</em></h2>
+    <div class="lede">Each bar is one contract's bid–ask spread; the dashed lines are
+      the round-trip fee at that price. Spread right of the maker line is room to
+      quote inside. Pre-game movement measures only ~1.5–3.5 points against a ~3.5¢
+      taker round trip, so taking cannot capture it — this view is the strategy.</div>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i>bid–ask spread</span>
+      <span><span class="ln" style="border-color:var(--critical)"></span>taker round trip</span>
+      <span><span class="ln" style="border-color:var(--good)"></span>maker round trip</span>
     </div>
-    <div>
-      <h2><span class="dot" style="background:var(--amber)"></span>Funnel / Postmortem</h2>
-      <div id="funnel"></div>
-    </div>
-  </div>
-</div>
+    <div class="body"><div id="c-maker"></div></div>
+  </section>
+
+  <section>
+    <h2>Structural gap vs fee line <em>partition families</em></h2>
+    <div class="lede">Distance from a locked arbitrage. Zero is the fee-adjusted
+      threshold (~0.965 two-leg), never 1.00 — testing against 1.00 is what made the
+      original tracker's arbs phantom.</div>
+    <div class="body"><div id="c-gap"></div></div>
+  </section>
+
+  <section>
+    <h2>Cross-venue <em>Kalshi vs Polymarket, same event</em></h2>
+    <div class="lede">Two real-money exchanges quoting identical partitions. Neither
+      carries vig, so a disagreement is about probability, not margin.</div>
+    <div id="t-poly"></div>
+  </section>
+
+  <section class="wide">
+    <h2>Kalshi board <em>sorted by spread · American odds shown</em></h2>
+    <div class="scroll" id="t-board"></div>
+  </section>
+
+  <section>
+    <h2>Pure arbs &amp; value <em>classes A / B</em></h2>
+    <div id="t-arbs"></div>
+  </section>
+
+  <section>
+    <h2>Manufactured candidates <em>class C — R&amp;D, never a lock</em></h2>
+    <div id="t-manu"></div>
+  </section>
+</main>
+
+<footer>
+  Empty panels are informative. Structural gaps rarely clear the Kalshi fee, and a
+  desk that invents rows to look busy is how a phantom edge gets shipped. ·
+  <a href="legacy.html">legacy edge board</a>
+</footer>
+<div class="tip" id="tip"></div>
 
 <script>
-function pct(x){return (x*100).toFixed(2)+'%';}
-function cls(x){return x>=0?'pos':'neg';}
-function tbl(headers, rows){
-  if(!rows.length) return '<div class="empty">none above threshold — that\'s the fee discipline working, not a bug.</div>';
-  return '<table><thead><tr>'+headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'
-    + rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('') + '</tbody></table>';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const f4=v=>v==null?'–':(+v).toFixed(4);
+const f2=v=>v==null?'–':(+v).toFixed(2);
+const us=v=>v==null?'–':((+v>0?'+':'')+v);
+const tip=$('#tip');
+function showTip(e,t){tip.textContent=t;tip.style.opacity='1';
+  let x=e.clientX+12,y=e.clientY+12,r=tip.getBoundingClientRect();
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-12;
+  if(y+r.height>innerHeight-8)y=e.clientY-r.height-12;
+  tip.style.left=x+'px';tip.style.top=y+'px';}
+function hideTip(){tip.style.opacity='0';}
+const NS='http://www.w3.org/2000/svg';
+const el=(n,a={})=>{const e=document.createElementNS(NS,n);
+  for(const k in a)e.setAttribute(k,a[k]);return e;};
+const box=(h,m,s)=>{h.innerHTML=`<div class="empty"><b>${esc(m)}</b>${esc(s||'')}</div>`;};
+
+function chartMaker(host,rows){
+  if(!rows.length){box(host,'No board data','Run python -m profit_priority dashboard');return;}
+  const d=rows.slice(0,22), rowH=21, padL=150, padR=58, padT=8, padB=30;
+  const H=padT+d.length*rowH+padB, W=900, plotW=W-padL-padR;
+  const maxX=Math.max(...d.map(r=>Math.max(r.spread,r.taker_rt)))*1.15||0.05;
+  const x=v=>padL+(v/maxX)*plotW;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img',
+    'aria-label':'Bid-ask spread per contract versus round-trip fee'});
+  for(let i=0;i<=4;i++){const v=maxX*i/4;
+    svg.appendChild(el('line',{x1:x(v),x2:x(v),y1:padT,y2:H-padB,class:'grid-line'}));
+    const t=el('text',{x:x(v),y:H-padB+14,class:'tick','text-anchor':'middle'});
+    t.textContent=v.toFixed(3);svg.appendChild(t);}
+  d.forEach((r,i)=>{
+    const y=padT+i*rowH,bh=13;
+    const lab=el('text',{x:padL-10,y:y+bh-2,class:'lbl','text-anchor':'end'});
+    lab.textContent=`${r.team} ${String(r.series).replace('KX','')}`;svg.appendChild(lab);
+    const ok=r.spread>r.maker_rt*2;
+    const bar=el('rect',{x:padL,y:y,width:Math.max(1,x(r.spread)-padL),height:bh,rx:4,
+      fill:'var(--s1)',class:'bar'});
+    bar.addEventListener('mousemove',e=>showTip(e,
+      `${r.team} · ${r.series}\nbid ${f4(r.bid)} (${us(r.bid_american)})\n`+
+      `ask ${f4(r.ask)} (${us(r.ask_american)})\nspread ${f4(r.spread)}\n`+
+      `maker RT ${f4(r.maker_rt)}\ntaker RT ${f4(r.taker_rt)}`));
+    bar.addEventListener('mouseleave',hideTip);svg.appendChild(bar);
+    const v=el('text',{x:x(r.spread)+7,y:y+bh-2,class:'val',
+      fill:ok?'var(--good)':'var(--muted)'});
+    v.textContent=r.spread.toFixed(3);svg.appendChild(v);});
+  const am=d.reduce((a,r)=>a+r.maker_rt,0)/d.length;
+  const at=d.reduce((a,r)=>a+r.taker_rt,0)/d.length;
+  [[at,'var(--critical)','taker RT'],[am,'var(--good)','maker RT']].forEach(([v,c,l])=>{
+    svg.appendChild(el('line',{x1:x(v),x2:x(v),y1:padT-4,y2:H-padB,class:'ref',stroke:c}));
+    const t=el('text',{x:x(v),y:padT-8,class:'ref-lbl',fill:c,'text-anchor':'middle'});
+    t.textContent=l;svg.appendChild(t);});
+  svg.appendChild(el('line',{x1:padL,x2:padL,y1:padT,y2:H-padB,class:'axis-line'}));
+  host.innerHTML='';host.appendChild(svg);
 }
-fetch('data.json?_='+Date.now()).then(r=>r.json()).then(d=>{
-  document.getElementById('stamp').innerHTML = 'Generated <b>'+d.generated_at+'</b> · source <b>'+d.source+'</b>';
-  document.getElementById('meta').innerHTML =
-    '<span class="chip">Kalshi fee rate <b>'+d.kalshi_fee_rate+'</b></span>'
-    + '<span class="chip">min arb ROI <b>'+pct(d.thresholds.pure_arb_roi)+'</b></span>'
-    + '<span class="chip">min value edge <b>'+pct(d.thresholds.value_edge)+'</b></span>';
 
-  document.getElementById('arbs').innerHTML = tbl(
-    ['Game','Legs','Lock ROI','Profit','Risk',''],
-    d.pure_arbs.map(p=>[p.game, p.leg_a+' + '+p.leg_b,
-      '<span class="pos">'+pct(p.roi)+'</span>', '$'+p.profit, '$'+p.risk,
-      p.thin?'<span class="pill thin">THIN</span>':''
-      + (p.warnings&&p.warnings.length?'<span class="pill thin">'+p.warnings.join('; ')+'</span>':'')]));
+function chartGap(host,parts){
+  if(!parts.length){box(host,'No partition data','Run python -m profit_priority.structure');return;}
+  const d=parts.map(p=>({s:p.series,gap:Math.max(p.buy_gap,p.sell_gap),
+      side:p.buy_gap>=p.sell_gap?'buy':'sell',label:p.label}))
+    .sort((a,b)=>b.gap-a.gap).slice(0,14);
+  const rowH=22,padL=140,padR=52,padT=12,padB=28;
+  const H=padT+d.length*rowH+padB,W=560,plotW=W-padL-padR;
+  const m=Math.max(...d.map(r=>Math.abs(r.gap)))*1.2||0.05;
+  const x=v=>padL+plotW/2+(v/m)*(plotW/2);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img',
+    'aria-label':'Structural gap versus fee-adjusted threshold'});
+  [-m,-m/2,0,m/2,m].forEach(v=>{
+    svg.appendChild(el('line',{x1:x(v),x2:x(v),y1:padT,y2:H-padB,class:'grid-line'}));
+    const t=el('text',{x:x(v),y:H-padB+14,class:'tick','text-anchor':'middle'});
+    t.textContent=v.toFixed(3);svg.appendChild(t);});
+  d.forEach((r,i)=>{
+    const y=padT+i*rowH,bh=13,pos=r.gap>0,x0=x(0),x1=x(r.gap);
+    const lab=el('text',{x:padL-10,y:y+bh-2,class:'lbl','text-anchor':'end'});
+    lab.textContent=r.s.replace('KX','');svg.appendChild(lab);
+    const bar=el('rect',{x:Math.min(x0,x1),y:y,width:Math.max(1.5,Math.abs(x1-x0)),
+      height:bh,rx:4,fill:pos?'var(--s1)':'var(--critical)',class:'bar'});
+    bar.addEventListener('mousemove',e=>showTip(e,
+      `${r.s}\n${r.label||''}\nbest gap ${r.gap>0?'+':''}${f4(r.gap)} (${r.side})\n`+
+      (pos?'clears fees':'below the fee line')));
+    bar.addEventListener('mouseleave',hideTip);svg.appendChild(bar);
+    const t=el('text',{x:pos?x1+6:x1-6,y:y+bh-2,class:'val',
+      'text-anchor':pos?'start':'end'});
+    t.textContent=(r.gap>0?'+':'')+r.gap.toFixed(3);svg.appendChild(t);});
+  svg.appendChild(el('line',{x1:x(0),x2:x(0),y1:padT-2,y2:H-padB,class:'axis-line'}));
+  const z=el('text',{x:x(0),y:padT-3,class:'ref-lbl',fill:'var(--muted)','text-anchor':'middle'});
+  z.textContent='fee line';svg.appendChild(z);
+  host.innerHTML='';host.appendChild(svg);
+}
 
-  document.getElementById('value').innerHTML = tbl(
-    ['Game','Side','Venue','Exec cost','Sharp fair','Edge'],
-    d.value.map(v=>[v.game, v.selection, v.venue, v.exec_cost.toFixed(3), v.fair_prob.toFixed(3),
-      '<span class="'+cls(v.edge)+'">'+pct(v.edge)+'</span>']));
+function render(d){
+  const st=d.structure||{}, board=st.board||[], parts=st.partitions||[],
+        locks=st.locks||[], poly=st.polymarket||[];
+  const makers=board.filter(b=>b.spread>b.maker_rt*2);
+  $('#k-maker').textContent=makers.length;
+  $('#k-maker').style.color=makers.length?'var(--good)':'var(--ink)';
+  $('#k-locks').textContent=locks.length;
+  $('#k-locks').style.color=locks.length?'var(--good)':'var(--ink)';
+  $('#k-arbs').textContent=(d.pure_arbs||[]).length;
+  $('#k-wide').textContent=board.length?board[0].spread.toFixed(3):'–';
 
-  document.getElementById('manu').innerHTML = tbl(
-    ['','Game','Side','Enter','→ Hedge ≤','Move','Div','Score'],
-    d.manufactured.map(m=>['<span class="pill r'+m.rank+'">'+m.rank+'</span>', m.game, m.selection+' @'+m.entry_venue,
-      m.entry_cost.toFixed(3), m.target_hedge_cost.toFixed(3),
-      m.move_toward!=null?pct(m.move_toward):'—', m.sharp_divergence!=null?pct(m.sharp_divergence):'—', m.score]));
+  const gen=d.generated_at?new Date(d.generated_at):null;
+  const age=gen?(Date.now()-gen.getTime())/60000:null;
+  const chip=$('#k-fresh'),txt=chip.querySelector('span:last-child');
+  if(age==null){txt.textContent='no timestamp';}
+  else if(age<180){chip.className='chip ok';txt.textContent=`snapshot · ${age.toFixed(0)}m`;}
+  else{chip.className='chip stale';
+    txt.textContent=age<2880?`stale · ${(age/60).toFixed(1)}h`:`stale · ${(age/1440).toFixed(1)}d`;}
 
-  var f=d.funnel, rows=[];
-  for(var k in (f.by_kind||{})){var x=f.by_kind[k];rows.push([k, x.logged, x.accepted, (x.logged?pct(x.accepted/x.logged):'—')]);}
-  var fh = tbl(['Class','Logged','Accepted','Hit rate'], rows);
-  var rr = (f.top_reject_reasons||[]).map(r=>'<tr><td>'+r.reason+'</td><td style="text-align:right">'+r.n+'</td></tr>').join('');
-  document.getElementById('funnel').innerHTML = fh +
-    (rr?'<table style="margin-top:12px"><thead><tr><th>Top reject reasons</th><th style="text-align:right">n</th></tr></thead><tbody>'+rr+'</tbody></table>':'');
-}).catch(e=>{document.getElementById('stamp').textContent='Could not load data.json — run: python -m profit_priority dashboard';});
+  chartMaker($('#c-maker'),board);
+  chartGap($('#c-gap'),parts);
+
+  $('#t-poly').innerHTML=poly.length?`<div class="scroll"><table><thead><tr>
+    <th>Family</th><th>N</th><th>K</th><th>Σ ask</th><th>Σ bid</th>
+    <th>Buy gap</th><th>Sell gap</th><th>Mirrors</th></tr></thead><tbody>
+    ${poly.map(p=>`<tr><td>${esc(p.label)}</td>
+      <td class="num" style="color:var(--muted)">${p.n}</td>
+      <td class="num" style="color:var(--muted)">${p.k}</td>
+      <td class="num">${f4(p.sum_ask)}</td><td class="num">${f4(p.sum_bid)}</td>
+      <td class="num" style="color:${p.buy_gap>0?'var(--good)':'var(--muted)'}">${f4(p.buy_gap)}</td>
+      <td class="num" style="color:${p.sell_gap>0?'var(--good)':'var(--muted)'}">${f4(p.sell_gap)}</td>
+      <td style="color:var(--dim)">${esc(p.kalshi_series)}</td></tr>`).join('')}
+    </tbody></table></div>`:box($('#t-poly'),'No Polymarket data','Run feeds.polymarket')||'';
+
+  $('#t-board').innerHTML=board.length?`<table><thead><tr>
+    <th>Contract</th><th>Series</th><th>Bid</th><th>Bid US</th><th>Ask</th><th>Ask US</th>
+    <th>Spread</th><th>Maker RT</th><th>Taker RT</th><th>Verdict</th></tr></thead><tbody>
+    ${board.slice(0,70).map(b=>{
+      const wide=b.spread>b.maker_rt*2, mid=b.spread>b.maker_rt;
+      return `<tr><td>${esc(b.team)} <span style="color:var(--dim)">${esc(String(b.ticker||'').slice(-14))}</span></td>
+      <td style="color:var(--muted)">${esc(String(b.series).replace('KX',''))}</td>
+      <td class="num">${f4(b.bid)}</td>
+      <td class="num" style="color:var(--muted)">${us(b.bid_american)}</td>
+      <td class="num">${f4(b.ask)}</td>
+      <td class="num" style="color:var(--muted)">${us(b.ask_american)}</td>
+      <td class="num" style="color:${wide?'var(--good)':'var(--ink)'}">${f4(b.spread)}</td>
+      <td class="num" style="color:var(--muted)">${f4(b.maker_rt)}</td>
+      <td class="num" style="color:var(--muted)">${f4(b.taker_rt)}</td>
+      <td><span class="badge ${wide?'good':(mid?'warn':'dead')}">${
+        wide?'◆ maker room':(mid?'◈ marginal':'✕ too tight')}</span></td></tr>`;}).join('')}
+    </tbody></table>`:'<div class="empty"><b>No board data</b></div>';
+
+  const arbs=d.pure_arbs||[], val=d.value||[];
+  $('#t-arbs').innerHTML=(arbs.length||val.length)?`<div class="scroll"><table><thead><tr>
+    <th>Class</th><th>Game</th><th>Detail</th><th>Edge / ROI</th></tr></thead><tbody>
+    ${arbs.map(a=>`<tr><td><span class="badge good">A arb</span></td>
+      <td>${esc(a.game)}</td><td style="color:var(--muted)">${esc(a.leg_a)} + ${esc(a.leg_b)}</td>
+      <td class="num" style="color:var(--good)">${((a.roi||0)*100).toFixed(2)}%</td></tr>`).join('')}
+    ${val.map(v=>`<tr><td><span class="badge warn">B value</span></td>
+      <td>${esc(v.game)}</td><td style="color:var(--muted)">${esc(v.selection)} @ ${esc(v.venue)}</td>
+      <td class="num">${((v.edge||0)*100).toFixed(2)}%</td></tr>`).join('')}
+    </tbody></table></div>`
+    :'<div class="empty"><b>No executable arbs or value</b>Both legs must clear fees.</div>';
+
+  const manu=d.manufactured||[];
+  $('#t-manu').innerHTML=manu.length?`<div class="scroll"><table><thead><tr>
+    <th>Game</th><th>Side</th><th>Entry</th><th>Target hedge</th><th>Score</th>
+    </tr></thead><tbody>${manu.map(m=>`<tr><td>${esc(m.game)}</td>
+      <td>${esc(m.selection)}</td>
+      <td class="num">${f4(m.entry_cost)} <span style="color:var(--dim)">${esc(m.entry_venue)}</span></td>
+      <td class="num" style="color:var(--muted)">${f4(m.target_hedge_cost)}</td>
+      <td class="num">${f2(m.score)}</td></tr>`).join('')}</tbody></table></div>`
+    :'<div class="empty"><b>No staged candidates</b>Class C is logged, never traded blind.</div>';
+}
+
+fetch('data.json?t='+Date.now())
+  .then(r=>r.ok?r.json():Promise.reject(r.status))
+  .then(render)
+  .catch(e=>{document.querySelector('main').innerHTML=
+    `<section class="wide"><div class="empty"><b>Could not load data.json</b>
+     Run: python -m profit_priority dashboard (${esc(e)})</div></section>`;});
 </script>
 </body>
 </html>
