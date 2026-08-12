@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 from . import config
-from .fees import kalshi_cost_per_payout, book_cost_per_payout
+from .fees import kalshi_cost_per_payout
 from .pricing import GameMarket, SideQuote, is_stale
 from .staking import equalized_lock, ArbStake
 

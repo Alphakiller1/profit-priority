@@ -58,10 +58,10 @@ def _structure_payload() -> dict:
              "buy_gap": round(d["buy_gap"], 4), "sell_gap": round(d["sell_gap"], 4)}
             for d in sorted(diags, key=lambda x: -max(x["buy_gap"], x["sell_gap"]))]
         out["locks"] = [
-            {"kind": l.kind, "label": l.label, "legs": l.legs, "sets": l.sets,
-             "capital": round(l.capital, 2), "profit": round(l.profit, 2),
-             "roi": round(l.roi, 4), "detail": l.detail}
-            for l in (locks + nlocks)]
+            {"kind": lk.kind, "label": lk.label, "legs": lk.legs, "sets": lk.sets,
+             "capital": round(lk.capital, 2), "profit": round(lk.profit, 2),
+             "roi": round(lk.roi, 4), "detail": lk.detail}
+            for lk in (locks + nlocks)]
         out["implications"] = structure.validate_implications(board)
 
         # Per-contract board with the fee bar each spread must clear.
@@ -92,14 +92,35 @@ def _structure_payload() -> dict:
     except Exception as e:                       # noqa: BLE001 - panel must not break export
         out["errors"].append(f"structure: {type(e).__name__}: {e}")
 
+    # Best execution: same outcome, two venues, one of them cheaper. This is the
+    # only panel whose value does not depend on being right about anything.
+    try:
+        from . import crossvenue
+        rows = crossvenue.compare()
+        out["crossvenue"] = [{
+            "series": r.series.replace("KX", ""), "team": r.team,
+            "kalshi_ask": r.kalshi.all_in_ask, "poly_ask": r.poly.all_in_ask,
+            "kalshi_bid": r.kalshi.net_bid, "poly_bid": r.poly.net_bid,
+            "best_buy": r.best_buy[0] if r.best_buy else None,
+            "best_buy_price": r.best_buy[1] if r.best_buy else None,
+            "best_sell": r.best_sell[0] if r.best_sell else None,
+            "best_sell_price": r.best_sell[1] if r.best_sell else None,
+            "saving": r.buy_saving,
+            "lock": ({"buy": r.lock[0], "sell": r.lock[1], "edge": r.lock[2]}
+                     if r.lock else None),
+            "suspect": r.suspect,
+        } for r in rows]
+    except Exception as e:                       # noqa: BLE001
+        out["errors"].append(f"crossvenue: {type(e).__name__}: {e}")
+
     try:
         from .feeds import polymarket
         out["polymarket"] = [{
             "label": f.label, "kalshi_series": f.kalshi_series, "sport": f.sport,
             "n": f.n, "k": f.k, "sum_ask": f.sum_ask, "sum_bid": f.sum_bid,
             "buy_gap": f.buy_gap, "sell_gap": f.sell_gap,
-            "legs": [{"q": l.question, "price": l.price, "bid": l.bid,
-                      "ask": l.ask, "volume": l.volume} for l in f.legs[:12]],
+            "legs": [{"q": leg.question, "price": leg.price, "bid": leg.bid,
+                      "ask": leg.ask, "volume": leg.volume} for leg in f.legs[:12]],
         } for f in polymarket.fetch_families()]
     except Exception as e:                       # noqa: BLE001
         out["errors"].append(f"polymarket: {type(e).__name__}: {e}")

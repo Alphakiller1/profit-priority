@@ -77,15 +77,15 @@ class PolyFamily:
 
     @property
     def sum_price(self) -> float:
-        return round(sum(l.price for l in self.legs), 4)
+        return round(sum(leg.price for leg in self.legs), 4)
 
     @property
     def sum_ask(self) -> float:
-        return round(sum(l.ask for l in self.legs if l.ask is not None), 4)
+        return round(sum(leg.ask for leg in self.legs if leg.ask is not None), 4)
 
     @property
     def sum_bid(self) -> float:
-        return round(sum(l.bid for l in self.legs if l.bid is not None), 4)
+        return round(sum(leg.bid for leg in self.legs if leg.bid is not None), 4)
 
     @property
     def buy_gap(self) -> float:
@@ -205,9 +205,9 @@ def report() -> None:
               f"sum(price)={f.sum_price:<9} sum(ask)={f.sum_ask:<9} sum(bid)={f.sum_bid}")
         print(f"  {'':<24} buy gap {f.buy_gap:+.4f}   sell gap {f.sell_gap:+.4f}"
               f"   mirrors {f.kalshi_series}")
-        for l in f.legs[:5]:
-            print(f"      {l.question[:50]:<50} {l.price:.4f}"
-                  f"  vol {float(l.volume or 0):>11,.0f}")
+        for leg in f.legs[:5]:
+            print(f"      {leg.question[:50]:<50} {leg.price:.4f}"
+                  f"  vol {float(leg.volume or 0):>11,.0f}")
         print()
     print("  Compare these sums against structure.py's Kalshi sums. Two real-money\n"
           "  venues disagreeing about the SAME partition is a stronger signal than\n"

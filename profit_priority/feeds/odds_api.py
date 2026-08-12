@@ -7,10 +7,8 @@ picks the best EXECUTION book and de-vigs the SHARP books for the fair anchor.
 from __future__ import annotations
 
 import json
-import time
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
 
 from .. import config
 from ..teams import to_abbr

@@ -1,6 +1,5 @@
 """Correctness tests — the fee/arb/staking math is the product; it must be right."""
 
-import math
 
 from profit_priority.fees import (
     kalshi_fee, kalshi_cost_per_payout, american_to_decimal,
