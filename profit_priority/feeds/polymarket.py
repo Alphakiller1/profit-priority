@@ -36,6 +36,8 @@ import json
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
+
+from .. import fees
 from datetime import datetime, timezone
 
 GAMMA = "https://gamma-api.polymarket.com"
@@ -206,7 +208,8 @@ def report() -> None:
         print(f"  {'':<24} buy gap {f.buy_gap:+.4f}   sell gap {f.sell_gap:+.4f}"
               f"   mirrors {f.kalshi_series}")
         for leg in f.legs[:5]:
-            print(f"      {leg.question[:50]:<50} {leg.price:.4f}"
+            print(f"      {leg.question[:46]:<46} {leg.price:.4f}"
+                  f" {fees.fmt_american(leg.price):>7}"
                   f"  vol {float(leg.volume or 0):>11,.0f}")
         print()
     print("  Compare these sums against structure.py's Kalshi sums. Two real-money\n"

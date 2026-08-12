@@ -177,19 +177,21 @@ def report(contracts: int = 100) -> None:
         return
 
     locks = [r for r in rows if r.lock]
-    print(f"  {'series':<16}{'team':<6}{'K ask':>9}{'P ask':>9}{'BUY':>12}"
-          f"{'save':>8}{'K bid':>9}{'P bid':>9}{'SELL':>12}")
-    print("  " + "-" * 92)
+    def _px(v):
+        """Probability plus American, the way a price should always be shown."""
+        return "-" if v is None else f"{v:.4f}/{fees.fmt_american(v)}"
+
+    print(f"  {'series':<14}{'team':<6}{'K ask':>14}{'P ask':>14}{'BUY':>12}"
+          f"{'save':>8}{'K bid':>14}{'P bid':>14}{'SELL':>12}")
+    print("  " + "-" * 110)
     for r in rows[:28]:
         bb, bs = r.best_buy, r.best_sell
         flag = "  [!] suspect" if r.suspect else ""
-        print(f"  {r.series.replace('KX',''):<16}{r.team:<6}"
-              f"{(f'{r.kalshi.all_in_ask:.4f}' if r.kalshi.all_in_ask else '—'):>9}"
-              f"{(f'{r.poly.all_in_ask:.4f}' if r.poly.all_in_ask else '—'):>9}"
-              f"{(bb[0] if bb else '—'):>12}{r.buy_saving:>8.4f}"
-              f"{(f'{r.kalshi.net_bid:.4f}' if r.kalshi.net_bid else '—'):>9}"
-              f"{(f'{r.poly.net_bid:.4f}' if r.poly.net_bid else '—'):>9}"
-              f"{(bs[0] if bs else '—'):>12}{flag}")
+        print(f"  {r.series.replace('KX',''):<14}{r.team:<6}"
+              f"{_px(r.kalshi.all_in_ask):>14}{_px(r.poly.all_in_ask):>14}"
+              f"{(bb[0] if bb else '-'):>12}{r.buy_saving:>8.4f}"
+              f"{_px(r.kalshi.net_bid):>14}{_px(r.poly.net_bid):>14}"
+              f"{(bs[0] if bs else '-'):>12}{flag}")
 
     print(f"\n  CROSS-VENUE LOCKS (CANDIDATES, not confirmed): {len(locks)}")
     if not locks:
