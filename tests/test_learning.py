@@ -121,3 +121,49 @@ def test_report_warns_when_coverage_has_stopped(capsys) -> None:
     learning.report()
     out = capsys.readouterr().out
     assert "the loop has stopped running" in out
+
+
+# ── deduplication: one dislocation must not become many samples ───────────────
+
+def test_open_keys_tracks_ungraded_candidates_only() -> None:
+    """A graded candidate is closed; the same dislocation may be recorded again."""
+    _write([
+        {**_row(), "kind": "saving", "series": "S", "team": "DET", "graded_at": None},
+        {**_row(), "kind": "lock", "series": "S", "team": "COL",
+         "graded_at": datetime.now(UTC).isoformat()},
+    ])
+    keys = learning._open_keys()
+    assert ("saving", "S", "DET") in keys
+    assert ("lock", "S", "COL") not in keys      # already graded, so re-recordable
+
+
+def test_duplicate_open_candidate_is_not_recorded_twice(monkeypatch) -> None:
+    """The loop runs every few hours against a slow board.
+
+    Without this, one persistent quote enters the ledger dozens of times and
+    trust() reports a hit rate with false confidence.
+    """
+    class _Cmp:
+        series, team = "MLBPLAYOFFS", "DET"
+        buy_saving = 0.05
+        best_buy = ("kalshi", 0.50)
+        lock = None
+
+        class kalshi:  # noqa: N801
+            all_in_ask = 0.50
+            net_bid = 0.48
+
+        class poly:  # noqa: N801
+            all_in_ask = 0.55
+            net_bid = 0.53
+
+    import sys
+    monkeypatch.setitem(sys.modules, "profit_priority.crossvenue",
+                        type("M", (), {"compare": staticmethod(lambda: [_Cmp()])}))
+
+    learning.record()
+    first = len(learning._load(learning.CANDIDATES))
+    learning.record()
+    second = len(learning._load(learning.CANDIDATES))
+    assert first == 1
+    assert second == 1, "the same open candidate was recorded twice"

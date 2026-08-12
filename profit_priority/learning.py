@@ -145,6 +145,22 @@ def _load(path: Path) -> list[dict]:
 
 # ── 1. RECORD ─────────────────────────────────────────────────────────────────
 
+def _open_keys() -> set[tuple[str, str, str]]:
+    """(kind, series, team) for every candidate still awaiting a grade.
+
+    Deduplication is a correctness requirement, not tidiness. The loop runs every
+    few hours against a board that changes slowly, so re-recording the same
+    dislocation each cycle would enter one observation dozens of times. `trust()`
+    would then treat a single persistent quote as dozens of independent samples
+    and report a hit rate with false confidence — the statistical version of the
+    same silent-inflation bug this stack keeps producing.
+    """
+    return {
+        (r.get("kind", ""), r.get("series", ""), r.get("team", ""))
+        for r in _load(CANDIDATES) if not r.get("graded_at")
+    }
+
+
 def record() -> int:
     """Snapshot today's cross-venue candidates with the prices seen right now."""
     from . import crossvenue
@@ -159,24 +175,35 @@ def record() -> int:
         return 1
 
     scan.markets_seen = len(rows)
+    already = _open_keys()
     n = 0
+    skipped = 0
     for r in rows:
         # A saving is only meaningful if there is one; a lock is rarer still.
         if r.buy_saving > 0 and r.best_buy:
-            c = Candidate(
-                id=uuid.uuid4().hex[:12], detected_at=_now(), kind="saving",
-                series=r.series, team=r.team, venue_buy=r.best_buy[0],
-                price_buy=r.kalshi.all_in_ask if r.best_buy[0] == "kalshi"
-                else r.poly.all_in_ask,
-                price_sell=r.poly.all_in_ask if r.best_buy[0] == "kalshi"
-                else r.kalshi.all_in_ask,
-                edge=r.buy_saving,
-                note=f"cheaper on {r.best_buy[0]}",
-            )
-            _append(CANDIDATES, c.to_json())
-            n += 1
+            if ("saving", r.series, r.team) in already:
+                skipped += 1
+            else:
+                already.add(("saving", r.series, r.team))
+                cheaper_is_kalshi = r.best_buy[0] == "kalshi"
+                c = Candidate(
+                    id=uuid.uuid4().hex[:12], detected_at=_now(), kind="saving",
+                    series=r.series, team=r.team, venue_buy=r.best_buy[0],
+                    price_buy=(r.kalshi.all_in_ask if cheaper_is_kalshi
+                               else r.poly.all_in_ask),
+                    price_sell=(r.poly.all_in_ask if cheaper_is_kalshi
+                                else r.kalshi.all_in_ask),
+                    edge=r.buy_saving,
+                    note=f"cheaper on {r.best_buy[0]}",
+                )
+                _append(CANDIDATES, c.to_json())
+                n += 1
         if r.lock:
             buy, sell, edge = r.lock
+            if ("lock", r.series, r.team) in already:
+                skipped += 1
+                continue
+            already.add(("lock", r.series, r.team))
             c = Candidate(
                 id=uuid.uuid4().hex[:12], detected_at=_now(), kind="lock",
                 series=r.series, team=r.team, venue_buy=buy, venue_sell=sell,
@@ -188,11 +215,24 @@ def record() -> int:
             n += 1
 
     scan.candidates = n
+    if skipped:
+        scan.notes.append(f"{skipped} duplicate(s) of still-open candidates skipped")
     _append(SCANS, scan.to_json())
-    print(f"  recorded {n} candidate(s) from {len(rows)} matched outcomes.")
+    print(f"  recorded {n} candidate(s) from {len(rows)} matched outcomes"
+          f"{f'; skipped {skipped} already-open duplicate(s)' if skipped else ''}.")
     if n == 0:
-        print("  Zero candidates with non-zero coverage is a real answer: the")
-        print("  venues agreed. Zero candidates with ZERO coverage would be a bug.")
+        # These are three different states and must not share a message. Saying
+        # "the venues agreed" when candidates were merely already open would
+        # report an efficient market that was never observed.
+        if skipped:
+            print(f"  Nothing NEW: all {skipped} are still-open candidates awaiting a")
+            print("  grade. This is the loop working, not the venues agreeing.")
+        elif rows:
+            print("  Zero candidates with non-zero coverage is a real answer: the")
+            print("  venues agreed on every matched outcome.")
+        else:
+            print("  [!] Zero candidates AND zero coverage — that is a bug, not an")
+            print("      efficient market. Check the feeds before trusting this.")
     return 0
 
 
