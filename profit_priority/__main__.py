@@ -5,8 +5,9 @@ CLI:
     python -m profit_priority scan            # live: Kalshi + The Odds API (needs ODDS_API_KEY)
     python -m profit_priority report          # summarize the candidate log (the learning loop)
     python -m profit_priority fees 0.40 100   # show Kalshi all-in cost for a price/size
-    python -m profit_priority dashboard       # write docs/data.json for the live board (demo)
-    python -m profit_priority dashboard live  # ...from live feeds (needs ODDS_API_KEY)
+    python -m profit_priority dashboard       # write docs/data.json (live feeds when keyed)
+    python -m profit_priority dashboard live  # force live feeds (needs ODDS_API_KEY)
+    python -m profit_priority dashboard demo  # force the built-in fixture snapshot
 """
 
 from __future__ import annotations
@@ -74,18 +75,47 @@ def _fees(argv):
 
 
 def _dashboard(argv):
+    """
+    Write docs/data.json. The sportsbook-backed panels (pure arb / value /
+    manufactured) need a metered Odds API key; the structural panels do not.
+
+    Mode defaults to `auto`, which publishes those panels ONLY from live feeds.
+    Without a key it publishes them EMPTY rather than falling back to the demo
+    snapshot: a scheduled run that quietly ships three fixture games as if they
+    were today's board is worse than a blank panel, because the page gives no
+    sign that the run never happened. `demo` stays available explicitly, for
+    showing the math offline.
+    """
     from . import export_dashboard
-    live = bool(argv) and argv[0] == "live"
-    if live:
-        from .feeds import build_live_markets
-        markets, signals = build_live_markets()
-        source = "live"
-    else:
+    mode = (argv[0] if argv else "auto").lower()
+    note = ""
+
+    if mode == "demo":
         markets, signals = engine.demo_markets()
         source = "demo"
-    res = engine.run_on_markets(markets, signals, do_log=True)
-    path = export_dashboard.write_dashboard(res, source)
+        note = "Built-in fixture snapshot — not today's board."
+    elif mode == "live" or (mode == "auto" and config.ODDS_API_KEY):
+        try:
+            from .feeds import build_live_markets
+            markets, signals = build_live_markets()
+            source = "live"
+        except Exception as e:                   # noqa: BLE001 - one dead feed must not blank the deck
+            markets, signals = [], {}
+            source = "unavailable"
+            note = f"Sportsbook feed failed: {type(e).__name__}: {e}"
+    else:
+        markets, signals = [], {}
+        source = "unavailable"
+        note = ("No ODDS_API_KEY — the sportsbook feed these three panels price "
+                "against is not configured. The structural panels above are live.")
+
+    # Only a live run is evidence. Logging demo candidates would seed the
+    # learning ledger (and the funnel panel) with fixtures that never traded.
+    res = engine.run_on_markets(markets, signals, do_log=(source == "live"))
+    path = export_dashboard.write_dashboard(res, source, note)
     print(engine.format_report(res))
+    if note:
+        print(f"  note: {note}")
     print(f"  dashboard data -> {path}\n  open docs/index.html (or serve docs/)")
 
 

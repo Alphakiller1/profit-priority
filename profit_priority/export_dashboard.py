@@ -136,10 +136,11 @@ def _structure_payload() -> dict:
     return out
 
 
-def build_payload(res: dict, source: str) -> dict:
+def build_payload(res: dict, source: str, note: str = "") -> dict:
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "source": source,
+        "source_note": note,
         "kalshi_fee_rate": config.KALSHI_FEE_RATE,
         "structure": _structure_payload(),
         "thresholds": {
@@ -166,7 +167,8 @@ def build_payload(res: dict, source: str) -> dict:
     }
 
 
-def write_dashboard(res: dict, source: str) -> Path:
+def write_dashboard(res: dict, source: str, note: str = "") -> Path:
     DOCS.mkdir(parents=True, exist_ok=True)
-    DATA_JSON.write_text(json.dumps(build_payload(res, source), indent=2), encoding="utf-8")
+    DATA_JSON.write_text(json.dumps(build_payload(res, source, note), indent=2),
+                         encoding="utf-8")
     return DATA_JSON

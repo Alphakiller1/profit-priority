@@ -47,6 +47,14 @@ python -m profit_priority report    # summarize the candidate funnel
 python -m profit_priority dashboard # write docs/data.json, then serve docs/ (or GitHub Pages)
 ```
 
+`dashboard` takes a mode: `auto` (default — live feeds when `ODDS_API_KEY` is set),
+`live` (force), `demo` (force the built-in fixture snapshot). Without a key, `auto`
+publishes the three sportsbook-priced panels **empty with the reason attached** rather
+than falling back to fixtures, and logs nothing: a scheduled run that ships three
+fixture games as today's board is worse than a blank panel, because the page gives no
+sign the run never happened. The structural panels (Kalshi + Polymarket, free
+endpoints) are live in every mode.
+
 ### Live sharp signals
 `scan` auto-joins the **sharp-money-tracker's** `sharp_signals.csv` (steam + sharp-vs-soft
 divergence) into the manufactured-arb scorer, matched by the same `crc32(date|away|home)`
@@ -59,6 +67,11 @@ underdog** sides survived FDR at +20–48% ROI/u — the scorer rewards exactly 
 Value**, **Manufactured Candidates**, and a **Funnel/Postmortem** (logged vs accepted per
 class + top reject reasons). `python -m profit_priority dashboard` regenerates the data;
 serve `docs/` over HTTP or enable GitHub Pages (the `fetch` needs HTTP, not `file://`).
+
+Nothing type-checks that page, so `tests/test_dashboard_js.py` lints its inline script
+for helpers that are called but never defined and for element ids it reaches for that
+are not in the markup. Both are render-time faults: a missing helper once blanked the
+whole deck for six scheduled runs while `data.json` was perfectly correct.
 
 ## Layout
 ```
