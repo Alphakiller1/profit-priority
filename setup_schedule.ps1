@@ -64,7 +64,7 @@ $settings = New-ScheduledTaskSettingsSet `
 
 Register-ScheduledTask -TaskName $taskName -Action $action `
   -Trigger $trigger -Settings $settings `
-  -Description "profit-priority: grade, record, export dashboard (free endpoints only)" | Out-Null
+  -Description "profit-priority: grade, mark positions, record, export dashboard, publish docs/ (free endpoints only)" | Out-Null
 
 Write-Output "registered $taskName  (every 3h)"
 Write-Output ""
