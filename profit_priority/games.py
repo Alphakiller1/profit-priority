@@ -39,7 +39,7 @@ import urllib.parse
 import urllib.request
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime, timedelta, timezone
 
 from . import fees
 
@@ -63,6 +63,20 @@ TICKER_RE = re.compile(r"-(\d{2})([A-Z]{3})(\d{2})(\d{4})?([A-Z0-9]+)-([A-Z0-9]+
 # and at least this much volume. Width alone is a market nobody trades.
 MAKER_SPREAD_MULTIPLE = 2.0
 MIN_VOLUME_FOR_MAKER = 25.0
+
+# SCOPE CONSTRAINT: pre-game only. In-game markets are out of scope by decision,
+# so they are filtered here rather than left to be avoided by hand -- a board that
+# lists a live game invites trading one.
+#
+# MLB tickers carry an HHMM start block, so "has it started" is answerable exactly.
+# WNBA and NFL tickers carry only a date, so a same-day game cannot be resolved to
+# a start time. Those are treated as UNKNOWN and excluded on their game date rather
+# than assumed pre-game: silently including a live market would break the
+# constraint in exactly the way it was set to prevent.
+PREGAME_ONLY = True
+# Stop trading this long before first pitch; a market minutes from starting is
+# effectively live.
+PREGAME_BUFFER_MIN = 15.0
 
 
 def _get(url: str) -> dict:
@@ -151,6 +165,16 @@ class GameEvent:
     game_date: str            # Eastern calendar date
     matchup: str
     sides: list[Side] = field(default_factory=list)
+    pregame: bool | None = None      # None = start time unknowable from the ticker
+
+    @property
+    def tradeable(self) -> bool:
+        """Under PREGAME_ONLY, only a confirmed pre-game market is tradeable.
+
+        An unknown start (None) is excluded, not assumed safe. Treating unknown as
+        tradeable is how a scope constraint quietly stops holding.
+        """
+        return (not PREGAME_ONLY) or self.pregame is True
 
     @property
     def total_volume(self) -> float:
@@ -204,6 +228,47 @@ def _eastern_date(dt: datetime) -> str:
         return (dt - timedelta(hours=4)).date().isoformat()
 
 
+def game_start_et(ticker: str) -> datetime | None:
+    """Exact first pitch from the ticker, or None when it carries no time block.
+
+    Only MLB encodes HHMM. Returning None is meaningful, not a failure: it means
+    the start is unknowable from the ticker and the caller must decide, rather
+    than receiving a fabricated timestamp.
+    """
+    m = TICKER_RE.search(ticker or "")
+    if not m:
+        return None
+    yy, mon, dd, hhmm, _matchup, _side = m.groups()
+    mm = _MONTHS.get(mon)
+    if not mm or not hhmm:
+        return None
+    try:
+        from zoneinfo import ZoneInfo
+        tz = ZoneInfo("America/New_York")
+    except Exception:
+        tz = timezone(timedelta(hours=-4))
+    return datetime(2000 + int(yy), int(mm), int(dd),
+                    int(hhmm[:2]), int(hhmm[2:]), tzinfo=tz)
+
+
+def is_pregame(ticker: str, game_date: str, now: datetime | None = None) -> bool | None:
+    """True if safely pre-game, False if started, None if unknowable.
+
+    None is returned for WNBA/NFL on their own game date, where the ticker has no
+    time block. Callers must treat None as NOT tradeable under PREGAME_ONLY.
+    """
+    now = now or datetime.now(UTC)
+    start = game_start_et(ticker)
+    if start is not None:
+        return (start - now).total_seconds() / 60.0 > PREGAME_BUFFER_MIN
+    today = _eastern_date(now)
+    if game_date > today:
+        return True                 # a future date is pre-game regardless of time
+    if game_date < today:
+        return False                # already played
+    return None                     # today, no time block: unknowable
+
+
 def _parse_ticker(ticker: str) -> tuple[str, str, str] | None:
     """-> (game_date, event_key, side_code)."""
     m = TICKER_RE.search(ticker or "")
@@ -248,6 +313,8 @@ def fetch_sport(sport: str, pages: int = 8) -> list[GameEvent]:
             matchup = f"{core[0].split(':')[-1].strip()} vs {core[1].split()[0]}"
         ev = events.setdefault(key, GameEvent(sport=sport, game_date=gdate,
                                               matchup=matchup))
+        if ev.pregame is None:
+            ev.pregame = is_pregame(m.get("ticker", ""), gdate)
         ev.sides.append(Side(
             team=side, ticker=m.get("ticker", ""),
             bid=_f(m.get("yes_bid_dollars")), ask=_f(m.get("yes_ask_dollars")),
@@ -262,10 +329,16 @@ def board(sports: list[str] | None = None, days: int = 4) -> dict[str, list[Game
     today = _eastern_date(datetime.now(UTC))
     horizon = (datetime.now(UTC) + timedelta(days=days)).date().isoformat()
     by_date: dict[str, list[GameEvent]] = defaultdict(list)
+    excluded = {"started": 0, "unknown_start": 0}
     for sport in (sports or list(SPORTS)):
         for ev in fetch_sport(sport):
-            if today <= ev.game_date <= horizon:
-                by_date[ev.game_date].append(ev)
+            if not (today <= ev.game_date <= horizon):
+                continue
+            if not ev.tradeable:
+                excluded["started" if ev.pregame is False else "unknown_start"] += 1
+                continue
+            by_date[ev.game_date].append(ev)
+    board.last_excluded = excluded
     for d in by_date:
         by_date[d].sort(key=lambda e: -e.rank_score)
     return dict(sorted(by_date.items()))
@@ -277,6 +350,8 @@ def payload(days: int = 4) -> dict:
     return {
         "generated_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "today": today,
+        "pregame_only": PREGAME_ONLY,
+        "excluded": getattr(board, "last_excluded", {}),
         "days": [
             {
                 "date": d,

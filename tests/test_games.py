@@ -88,3 +88,51 @@ def test_parses_nfl_ticker_without_a_time_block() -> None:
 def test_unparseable_ticker_returns_none_rather_than_guessing() -> None:
     assert _parse_ticker("NOT-A-TICKER") is None
     assert _parse_ticker("") is None
+
+
+# ── scope constraint: pre-game only ───────────────────────────────────────────
+
+def test_started_game_is_not_tradeable() -> None:
+    """In-game markets are out of scope, so the board must exclude them."""
+    from datetime import UTC, datetime
+    from profit_priority.games import is_pregame
+    assert is_pregame("KXMLBGAME-20AUG121840CLEDET-DET", "2020-08-12",
+                      now=datetime(2020, 8, 13, 3, 0, tzinfo=UTC)) is False
+
+
+def test_future_game_is_tradeable() -> None:
+    from datetime import UTC, datetime
+    from profit_priority.games import is_pregame
+    assert is_pregame("KXMLBGAME-20AUG122210TEXLAA-TEX", "2020-08-12",
+                      now=datetime(2020, 8, 12, 20, 0, tzinfo=UTC)) is True
+
+
+def test_game_inside_the_buffer_is_not_tradeable() -> None:
+    """A market minutes from first pitch is effectively live."""
+    from datetime import UTC, datetime
+    from profit_priority.games import is_pregame
+    # 22:10 ET == 02:10 UTC next day; 5 minutes before that.
+    assert is_pregame("KXMLBGAME-20AUG122210TEXLAA-TEX", "2020-08-12",
+                      now=datetime(2020, 8, 13, 2, 5, tzinfo=UTC)) is False
+
+
+def test_unknown_start_returns_none_not_true() -> None:
+    """WNBA/NFL tickers carry no time block.
+
+    Returning True would silently admit a live market and break the constraint
+    in exactly the way it was set to prevent.
+    """
+    from datetime import UTC, datetime
+    from profit_priority.games import is_pregame
+    assert is_pregame("KXNFLGAME-20AUG13GBPIT-GB", "2020-08-13",
+                      now=datetime(2020, 8, 13, 18, 0, tzinfo=UTC)) is None
+
+
+def test_unknown_start_is_excluded_from_the_board() -> None:
+    from profit_priority.games import GameEvent
+    unknown = GameEvent("nfl", "2026-08-13", "A vs B", [], pregame=None)
+    started = GameEvent("mlb", "2026-08-12", "C vs D", [], pregame=False)
+    ok = GameEvent("mlb", "2026-08-12", "E vs F", [], pregame=True)
+    assert unknown.tradeable is False
+    assert started.tradeable is False
+    assert ok.tradeable is True
