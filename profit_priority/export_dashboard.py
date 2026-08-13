@@ -92,6 +92,14 @@ def _structure_payload() -> dict:
     except Exception as e:                       # noqa: BLE001 - panel must not break export
         out["errors"].append(f"structure: {type(e).__name__}: {e}")
 
+    # Game events lead the deck. Futures are structurally rich but thin and slow;
+    # a trading desk should open on what quotes and settles today.
+    try:
+        from . import games
+        out["games"] = games.payload(days=4)
+    except Exception as e:                       # noqa: BLE001
+        out["errors"].append(f"games: {type(e).__name__}: {e}")
+
     # Best execution: same outcome, two venues, one of them cheaper. This is the
     # only panel whose value does not depend on being right about anything.
     try:

@@ -126,6 +126,38 @@
     border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:11px;
     font-family:var(--mono);color:var(--ink);opacity:0;transition:opacity .1s;
     z-index:80;white-space:pre;box-shadow:var(--shadow)}
+
+  /* ── day-grouped game board ─────────────────────────────────────────── */
+  .daybar{display:flex;align-items:baseline;gap:12px;padding:11px 16px;
+    background:var(--raised);border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);position:sticky;top:60px;z-index:5}
+  .daybar b{font-size:12.5px;letter-spacing:.02em}
+  .daybar .today{font-family:var(--mono);font-size:9.5px;font-weight:700;
+    padding:2px 7px;border-radius:5px;background:rgba(12,163,12,.16);color:#3fc93f}
+  .daybar span{color:var(--muted);font-size:11.5px}
+  .daybar .mk{color:#3fc93f}
+  .games{display:grid;gap:10px;padding:14px 16px;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+  .gcard{border:1px solid var(--line);border-radius:9px;background:var(--plane);
+    overflow:hidden}
+  .gcard.hot{border-color:#1d5a2a;box-shadow:inset 0 0 0 1px rgba(12,163,12,.14)}
+  .gtop{display:flex;justify-content:space-between;align-items:baseline;
+    padding:9px 11px;border-bottom:1px solid var(--line-soft)}
+  .gtop b{font-size:12.5px}
+  .gtop span{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
+  .grow{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;
+    align-items:center;padding:7px 11px;font-size:12px}
+  .grow + .grow{border-top:1px solid var(--line-soft)}
+  .grow .tm{font-weight:600}
+  .grow .px{font-family:var(--mono);font-variant-numeric:tabular-nums;
+    text-align:right;white-space:nowrap}
+  .grow .px i{font-style:normal;color:var(--muted);margin-left:5px}
+  .grow .vd{font-family:var(--mono);font-size:9.5px;font-weight:700;
+    padding:2px 6px;border-radius:4px;white-space:nowrap}
+  .vd.mk{background:rgba(12,163,12,.15);color:#3fc93f}
+  .vd.mg{background:rgba(250,178,25,.14);color:#f5c451}
+  .vd.tt{background:rgba(208,59,59,.13);color:#e57373}
+  .vd.nv{background:rgba(124,132,146,.15);color:var(--muted)}
   @media (max-width:640px){
     main{grid-template-columns:1fr;padding:14px}
     header{padding:11px 14px;gap:16px}.kpis{gap:16px}
@@ -136,16 +168,32 @@
 <header>
   <div class="brand">profit-priority <small>· execution desk</small></div>
   <div class="kpis">
+    <div class="kpi"><b id="k-today">–</b><i>games today</i></div>
+    <div class="kpi"><b id="k-maker">–</b><i>maker room today</i></div>
     <div class="kpi"><b id="k-save">–</b><i>best-price saving</i></div>
     <div class="kpi"><b id="k-locks">–</b><i>cross-venue locks</i></div>
-    <div class="kpi"><b id="k-maker">–</b><i>maker candidates</i></div>
     <div class="kpi"><b id="k-struct">–</b><i>structural locks</i></div>
-    <div class="kpi"><b id="k-mkts">–</b><i>contracts</i></div>
   </div>
   <div class="chip" id="k-fresh"><span class="dot"></span><span>loading…</span></div>
 </header>
 
 <main>
+  <section class="wide">
+    <div class="hd">
+      <h2>Game events <span class="tag">today first</span></h2>
+      <p class="lede">The daily board, grouped by Eastern game date. Ranked by width
+        paired with flow — a card is high because it is <em>worth looking at</em>, never
+        because a model says a side wins. <b>Maker room requires both</b>: spread at
+        least 2&times; the maker round trip <em>and</em> real volume. A wide spread with
+        no volume is a market with no counterparty, where a resting order never fills.</p>
+    </div>
+    <div id="t-days"></div>
+    <p class="note"><b>Why maker room clusters at longshots.</b> Kalshi's fee scales with
+      p(1&minus;p), so at 0.12 the maker round trip is ~0.0040 while the spread is still
+      pinned at the 1&cent; minimum tick. The tick is a fixed floor; the fee is variable
+      and collapses at the extremes — so spread-to-fee is best away from 50&cent;, not at it.</p>
+  </section>
+
   <section class="wide">
     <div class="hd">
       <h2>Best execution <span class="tag neutral">outcome-independent</span></h2>
@@ -176,7 +224,7 @@
 
   <section>
     <div class="hd">
-      <h2>Structural gap <span class="tag neutral">partition families</span></h2>
+      <h2>Futures &mdash; structural gap <span class="tag">secondary</span></h2>
       <p class="lede">Distance from a locked arbitrage. Zero is the fee-adjusted
         threshold (~0.965 two-leg), never 1.00 — measuring against 1.00 is what made
         the original tracker's arbs phantom.</p>
@@ -186,7 +234,7 @@
 
   <section>
     <div class="hd">
-      <h2>Venue partition sums</h2>
+      <h2>Futures &mdash; venue partition sums <span class="tag">secondary</span></h2>
       <p class="lede">Same K-of-N families, both books. Disagreement between two
         vig-free exchanges is about probability, not margin.</p>
     </div>
@@ -194,7 +242,7 @@
   </section>
 
   <section class="wide">
-    <div class="hd"><h2>Kalshi board <span class="tag">American odds</span></h2></div>
+    <div class="hd"><h2>Futures &mdash; contract board <span class="tag">American odds</span></h2></div>
     <div class="scroll" id="t-board"></div>
   </section>
 
@@ -341,9 +389,48 @@ function chartGap(host,parts){
 }
 
 /* ── render ─────────────────────────────────────────────────────────────── */
+
+/* ── day-grouped game board ───────────────────────────────────────────────── */
+const VD = {"maker room":["mk","MAKER"],"marginal":["mg","MARGINAL"],
+            "too tight":["tt","TOO TIGHT"],"no volume":["nv","NO VOL"],
+            "no quote":["nv","NO QUOTE"]};
+
+function renderDays(host, g){
+  const days = (g && g.days) || [];
+  if(!days.length){
+    box(host,'No game events','Run python -m profit_priority.games');return;
+  }
+  host.innerHTML = days.map(d=>{
+    const cards = (d.events||[]).map(e=>{
+      const hot = (e.maker_sides||[]).length > 0;
+      const rows = (e.sides||[]).map(sd=>{
+        const [cls,label] = VD[sd.verdict] || ["nv", String(sd.verdict||"").toUpperCase()];
+        return `<div class="grow">
+          <span class="tm">${esc(sd.team)}</span>
+          <span class="px">${f2s(sd.bid)}<i>${us(sd.bid_american)}</i></span>
+          <span class="px">${f2s(sd.ask)}<i>${us(sd.ask_american)}</i></span>
+          <span class="vd ${cls}">${label}</span>
+        </div>`;}).join('');
+      const vol = e.total_volume>=1000
+        ? (e.total_volume/1000).toFixed(0)+'k' : String(Math.round(e.total_volume));
+      return `<div class="gcard${hot?' hot':''}">
+        <div class="gtop"><b>${esc(e.matchup)}</b>
+          <span>${esc(e.sport)} · vol ${vol}</span></div>
+        ${rows}</div>`;}).join('');
+    return `<div class="daybar">
+        <b>${esc(d.date)}</b>${d.is_today?'<span class="today">TODAY</span>':''}
+        <span>${d.games} games</span>
+        <span class="mk">${d.maker_candidates} maker room</span>
+      </div><div class="games">${cards}</div>`;
+  }).join('');
+}
+const f2s = v => v==null ? '–' : (+v).toFixed(2);
+
 function render(d){
   const st=d.structure||{},board=st.board||[],parts=st.partitions||[],
-        locks=st.locks||[],poly=st.polymarket||[],cross=st.crossvenue||[];
+        locks=st.locks||[],poly=st.polymarket||[],cross=st.crossvenue||[],
+        g=st.games||{};
+  const todayDay=(g.days||[]).find(x=>x.is_today);
   const xLocks=cross.filter(r=>r.lock);
   const makers=board.filter(b=>b.spread>b.maker_rt*2);
   const topSave=cross.length?Math.max(...cross.map(r=>r.saving)):0;
@@ -352,10 +439,10 @@ function render(d){
   $('#k-save').style.color=topSave>0?'var(--good)':'var(--ink)';
   $('#k-locks').textContent=xLocks.length;
   $('#k-locks').style.color=xLocks.length?'var(--warning)':'var(--ink)';
-  $('#k-maker').textContent=makers.length;
-  $('#k-maker').style.color=makers.length?'var(--good)':'var(--ink)';
+  $('#k-today').textContent=todayDay?todayDay.games:'0';
+  $('#k-maker').textContent=todayDay?todayDay.maker_candidates:'0';
+  $('#k-maker').style.color=(todayDay&&todayDay.maker_candidates)?'var(--good)':'var(--ink)';
   $('#k-struct').textContent=locks.length;
-  $('#k-mkts').textContent=board.length;
 
   const gen=d.generated_at?new Date(d.generated_at):null;
   const age=gen?(Date.now()-gen.getTime())/60000:null;
@@ -365,6 +452,7 @@ function render(d){
   else{chip.className='chip stale';
     txt.textContent=age<2880?`stale · ${(age/60).toFixed(1)}h`:`stale · ${(age/1440).toFixed(1)}d`;}
 
+  renderDays($('#t-days'), g);
   chartSaving($('#c-save'),cross);
   chartMaker($('#c-maker'),board);
   chartGap($('#c-gap'),parts);
