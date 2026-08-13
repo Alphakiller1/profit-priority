@@ -646,9 +646,12 @@ function render(d){
   else{chip.className='chip stale';
     txt.textContent=age<2880?`stale · ${(age/60).toFixed(1)}h`:`stale · ${(age/1440).toFixed(1)}d`;}
   // A fresh timestamp on a snapshot that never reached a sportsbook is the most
-  // misleading state this page can be in, so the source outranks the age.
+  // misleading state this page can be in, so the source outranks the age. The
+  // label names the feed that is missing, not the page: the structural panels
+  // are live either way, and calling the whole deck stale would be its own lie.
+  const SRC={demo:'fixtures — not a run',unavailable:'no sportsbook feed'};
   if(d.source && d.source!=='live'){chip.className='chip stale';
-    txt.textContent=`${d.source} · ${age==null?'no timestamp':age.toFixed(0)+'m'}`;}
+    txt.textContent=`${SRC[d.source]||d.source} · ${age==null?'no timestamp':age.toFixed(0)+'m'}`;}
 
   renderBook(d);
   renderDays($('#t-days'), g);
