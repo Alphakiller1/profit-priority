@@ -1,49 +1,19 @@
 {
-  "generated_at": "2026-08-13T11:00:13+00:00",
+  "generated_at": "2026-08-13T14:22:12+00:00",
   "source": "unavailable",
   "source_note": "No ODDS_API_KEY \u2014 the sportsbook feed these three panels price against is not configured. The structural panels above are live.",
   "kalshi_fee_rate": 0.07,
   "structure": {
     "partitions": [
       {
-        "series": "KXMLB",
-        "label": "World Series champion",
-        "n": 30,
-        "k": 1,
-        "sum_ask": 1.081,
-        "sum_bid": 1.03,
-        "buy_gap": -0.081,
-        "sell_gap": 0.03
-      },
-      {
         "series": "KXNFLAFCNORTH",
         "label": "AFC North winner",
         "n": 4,
         "k": 1,
-        "sum_ask": 1.0,
-        "sum_bid": 0.96,
-        "buy_gap": 0.0,
-        "sell_gap": -0.04
-      },
-      {
-        "series": "KXNFLNFCNORTH",
-        "label": "NFC North winner",
-        "n": 4,
-        "k": 1,
-        "sum_ask": 1.04,
-        "sum_bid": 1.0,
-        "buy_gap": -0.04,
-        "sell_gap": 0.0
-      },
-      {
-        "series": "KXWNBA",
-        "label": "WNBA championship",
-        "n": 15,
-        "k": 1,
-        "sum_ask": 1.16,
-        "sum_bid": 1.0,
-        "buy_gap": -0.16,
-        "sell_gap": 0.0
+        "sum_ask": 0.99,
+        "sum_bid": 0.95,
+        "buy_gap": 0.01,
+        "sell_gap": -0.05
       },
       {
         "series": "KXMLBALWEST",
@@ -51,9 +21,39 @@
         "n": 5,
         "k": 1,
         "sum_ask": 1.07,
-        "sum_bid": 0.99,
+        "sum_bid": 1.0,
         "buy_gap": -0.07,
-        "sell_gap": -0.01
+        "sell_gap": 0.0
+      },
+      {
+        "series": "KXNFLAFCWEST",
+        "label": "AFC West winner",
+        "n": 4,
+        "k": 1,
+        "sum_ask": 1.05,
+        "sum_bid": 1.0,
+        "buy_gap": -0.05,
+        "sell_gap": 0.0
+      },
+      {
+        "series": "KXNFLNFCNORTH",
+        "label": "NFC North winner",
+        "n": 4,
+        "k": 1,
+        "sum_ask": 1.05,
+        "sum_bid": 1.0,
+        "buy_gap": -0.05,
+        "sell_gap": 0.0
+      },
+      {
+        "series": "KXMLB",
+        "label": "World Series champion",
+        "n": 30,
+        "k": 1,
+        "sum_ask": 1.053,
+        "sum_bid": 0.999,
+        "buy_gap": -0.053,
+        "sell_gap": -0.001
       },
       {
         "series": "KXMLBNLWEST",
@@ -71,9 +71,9 @@
         "n": 4,
         "k": 1,
         "sum_ask": 1.01,
-        "sum_bid": 0.96,
+        "sum_bid": 0.97,
         "buy_gap": -0.01,
-        "sell_gap": -0.04
+        "sell_gap": -0.03
       },
       {
         "series": "KXNFLAFCSOUTH",
@@ -83,16 +83,6 @@
         "sum_ask": 1.04,
         "sum_bid": 0.99,
         "buy_gap": -0.04,
-        "sell_gap": -0.01
-      },
-      {
-        "series": "KXNFLAFCWEST",
-        "label": "AFC West winner",
-        "n": 4,
-        "k": 1,
-        "sum_ask": 1.05,
-        "sum_bid": 0.99,
-        "buy_gap": -0.05,
         "sell_gap": -0.01
       },
       {
@@ -106,13 +96,23 @@
         "sell_gap": -0.01
       },
       {
+        "series": "KXWNBA",
+        "label": "WNBA championship",
+        "n": 15,
+        "k": 1,
+        "sum_ask": 1.15,
+        "sum_bid": 0.99,
+        "buy_gap": -0.15,
+        "sell_gap": -0.01
+      },
+      {
         "series": "KXMLBNL",
         "label": "NL pennant",
         "n": 15,
         "k": 1,
-        "sum_ask": 1.15,
+        "sum_ask": 1.13,
         "sum_bid": 0.98,
-        "buy_gap": -0.15,
+        "buy_gap": -0.13,
         "sell_gap": -0.02
       },
       {
@@ -141,9 +141,9 @@
         "n": 5,
         "k": 1,
         "sum_ask": 1.05,
-        "sum_bid": 0.96,
+        "sum_bid": 0.97,
         "buy_gap": -0.05,
-        "sell_gap": -0.04
+        "sell_gap": -0.03
       },
       {
         "series": "KXMLBNLEAST",
@@ -151,18 +151,18 @@
         "n": 5,
         "k": 1,
         "sum_ask": 1.04,
-        "sum_bid": 0.96,
+        "sum_bid": 0.97,
         "buy_gap": -0.04,
-        "sell_gap": -0.04
+        "sell_gap": -0.03
       },
       {
         "series": "KXMLBAL",
         "label": "AL pennant",
         "n": 15,
         "k": 1,
-        "sum_ask": 1.16,
+        "sum_ask": 1.14,
         "sum_bid": 0.94,
-        "buy_gap": -0.16,
+        "buy_gap": -0.14,
         "sell_gap": -0.06
       },
       {
@@ -170,10 +170,10 @@
         "label": "Playoff qualifier",
         "n": 30,
         "k": 12,
-        "sum_ask": 12.68,
-        "sum_bid": 11.93,
-        "buy_gap": -0.68,
-        "sell_gap": -0.07
+        "sum_ask": 12.53,
+        "sum_bid": 11.76,
+        "buy_gap": -0.53,
+        "sell_gap": -0.24
       }
     ],
     "locks": [],
@@ -258,10 +258,10 @@
         "sport": "mlb",
         "n": 30,
         "k": 12,
-        "sum_ask": 13.009,
-        "sum_bid": 11.444,
-        "buy_gap": -1.009,
-        "sell_gap": -0.556,
+        "sum_ask": 12.934,
+        "sum_bid": 11.539,
+        "buy_gap": -0.934,
+        "sell_gap": -0.461,
         "legs": [
           {
             "q": "Will the Atlanta Braves clinch a spot in the 2026 MLB Postseason?",
@@ -279,9 +279,9 @@
           },
           {
             "q": "Will the Milwaukee Brewers clinch a spot in the 2026 MLB Postseason?",
-            "price": 0.9675,
+            "price": 0.966,
             "bid": 0.941,
-            "ask": 0.994,
+            "ask": 0.991,
             "volume": 1322.714092
           },
           {
@@ -292,53 +292,53 @@
             "volume": 944.0394230000002
           },
           {
+            "q": "Will the New York Yankees clinch a spot in the 2026 MLB Postseason?",
+            "price": 0.964,
+            "bid": 0.934,
+            "ask": 0.994,
+            "volume": 3190.593579
+          },
+          {
             "q": "Will the Chicago Cubs clinch a spot in the 2026 MLB Postseason?",
             "price": 0.96,
             "bid": 0.943,
             "ask": 0.977,
-            "volume": 4767.911408
-          },
-          {
-            "q": "Will the New York Yankees clinch a spot in the 2026 MLB Postseason?",
-            "price": 0.9385,
-            "bid": 0.884,
-            "ask": 0.993,
-            "volume": 3190.593579
+            "volume": 4767.911408000001
           },
           {
             "q": "Will the Boston Red Sox clinch a spot in the 2026 MLB Postseason?",
-            "price": 0.835,
-            "bid": 0.8,
+            "price": 0.845,
+            "bid": 0.82,
             "ask": 0.87,
             "volume": 2030.4198359999998
           },
           {
             "q": "Will the Philadelphia Phillies clinch a spot in the 2026 MLB Postseason?",
-            "price": 0.68,
-            "bid": 0.65,
-            "ask": 0.71,
-            "volume": 18836.392605
-          },
-          {
-            "q": "Will the San Diego Padres clinch a spot in the 2026 MLB Postseason?",
-            "price": 0.645,
-            "bid": 0.58,
-            "ask": 0.71,
-            "volume": 7696.158185
+            "price": 0.67,
+            "bid": 0.66,
+            "ask": 0.68,
+            "volume": 18836.392604999997
           },
           {
             "q": "Will the Chicago White Sox clinch a spot in the 2026 MLB Postseason?",
-            "price": 0.625,
+            "price": 0.65,
             "bid": 0.61,
-            "ask": 0.64,
-            "volume": 3436.5293850000007
+            "ask": 0.69,
+            "volume": 3458.5293850000007
+          },
+          {
+            "q": "Will the San Diego Padres clinch a spot in the 2026 MLB Postseason?",
+            "price": 0.64,
+            "bid": 0.58,
+            "ask": 0.7,
+            "volume": 7696.158185
           },
           {
             "q": "Will the Houston Astros clinch a spot in the 2026 MLB Postseason?",
-            "price": 0.605,
-            "bid": 0.54,
+            "price": 0.615,
+            "bid": 0.56,
             "ask": 0.67,
-            "volume": 5027.381555999999
+            "volume": 5027.381556
           },
           {
             "q": "Will the Texas Rangers clinch a spot in the 2026 MLB Postseason?",
@@ -355,66 +355,66 @@
         "sport": "wnba",
         "n": 14,
         "k": 1,
-        "sum_ask": 1.083,
-        "sum_bid": 1.01,
-        "buy_gap": -0.083,
-        "sell_gap": 0.01,
+        "sum_ask": 1.084,
+        "sum_bid": 1.009,
+        "buy_gap": -0.084,
+        "sell_gap": 0.009,
         "legs": [
           {
             "q": "Will Minnesota Lynx win the 2026 WNBA Finals?",
             "price": 0.455,
             "bid": 0.45,
             "ask": 0.46,
-            "volume": 70772.69301199999
+            "volume": 70779.86692400002
           },
           {
             "q": "Will Las Vegas Aces win the 2026 WNBA Finals?",
             "price": 0.145,
             "bid": 0.14,
             "ask": 0.15,
-            "volume": 31408.230281000004
+            "volume": 31414.896945999993
           },
           {
             "q": "Will Indiana Fever win the 2026 WNBA Finals?",
             "price": 0.115,
             "bid": 0.11,
             "ask": 0.12,
-            "volume": 79076.39953799998
+            "volume": 79227.23287
           },
           {
             "q": "Will Atlanta Dream win the 2026 WNBA Finals?",
             "price": 0.105,
             "bid": 0.1,
             "ask": 0.11,
-            "volume": 97894.61498299998
+            "volume": 97894.614983
           },
           {
             "q": "Will Golden State Valkyries win the 2026 WNBA Finals?",
-            "price": 0.0885,
-            "bid": 0.088,
+            "price": 0.088,
+            "bid": 0.087,
             "ask": 0.089,
-            "volume": 42702.38596700001
+            "volume": 42702.385967
           },
           {
             "q": "Will New York Liberty win the 2026 WNBA Finals?",
             "price": 0.085,
             "bid": 0.08,
             "ask": 0.09,
-            "volume": 38450.646729
+            "volume": 38461.757839000005
           },
           {
             "q": "Will Dallas Wings win the 2026 WNBA Finals?",
-            "price": 0.032,
+            "price": 0.0325,
             "bid": 0.027,
-            "ask": 0.037,
-            "volume": 54091.36885399999
+            "ask": 0.038,
+            "volume": 54091.368854
           },
           {
             "q": "Will Washington Mystics win the 2026 WNBA Finals?",
             "price": 0.018,
             "bid": 0.015,
             "ask": 0.021,
-            "volume": 68250.26640600001
+            "volume": 68250.26640599998
           },
           {
             "q": "Will Chicago Sky win the 2026 WNBA Finals?",
@@ -435,7 +435,7 @@
             "price": 0.0005,
             "bid": null,
             "ask": 0.001,
-            "volume": 18500.067563999994
+            "volume": 19132.567563999997
           },
           {
             "q": "Will Phoenix Mercury win the 2026 WNBA Finals?",
@@ -450,94 +450,94 @@
     "board": [
       {
         "series": "KXMLBPLAYOFFS",
-        "team": "AZ",
-        "ticker": "KXMLBPLAYOFFS-26-AZ",
-        "bid": 0.41,
-        "ask": 0.51,
-        "spread": 0.1,
-        "mid": 0.46,
-        "bid_american": 144,
-        "ask_american": -104,
-        "taker_rt": 0.0348,
+        "team": "TEX",
+        "ticker": "KXMLBPLAYOFFS-26-TEX",
+        "bid": 0.45,
+        "ask": 0.53,
+        "spread": 0.08,
+        "mid": 0.49,
+        "bid_american": 122,
+        "ask_american": -113,
+        "taker_rt": 0.035,
         "maker_rt": 0.0088
       },
       {
         "series": "KXMLBPLAYOFFS",
         "team": "CWS",
         "ticker": "KXMLBPLAYOFFS-26-CWS",
-        "bid": 0.54,
+        "bid": 0.56,
         "ask": 0.63,
-        "spread": 0.09,
-        "mid": 0.585,
-        "bid_american": -117,
+        "spread": 0.07,
+        "mid": 0.595,
+        "bid_american": -127,
         "ask_american": -170,
-        "taker_rt": 0.034,
+        "taker_rt": 0.0338,
         "maker_rt": 0.0086
       },
       {
         "series": "KXMLBPLAYOFFS",
         "team": "BAL",
         "ticker": "KXMLBPLAYOFFS-26-BAL",
-        "bid": 0.11,
-        "ask": 0.17,
+        "bid": 0.1,
+        "ask": 0.16,
         "spread": 0.06,
-        "mid": 0.14,
-        "bid_american": 809,
-        "ask_american": 488,
-        "taker_rt": 0.017,
-        "maker_rt": 0.0044
+        "mid": 0.13,
+        "bid_american": 900,
+        "ask_american": 525,
+        "taker_rt": 0.016,
+        "maker_rt": 0.004
       },
       {
         "series": "KXMLBPLAYOFFS",
-        "team": "TEX",
-        "ticker": "KXMLBPLAYOFFS-26-TEX",
-        "bid": 0.5,
-        "ask": 0.55,
+        "team": "TOR",
+        "ticker": "KXMLBPLAYOFFS-26-TOR",
+        "bid": 0.19,
+        "ask": 0.24,
         "spread": 0.05,
-        "mid": 0.525,
-        "bid_american": -100,
-        "ask_american": -122,
-        "taker_rt": 0.035,
-        "maker_rt": 0.0088
+        "mid": 0.215,
+        "bid_american": 426,
+        "ask_american": 317,
+        "taker_rt": 0.0238,
+        "maker_rt": 0.006
       },
       {
         "series": "KXMLBPLAYOFFS",
-        "team": "SD",
-        "ticker": "KXMLBPLAYOFFS-26-SD",
-        "bid": 0.65,
-        "ask": 0.69,
+        "team": "DET",
+        "ticker": "KXMLBPLAYOFFS-26-DET",
+        "bid": 0.32,
+        "ask": 0.36,
         "spread": 0.04,
-        "mid": 0.67,
-        "bid_american": -186,
-        "ask_american": -223,
-        "taker_rt": 0.031,
-        "maker_rt": 0.0078
+        "mid": 0.34,
+        "bid_american": 212,
+        "ask_american": 178,
+        "taker_rt": 0.0316,
+        "maker_rt": 0.008
       },
       {
-        "series": "KXMLBALWEST",
-        "team": "HOU",
-        "ticker": "KXMLBALWEST-26-HOU",
-        "bid": 0.56,
-        "ask": 0.6,
+        "series": "KXMLBPLAYOFFS",
+        "team": "CLE",
+        "ticker": "KXMLBPLAYOFFS-26-CLE",
+        "bid": 0.27,
+        "ask": 0.31,
         "spread": 0.04,
-        "mid": 0.58,
-        "bid_american": -127,
-        "ask_american": -150,
-        "taker_rt": 0.0342,
-        "maker_rt": 0.0086
+        "mid": 0.29,
+        "bid_american": 270,
+        "ask_american": 223,
+        "taker_rt": 0.029,
+        "maker_rt": 0.0074
       },
       {
-        "series": "KXMLBNLEAST",
-        "team": "PHI",
-        "ticker": "KXMLBNLEAST-26-PHI",
-        "bid": 0.02,
-        "ask": 0.06,
+        "series": "KXMLBPLAYOFFS",
+        "team": "AZ",
+        "ticker": "KXMLBPLAYOFFS-26-AZ",
+        "bid": 0.42,
+        "ask": 0.46,
         "spread": 0.04,
-        "mid": 0.04,
-        "bid_american": 4900,
-        "ask_american": 1567,
-        "taker_rt": 0.0054,
-        "maker_rt": 0.0014
+        "mid": 0.44,
+        "bid_american": 138,
+        "ask_american": 117,
+        "taker_rt": 0.0346,
+        "maker_rt": 0.0088
       },
       {
         "series": "KXMLBAL",
@@ -551,19 +551,6 @@
         "ask_american": 1567,
         "taker_rt": 0.0062,
         "maker_rt": 0.0016
-      },
-      {
-        "series": "KXMLBNL",
-        "team": "CHC",
-        "ticker": "KXMLBNL-26-CHC",
-        "bid": 0.12,
-        "ask": 0.15,
-        "spread": 0.03,
-        "mid": 0.135,
-        "bid_american": 733,
-        "ask_american": 567,
-        "taker_rt": 0.0164,
-        "maker_rt": 0.0042
       },
       {
         "series": "KXMLBPLAYOFFS",
@@ -580,6 +567,19 @@
       },
       {
         "series": "KXMLBPLAYOFFS",
+        "team": "MIN",
+        "ticker": "KXMLBPLAYOFFS-26-MIN",
+        "bid": 0.25,
+        "ask": 0.28,
+        "spread": 0.03,
+        "mid": 0.265,
+        "bid_american": 300,
+        "ask_american": 257,
+        "taker_rt": 0.0274,
+        "maker_rt": 0.007
+      },
+      {
+        "series": "KXMLBPLAYOFFS",
         "team": "MIL",
         "ticker": "KXMLBPLAYOFFS-26-MIL",
         "bid": 0.97,
@@ -593,55 +593,68 @@
       },
       {
         "series": "KXMLBPLAYOFFS",
-        "team": "HOU",
-        "ticker": "KXMLBPLAYOFFS-26-HOU",
-        "bid": 0.68,
-        "ask": 0.71,
+        "team": "MIA",
+        "ticker": "KXMLBPLAYOFFS-26-MIA",
+        "bid": 0.15,
+        "ask": 0.18,
         "spread": 0.03,
-        "mid": 0.695,
-        "bid_american": -213,
-        "ask_american": -245,
-        "taker_rt": 0.0298,
-        "maker_rt": 0.0076
-      },
-      {
-        "series": "KXMLBPLAYOFFS",
-        "team": "DET",
-        "ticker": "KXMLBPLAYOFFS-26-DET",
-        "bid": 0.4,
-        "ask": 0.43,
-        "spread": 0.03,
-        "mid": 0.415,
-        "bid_american": 150,
-        "ask_american": 133,
-        "taker_rt": 0.034,
-        "maker_rt": 0.0086
+        "mid": 0.165,
+        "bid_american": 567,
+        "ask_american": 456,
+        "taker_rt": 0.0194,
+        "maker_rt": 0.005
       },
       {
         "series": "KXMLBPLAYOFFS",
         "team": "BOS",
         "ticker": "KXMLBPLAYOFFS-26-BOS",
-        "bid": 0.86,
-        "ask": 0.89,
+        "bid": 0.85,
+        "ask": 0.88,
         "spread": 0.03,
-        "mid": 0.875,
-        "bid_american": -614,
-        "ask_american": -809,
-        "taker_rt": 0.0154,
-        "maker_rt": 0.004
+        "mid": 0.865,
+        "bid_american": -567,
+        "ask_american": -733,
+        "taker_rt": 0.0164,
+        "maker_rt": 0.0042
       },
       {
         "series": "KXMLBALEAST",
         "team": "TB",
         "ticker": "KXMLBALEAST-26-TB",
-        "bid": 0.74,
-        "ask": 0.77,
+        "bid": 0.75,
+        "ask": 0.78,
         "spread": 0.03,
-        "mid": 0.755,
-        "bid_american": -285,
-        "ask_american": -335,
-        "taker_rt": 0.026,
-        "maker_rt": 0.0066
+        "mid": 0.765,
+        "bid_american": -300,
+        "ask_american": -355,
+        "taker_rt": 0.0252,
+        "maker_rt": 0.0064
+      },
+      {
+        "series": "KXMLBALWEST",
+        "team": "SEA",
+        "ticker": "KXMLBALWEST-26-SEA",
+        "bid": 0.11,
+        "ask": 0.14,
+        "spread": 0.03,
+        "mid": 0.125,
+        "bid_american": 809,
+        "ask_american": 614,
+        "taker_rt": 0.0154,
+        "maker_rt": 0.004
+      },
+      {
+        "series": "KXMLBNLEAST",
+        "team": "PHI",
+        "ticker": "KXMLBNLEAST-26-PHI",
+        "bid": 0.02,
+        "ask": 0.05,
+        "spread": 0.03,
+        "mid": 0.035,
+        "bid_american": 4900,
+        "ask_american": 1900,
+        "taker_rt": 0.0048,
+        "maker_rt": 0.0012
       },
       {
         "series": "KXMLBAL",
@@ -658,19 +671,6 @@
       },
       {
         "series": "KXMLBAL",
-        "team": "TEX",
-        "ticker": "KXMLBAL-26-TEX",
-        "bid": 0.06,
-        "ask": 0.08,
-        "spread": 0.02,
-        "mid": 0.07,
-        "bid_american": 1567,
-        "ask_american": 1150,
-        "taker_rt": 0.0092,
-        "maker_rt": 0.0024
-      },
-      {
-        "series": "KXMLBAL",
         "team": "TB",
         "ticker": "KXMLBAL-26-TB",
         "bid": 0.21,
@@ -681,19 +681,6 @@
         "ask_american": 335,
         "taker_rt": 0.0242,
         "maker_rt": 0.0062
-      },
-      {
-        "series": "KXMLBAL",
-        "team": "CWS",
-        "ticker": "KXMLBAL-26-CWS",
-        "bid": 0.06,
-        "ask": 0.08,
-        "spread": 0.02,
-        "mid": 0.07,
-        "bid_american": 1567,
-        "ask_american": 1150,
-        "taker_rt": 0.0092,
-        "maker_rt": 0.0024
       },
       {
         "series": "KXMLBAL",
@@ -710,6 +697,19 @@
       },
       {
         "series": "KXMLBPLAYOFFS",
+        "team": "SD",
+        "ticker": "KXMLBPLAYOFFS-26-SD",
+        "bid": 0.67,
+        "ask": 0.69,
+        "spread": 0.02,
+        "mid": 0.68,
+        "bid_american": -203,
+        "ask_american": -223,
+        "taker_rt": 0.0306,
+        "maker_rt": 0.0078
+      },
+      {
+        "series": "KXMLBPLAYOFFS",
         "team": "NYM",
         "ticker": "KXMLBPLAYOFFS-26-NYM",
         "bid": 0.01,
@@ -720,19 +720,6 @@
         "ask_american": 3233,
         "taker_rt": 0.0028,
         "maker_rt": 0.0008
-      },
-      {
-        "series": "KXMLBPLAYOFFS",
-        "team": "MIA",
-        "ticker": "KXMLBPLAYOFFS-26-MIA",
-        "bid": 0.15,
-        "ask": 0.17,
-        "spread": 0.02,
-        "mid": 0.16,
-        "bid_american": 567,
-        "ask_american": 488,
-        "taker_rt": 0.019,
-        "maker_rt": 0.0048
       },
       {
         "series": "KXMLBPLAYOFFS",
@@ -762,16 +749,16 @@
       },
       {
         "series": "KXMLBPLAYOFFS",
-        "team": "CIN",
-        "ticker": "KXMLBPLAYOFFS-26-CIN",
-        "bid": 0.02,
-        "ask": 0.04,
+        "team": "HOU",
+        "ticker": "KXMLBPLAYOFFS-26-HOU",
+        "bid": 0.67,
+        "ask": 0.69,
         "spread": 0.02,
-        "mid": 0.03,
-        "bid_american": 4900,
-        "ask_american": 2400,
-        "taker_rt": 0.0042,
-        "maker_rt": 0.0012
+        "mid": 0.68,
+        "bid_american": -203,
+        "ask_american": -223,
+        "taker_rt": 0.0306,
+        "maker_rt": 0.0078
       },
       {
         "series": "KXMLBPLAYOFFS",
@@ -800,19 +787,6 @@
         "maker_rt": 0.0054
       },
       {
-        "series": "KXMLBALEAST",
-        "team": "BOS",
-        "ticker": "KXMLBALEAST-26-BOS",
-        "bid": 0.04,
-        "ask": 0.06,
-        "spread": 0.02,
-        "mid": 0.05,
-        "bid_american": 2400,
-        "ask_american": 1567,
-        "taker_rt": 0.0068,
-        "maker_rt": 0.0018
-      },
-      {
         "series": "KXMLBNLWEST",
         "team": "LAD",
         "ticker": "KXMLBNLWEST-26-LAD",
@@ -824,19 +798,6 @@
         "ask_american": -9900,
         "taker_rt": 0.0028,
         "maker_rt": 0.0008
-      },
-      {
-        "series": "KXNFLAFCEAST",
-        "team": "NE",
-        "ticker": "KXNFLAFCEAST-27-NE",
-        "bid": 0.36,
-        "ask": 0.38,
-        "spread": 0.02,
-        "mid": 0.37,
-        "bid_american": 178,
-        "ask_american": 163,
-        "taker_rt": 0.0328,
-        "maker_rt": 0.0082
       },
       {
         "series": "KXNFLAFCSOUTH",
@@ -853,19 +814,6 @@
       },
       {
         "series": "KXNFLAFCWEST",
-        "team": "LAC",
-        "ticker": "KXNFLAFCWEST-27-LAC",
-        "bid": 0.3,
-        "ask": 0.32,
-        "spread": 0.02,
-        "mid": 0.31,
-        "bid_american": 233,
-        "ask_american": 212,
-        "taker_rt": 0.03,
-        "maker_rt": 0.0076
-      },
-      {
-        "series": "KXNFLAFCWEST",
         "team": "DEN",
         "ticker": "KXNFLAFCWEST-27-DEN",
         "bid": 0.3,
@@ -876,6 +824,19 @@
         "ask_american": 212,
         "taker_rt": 0.03,
         "maker_rt": 0.0076
+      },
+      {
+        "series": "KXNFLNFCNORTH",
+        "team": "CHI",
+        "ticker": "KXNFLNFCNORTH-27-CHI",
+        "bid": 0.23,
+        "ask": 0.25,
+        "spread": 0.02,
+        "mid": 0.24,
+        "bid_american": 335,
+        "ask_american": 300,
+        "taker_rt": 0.0256,
+        "maker_rt": 0.0064
       },
       {
         "series": "KXWNBA",
@@ -892,16 +853,29 @@
       },
       {
         "series": "KXMLBAL",
+        "team": "TEX",
+        "ticker": "KXMLBAL-26-TEX",
+        "bid": 0.05,
+        "ask": 0.06,
+        "spread": 0.01,
+        "mid": 0.055,
+        "bid_american": 1900,
+        "ask_american": 1567,
+        "taker_rt": 0.0074,
+        "maker_rt": 0.002
+      },
+      {
+        "series": "KXMLBAL",
         "team": "NYY",
         "ticker": "KXMLBAL-26-NYY",
-        "bid": 0.25,
-        "ask": 0.26,
+        "bid": 0.26,
+        "ask": 0.27,
         "spread": 0.01,
-        "mid": 0.255,
-        "bid_american": 300,
-        "ask_american": 285,
-        "taker_rt": 0.0266,
-        "maker_rt": 0.0068
+        "mid": 0.265,
+        "bid_american": 285,
+        "ask_american": 270,
+        "taker_rt": 0.0274,
+        "maker_rt": 0.007
       },
       {
         "series": "KXMLBAL",
@@ -946,14 +920,14 @@
         "series": "KXMLBAL",
         "team": "HOU",
         "ticker": "KXMLBAL-26-HOU",
-        "bid": 0.08,
-        "ask": 0.09,
+        "bid": 0.09,
+        "ask": 0.1,
         "spread": 0.01,
-        "mid": 0.085,
-        "bid_american": 1150,
-        "ask_american": 1011,
-        "taker_rt": 0.011,
-        "maker_rt": 0.0028
+        "mid": 0.095,
+        "bid_american": 1011,
+        "ask_american": 900,
+        "taker_rt": 0.0122,
+        "maker_rt": 0.0032
       },
       {
         "series": "KXMLBAL",
@@ -970,29 +944,42 @@
       },
       {
         "series": "KXMLBAL",
+        "team": "CWS",
+        "ticker": "KXMLBAL-26-CWS",
+        "bid": 0.06,
+        "ask": 0.07,
+        "spread": 0.01,
+        "mid": 0.065,
+        "bid_american": 1567,
+        "ask_american": 1329,
+        "taker_rt": 0.0086,
+        "maker_rt": 0.0022
+      },
+      {
+        "series": "KXMLBAL",
         "team": "CLE",
         "ticker": "KXMLBAL-26-CLE",
-        "bid": 0.02,
-        "ask": 0.03,
+        "bid": 0.03,
+        "ask": 0.04,
         "spread": 0.01,
-        "mid": 0.025,
-        "bid_american": 4900,
-        "ask_american": 3233,
-        "taker_rt": 0.0036,
-        "maker_rt": 0.001
+        "mid": 0.035,
+        "bid_american": 3233,
+        "ask_american": 2400,
+        "taker_rt": 0.0048,
+        "maker_rt": 0.0012
       },
       {
         "series": "KXMLBAL",
         "team": "BOS",
         "ticker": "KXMLBAL-26-BOS",
-        "bid": 0.16,
-        "ask": 0.17,
+        "bid": 0.14,
+        "ask": 0.15,
         "spread": 0.01,
-        "mid": 0.165,
-        "bid_american": 525,
-        "ask_american": 488,
-        "taker_rt": 0.0194,
-        "maker_rt": 0.005
+        "mid": 0.145,
+        "bid_american": 614,
+        "ask_american": 567,
+        "taker_rt": 0.0174,
+        "maker_rt": 0.0044
       },
       {
         "series": "KXMLBAL",
@@ -1102,14 +1089,14 @@
         "series": "KXMLBNL",
         "team": "MIL",
         "ticker": "KXMLBNL-26-MIL",
-        "bid": 0.14,
-        "ask": 0.15,
+        "bid": 0.15,
+        "ask": 0.16,
         "spread": 0.01,
-        "mid": 0.145,
-        "bid_american": 614,
-        "ask_american": 567,
-        "taker_rt": 0.0174,
-        "maker_rt": 0.0044
+        "mid": 0.155,
+        "bid_american": 567,
+        "ask_american": 525,
+        "taker_rt": 0.0184,
+        "maker_rt": 0.0046
       },
       {
         "series": "KXMLBNL",
@@ -1128,13 +1115,13 @@
         "series": "KXMLBNL",
         "team": "LAD",
         "ticker": "KXMLBNL-26-LAD",
-        "bid": 0.46,
-        "ask": 0.47,
+        "bid": 0.45,
+        "ask": 0.46,
         "spread": 0.01,
-        "mid": 0.465,
-        "bid_american": 117,
-        "ask_american": 113,
-        "taker_rt": 0.035,
+        "mid": 0.455,
+        "bid_american": 122,
+        "ask_american": 117,
+        "taker_rt": 0.0348,
         "maker_rt": 0.0088
       },
       {
@@ -1162,6 +1149,19 @@
         "ask_american": 9900,
         "taker_rt": 0.0008,
         "maker_rt": 0.0002
+      },
+      {
+        "series": "KXMLBNL",
+        "team": "CHC",
+        "ticker": "KXMLBNL-26-CHC",
+        "bid": 0.12,
+        "ask": 0.13,
+        "spread": 0.01,
+        "mid": 0.125,
+        "bid_american": 733,
+        "ask_american": 669,
+        "taker_rt": 0.0154,
+        "maker_rt": 0.004
       },
       {
         "series": "KXMLBNL",
@@ -1204,19 +1204,6 @@
       },
       {
         "series": "KXMLBPLAYOFFS",
-        "team": "TOR",
-        "ticker": "KXMLBPLAYOFFS-26-TOR",
-        "bid": 0.26,
-        "ask": 0.27,
-        "spread": 0.01,
-        "mid": 0.265,
-        "bid_american": 285,
-        "ask_american": 270,
-        "taker_rt": 0.0274,
-        "maker_rt": 0.007
-      },
-      {
-        "series": "KXMLBPLAYOFFS",
         "team": "STL",
         "ticker": "KXMLBPLAYOFFS-26-STL",
         "bid": 0.1,
@@ -1245,14 +1232,14 @@
         "series": "KXMLBPLAYOFFS",
         "team": "SEA",
         "ticker": "KXMLBPLAYOFFS-26-SEA",
-        "bid": 0.23,
-        "ask": 0.24,
+        "bid": 0.21,
+        "ask": 0.22,
         "spread": 0.01,
-        "mid": 0.235,
-        "bid_american": 335,
-        "ask_american": 317,
-        "taker_rt": 0.0252,
-        "maker_rt": 0.0064
+        "mid": 0.215,
+        "bid_american": 376,
+        "ask_american": 355,
+        "taker_rt": 0.0238,
+        "maker_rt": 0.006
       },
       {
         "series": "KXMLBPLAYOFFS",
@@ -1271,13 +1258,13 @@
         "series": "KXMLBPLAYOFFS",
         "team": "PHI",
         "ticker": "KXMLBPLAYOFFS-26-PHI",
-        "bid": 0.63,
-        "ask": 0.64,
+        "bid": 0.64,
+        "ask": 0.65,
         "spread": 0.01,
-        "mid": 0.635,
-        "bid_american": -170,
-        "ask_american": -178,
-        "taker_rt": 0.0326,
+        "mid": 0.645,
+        "bid_american": -178,
+        "ask_american": -186,
+        "taker_rt": 0.0322,
         "maker_rt": 0.0082
       },
       {
@@ -1292,19 +1279,6 @@
         "ask_american": -3233,
         "taker_rt": 0.0048,
         "maker_rt": 0.0012
-      },
-      {
-        "series": "KXMLBPLAYOFFS",
-        "team": "MIN",
-        "ticker": "KXMLBPLAYOFFS-26-MIN",
-        "bid": 0.22,
-        "ask": 0.23,
-        "spread": 0.01,
-        "mid": 0.225,
-        "bid_american": 355,
-        "ask_american": 335,
-        "taker_rt": 0.0246,
-        "maker_rt": 0.0062
       },
       {
         "series": "KXMLBPLAYOFFS",
@@ -1334,16 +1308,16 @@
       },
       {
         "series": "KXMLBPLAYOFFS",
-        "team": "CLE",
-        "ticker": "KXMLBPLAYOFFS-26-CLE",
-        "bid": 0.27,
-        "ask": 0.28,
+        "team": "CIN",
+        "ticker": "KXMLBPLAYOFFS-26-CIN",
+        "bid": 0.01,
+        "ask": 0.02,
         "spread": 0.01,
-        "mid": 0.275,
-        "bid_american": 270,
-        "ask_american": 257,
-        "taker_rt": 0.028,
-        "maker_rt": 0.007
+        "mid": 0.015,
+        "bid_american": 9900,
+        "ask_american": 4900,
+        "taker_rt": 0.0022,
+        "maker_rt": 0.0006
       },
       {
         "series": "KXMLBPLAYOFFS",
@@ -1386,6 +1360,19 @@
       },
       {
         "series": "KXMLBALEAST",
+        "team": "BOS",
+        "ticker": "KXMLBALEAST-26-BOS",
+        "bid": 0.04,
+        "ask": 0.05,
+        "spread": 0.01,
+        "mid": 0.045,
+        "bid_american": 2400,
+        "ask_american": 1900,
+        "taker_rt": 0.0062,
+        "maker_rt": 0.0016
+      },
+      {
+        "series": "KXMLBALEAST",
         "team": "BAL",
         "ticker": "KXMLBALEAST-26-BAL",
         "bid": 0.0,
@@ -1412,19 +1399,6 @@
       },
       {
         "series": "KXMLBALWEST",
-        "team": "SEA",
-        "ticker": "KXMLBALWEST-26-SEA",
-        "bid": 0.11,
-        "ask": 0.12,
-        "spread": 0.01,
-        "mid": 0.115,
-        "bid_american": 809,
-        "ask_american": 733,
-        "taker_rt": 0.0144,
-        "maker_rt": 0.0036
-      },
-      {
-        "series": "KXMLBALWEST",
         "team": "LAA",
         "ticker": "KXMLBALWEST-26-LAA",
         "bid": 0.0,
@@ -1435,6 +1409,19 @@
         "ask_american": 9900,
         "taker_rt": 0.0008,
         "maker_rt": 0.0002
+      },
+      {
+        "series": "KXMLBALWEST",
+        "team": "HOU",
+        "ticker": "KXMLBALWEST-26-HOU",
+        "bid": 0.57,
+        "ask": 0.58,
+        "spread": 0.01,
+        "mid": 0.575,
+        "bid_american": -133,
+        "ask_american": -138,
+        "taker_rt": 0.0344,
+        "maker_rt": 0.0086
       },
       {
         "series": "KXMLBALWEST",
@@ -1492,14 +1479,14 @@
         "series": "KXMLBNLEAST",
         "team": "ATL",
         "ticker": "KXMLBNLEAST-26-ATL",
-        "bid": 0.94,
-        "ask": 0.95,
+        "bid": 0.95,
+        "ask": 0.96,
         "spread": 0.01,
-        "mid": 0.945,
-        "bid_american": -1567,
-        "ask_american": -1900,
-        "taker_rt": 0.0074,
-        "maker_rt": 0.002
+        "mid": 0.955,
+        "bid_american": -1900,
+        "ask_american": -2400,
+        "taker_rt": 0.0062,
+        "maker_rt": 0.0016
       },
       {
         "series": "KXMLBNLWEST",
@@ -1565,6 +1552,19 @@
         "ask_american": 2400,
         "taker_rt": 0.0048,
         "maker_rt": 0.0012
+      },
+      {
+        "series": "KXNFLAFCEAST",
+        "team": "NE",
+        "ticker": "KXNFLAFCEAST-27-NE",
+        "bid": 0.37,
+        "ask": 0.38,
+        "spread": 0.01,
+        "mid": 0.375,
+        "bid_american": 170,
+        "ask_american": 163,
+        "taker_rt": 0.033,
+        "maker_rt": 0.0084
       },
       {
         "series": "KXNFLAFCEAST",
@@ -1635,12 +1635,12 @@
         "series": "KXNFLAFCNORTH",
         "team": "BAL",
         "ticker": "KXNFLAFCNORTH-27-BAL",
-        "bid": 0.44,
-        "ask": 0.45,
+        "bid": 0.43,
+        "ask": 0.44,
         "spread": 0.01,
-        "mid": 0.445,
-        "bid_american": 127,
-        "ask_american": 122,
+        "mid": 0.435,
+        "bid_american": 133,
+        "ask_american": 127,
         "taker_rt": 0.0346,
         "maker_rt": 0.0088
       },
@@ -1695,6 +1695,19 @@
         "ask_american": 1329,
         "taker_rt": 0.0086,
         "maker_rt": 0.0022
+      },
+      {
+        "series": "KXNFLAFCWEST",
+        "team": "LAC",
+        "ticker": "KXNFLAFCWEST-27-LAC",
+        "bid": 0.31,
+        "ask": 0.32,
+        "spread": 0.01,
+        "mid": 0.315,
+        "bid_american": 223,
+        "ask_american": 212,
+        "taker_rt": 0.0304,
+        "maker_rt": 0.0076
       },
       {
         "series": "KXNFLAFCWEST",
@@ -1799,19 +1812,6 @@
         "ask_american": 186,
         "taker_rt": 0.0318,
         "maker_rt": 0.008
-      },
-      {
-        "series": "KXNFLNFCNORTH",
-        "team": "CHI",
-        "ticker": "KXNFLNFCNORTH-27-CHI",
-        "bid": 0.23,
-        "ask": 0.24,
-        "spread": 0.01,
-        "mid": 0.235,
-        "bid_american": 335,
-        "ask_american": 317,
-        "taker_rt": 0.0252,
-        "maker_rt": 0.0064
       },
       {
         "series": "KXNFLNFCSOUTH",
@@ -2017,7 +2017,7 @@
     },
     "errors": [],
     "games": {
-      "generated_at": "2026-08-13T11:00:15+00:00",
+      "generated_at": "2026-08-13T14:22:14+00:00",
       "today": "2026-08-13",
       "pregame_only": true,
       "excluded": {
@@ -2034,63 +2034,21 @@
             {
               "sport": "mlb",
               "game_date": "2026-08-13",
-              "matchup": "Seattle vs New",
-              "sides": [
-                {
-                  "team": "SEA",
-                  "ticker": "KXMLBGAME-26AUG131335SEANYY-SEA",
-                  "bid": 0.42,
-                  "ask": 0.44,
-                  "bid_american": 138,
-                  "ask_american": 127,
-                  "spread": 0.02,
-                  "mid": 0.43,
-                  "volume": 35784.63,
-                  "maker_rt": 0.0086,
-                  "taker_rt": 0.0344,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "NYY",
-                  "ticker": "KXMLBGAME-26AUG131335SEANYY-NYY",
-                  "bid": 0.57,
-                  "ask": 0.58,
-                  "bid_american": -133,
-                  "ask_american": -138,
-                  "spread": 0.01,
-                  "mid": 0.575,
-                  "volume": 101637.46,
-                  "maker_rt": 0.0086,
-                  "taker_rt": 0.0344,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 137422.09,
-              "best_spread": 0.02,
-              "overround": 1.02,
-              "maker_sides": [
-                "SEA"
-              ],
-              "rank_score": 0.02
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-13",
               "matchup": "Milwaukee vs Los",
               "sides": [
                 {
                   "team": "MIL",
                   "ticker": "KXMLBGAME-26AUG132210MILLAD-MIL",
                   "bid": 0.42,
-                  "ask": 0.43,
+                  "ask": 0.44,
                   "bid_american": 138,
-                  "ask_american": 133,
-                  "spread": 0.01,
-                  "mid": 0.425,
-                  "volume": 10712.5,
+                  "ask_american": 127,
+                  "spread": 0.02,
+                  "mid": 0.43,
+                  "volume": 28813.18,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.0344,
-                  "verdict": "marginal"
+                  "verdict": "maker room"
                 },
                 {
                   "team": "LAD",
@@ -2101,17 +2059,19 @@
                   "ask_american": -138,
                   "spread": 0.01,
                   "mid": 0.575,
-                  "volume": 17919.84,
+                  "volume": 38001.09,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.0344,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 28632.34,
-              "best_spread": 0.01,
-              "overround": 1.01,
-              "maker_sides": [],
-              "rank_score": 0.01
+              "total_volume": 66814.26999999999,
+              "best_spread": 0.02,
+              "overround": 1.02,
+              "maker_sides": [
+                "MIL"
+              ],
+              "rank_score": 0.02
             },
             {
               "sport": "mlb",
@@ -2121,33 +2081,33 @@
                 {
                   "team": "TEX",
                   "ticker": "KXMLBGAME-26AUG132207TEXLAA-TEX",
-                  "bid": 0.59,
-                  "ask": 0.6,
-                  "bid_american": -144,
-                  "ask_american": -150,
+                  "bid": 0.58,
+                  "ask": 0.59,
+                  "bid_american": -138,
+                  "ask_american": -144,
                   "spread": 0.01,
-                  "mid": 0.595,
-                  "volume": 7000.46,
+                  "mid": 0.585,
+                  "volume": 17229.31,
                   "maker_rt": 0.0086,
-                  "taker_rt": 0.0338,
+                  "taker_rt": 0.034,
                   "verdict": "marginal"
                 },
                 {
                   "team": "LAA",
                   "ticker": "KXMLBGAME-26AUG132207TEXLAA-LAA",
-                  "bid": 0.4,
-                  "ask": 0.41,
-                  "bid_american": 150,
-                  "ask_american": 144,
+                  "bid": 0.41,
+                  "ask": 0.42,
+                  "bid_american": 144,
+                  "ask_american": 138,
                   "spread": 0.01,
-                  "mid": 0.405,
-                  "volume": 3186.16,
+                  "mid": 0.415,
+                  "volume": 5068.29,
                   "maker_rt": 0.0086,
-                  "taker_rt": 0.0338,
+                  "taker_rt": 0.034,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 10186.619999999999,
+              "total_volume": 22297.600000000002,
               "best_spread": 0.01,
               "overround": 1.01,
               "maker_sides": [],
@@ -2167,7 +2127,7 @@
                   "ask_american": -100,
                   "spread": 0.01,
                   "mid": 0.495,
-                  "volume": 11308.38,
+                  "volume": 23440.84,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.035,
                   "verdict": "marginal"
@@ -2181,13 +2141,13 @@
                   "ask_american": -104,
                   "spread": 0.01,
                   "mid": 0.505,
-                  "volume": 13674.77,
+                  "volume": 23753.61,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.035,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 24983.15,
+              "total_volume": 47194.45,
               "best_spread": 0.01,
               "overround": 1.01,
               "maker_sides": [],
@@ -2201,33 +2161,33 @@
                 {
                   "team": "WSH",
                   "ticker": "KXMLBGAME-26AUG131605CHCWSH-WSH",
-                  "bid": 0.43,
-                  "ask": 0.44,
-                  "bid_american": 133,
-                  "ask_american": 127,
+                  "bid": 0.42,
+                  "ask": 0.43,
+                  "bid_american": 138,
+                  "ask_american": 133,
                   "spread": 0.01,
-                  "mid": 0.435,
-                  "volume": 6630.99,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
+                  "mid": 0.425,
+                  "volume": 18234.52,
+                  "maker_rt": 0.0086,
+                  "taker_rt": 0.0344,
                   "verdict": "marginal"
                 },
                 {
                   "team": "CHC",
                   "ticker": "KXMLBGAME-26AUG131605CHCWSH-CHC",
-                  "bid": 0.56,
-                  "ask": 0.57,
-                  "bid_american": -127,
-                  "ask_american": -133,
+                  "bid": 0.57,
+                  "ask": 0.58,
+                  "bid_american": -133,
+                  "ask_american": -138,
                   "spread": 0.01,
-                  "mid": 0.565,
-                  "volume": 38251.92,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
+                  "mid": 0.575,
+                  "volume": 62237.23,
+                  "maker_rt": 0.0086,
+                  "taker_rt": 0.0344,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 44882.909999999996,
+              "total_volume": 80471.75,
               "best_spread": 0.01,
               "overround": 1.01,
               "maker_sides": [],
@@ -2247,7 +2207,7 @@
                   "ask_american": 144,
                   "spread": 0.01,
                   "mid": 0.405,
-                  "volume": 14297.13,
+                  "volume": 23280.96,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.0338,
                   "verdict": "marginal"
@@ -2261,13 +2221,13 @@
                   "ask_american": -150,
                   "spread": 0.01,
                   "mid": 0.595,
-                  "volume": 34551.05,
+                  "volume": 65921.64,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.0338,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 48848.18,
+              "total_volume": 89202.6,
               "best_spread": 0.01,
               "overround": 1.01,
               "maker_sides": [],
@@ -2287,7 +2247,7 @@
                   "ask_american": -127,
                   "spread": 0.01,
                   "mid": 0.555,
-                  "volume": 33154.66,
+                  "volume": 58927.57,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0346,
                   "verdict": "marginal"
@@ -2301,13 +2261,53 @@
                   "ask_american": 122,
                   "spread": 0.01,
                   "mid": 0.445,
-                  "volume": 6011.72,
+                  "volume": 9988.15,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0346,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 39166.380000000005,
+              "total_volume": 68915.72,
+              "best_spread": 0.01,
+              "overround": 1.01,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-13",
+              "matchup": "Seattle vs New",
+              "sides": [
+                {
+                  "team": "SEA",
+                  "ticker": "KXMLBGAME-26AUG131335SEANYY-SEA",
+                  "bid": 0.42,
+                  "ask": 0.43,
+                  "bid_american": 138,
+                  "ask_american": 133,
+                  "spread": 0.01,
+                  "mid": 0.425,
+                  "volume": 74104.66,
+                  "maker_rt": 0.0086,
+                  "taker_rt": 0.0344,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "NYY",
+                  "ticker": "KXMLBGAME-26AUG131335SEANYY-NYY",
+                  "bid": 0.57,
+                  "ask": 0.58,
+                  "bid_american": -133,
+                  "ask_american": -138,
+                  "spread": 0.01,
+                  "mid": 0.575,
+                  "volume": 256789.63,
+                  "maker_rt": 0.0086,
+                  "taker_rt": 0.0344,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 330894.29000000004,
               "best_spread": 0.01,
               "overround": 1.01,
               "maker_sides": [],
@@ -2327,7 +2327,7 @@
                   "ask_american": 113,
                   "spread": 0.01,
                   "mid": 0.46499999999999997,
-                  "volume": 41723.18,
+                  "volume": 94432.36,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.035,
                   "verdict": "marginal"
@@ -2341,13 +2341,13 @@
                   "ask_american": -117,
                   "spread": 0.01,
                   "mid": 0.535,
-                  "volume": 31934.04,
+                  "volume": 91015.97,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.035,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 73657.22,
+              "total_volume": 185448.33000000002,
               "best_spread": 0.01,
               "overround": 1.01,
               "maker_sides": [],
@@ -2367,7 +2367,7 @@
                   "ask_american": -117,
                   "spread": 0.01,
                   "mid": 0.535,
-                  "volume": 14739.66,
+                  "volume": 34625.94,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.035,
                   "verdict": "marginal"
@@ -2375,21 +2375,21 @@
                 {
                   "team": "MIA",
                   "ticker": "KXMLBGAME-26AUG131310PITMIA-MIA",
-                  "bid": 0.47,
-                  "ask": 0.48,
-                  "bid_american": 113,
-                  "ask_american": 108,
+                  "bid": 0.46,
+                  "ask": 0.47,
+                  "bid_american": 117,
+                  "ask_american": 113,
                   "spread": 0.01,
-                  "mid": 0.475,
-                  "volume": 45492.45,
+                  "mid": 0.46499999999999997,
+                  "volume": 133450.68,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.035,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 60232.11,
+              "total_volume": 168076.62,
               "best_spread": 0.01,
-              "overround": 1.02,
+              "overround": 1.01,
               "maker_sides": [],
               "rank_score": 0.01
             }
@@ -2399,221 +2399,8 @@
           "date": "2026-08-14",
           "is_today": false,
           "games": 19,
-          "maker_candidates": 20,
+          "maker_candidates": 9,
           "events": [
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-14",
-              "matchup": "Colorado vs San",
-              "sides": [
-                {
-                  "team": "SF",
-                  "ticker": "KXMLBGAME-26AUG142215COLSF-SF",
-                  "bid": 0.54,
-                  "ask": 0.58,
-                  "bid_american": -117,
-                  "ask_american": -138,
-                  "spread": 0.04,
-                  "mid": 0.56,
-                  "volume": 532.21,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "COL",
-                  "ticker": "KXMLBGAME-26AUG142215COLSF-COL",
-                  "bid": 0.43,
-                  "ask": 0.44,
-                  "bid_american": 133,
-                  "ask_american": 127,
-                  "spread": 0.01,
-                  "mid": 0.435,
-                  "volume": 120.61,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 652.82,
-              "best_spread": 0.04,
-              "overround": 1.02,
-              "maker_sides": [
-                "SF"
-              ],
-              "rank_score": 0.029585
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-14",
-              "matchup": "Texas vs A's",
-              "sides": [
-                {
-                  "team": "TEX",
-                  "ticker": "KXMLBGAME-26AUG142140TEXATH-TEX",
-                  "bid": 0.51,
-                  "ask": 0.56,
-                  "bid_american": -104,
-                  "ask_american": -127,
-                  "spread": 0.05,
-                  "mid": 0.535,
-                  "volume": 47.1,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "ATH",
-                  "ticker": "KXMLBGAME-26AUG142140TEXATH-ATH",
-                  "bid": 0.45,
-                  "ask": 0.47,
-                  "bid_american": 122,
-                  "ask_american": 113,
-                  "spread": 0.02,
-                  "mid": 0.45999999999999996,
-                  "volume": 207.37,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0348,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 254.47,
-              "best_spread": 0.05,
-              "overround": 1.03,
-              "maker_sides": [
-                "TEX",
-                "ATH"
-              ],
-              "rank_score": 0.022043
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-14",
-              "matchup": "Seattle vs Houston",
-              "sides": [
-                {
-                  "team": "SEA",
-                  "ticker": "KXMLBGAME-26AUG142010SEAHOU-SEA",
-                  "bid": 0.47,
-                  "ask": 0.49,
-                  "bid_american": 113,
-                  "ask_american": 104,
-                  "spread": 0.02,
-                  "mid": 0.48,
-                  "volume": 346.24,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "HOU",
-                  "ticker": "KXMLBGAME-26AUG142010SEAHOU-HOU",
-                  "bid": 0.5,
-                  "ask": 0.52,
-                  "bid_american": -100,
-                  "ask_american": -108,
-                  "spread": 0.02,
-                  "mid": 0.51,
-                  "volume": 3453.81,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 3800.05,
-              "best_spread": 0.02,
-              "overround": 1.01,
-              "maker_sides": [
-                "SEA",
-                "HOU"
-              ],
-              "rank_score": 0.02
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-14",
-              "matchup": "San Diego vs Cleveland",
-              "sides": [
-                {
-                  "team": "SD",
-                  "ticker": "KXMLBGAME-26AUG141910SDCLE-SD",
-                  "bid": 0.46,
-                  "ask": 0.48,
-                  "bid_american": 117,
-                  "ask_american": 108,
-                  "spread": 0.02,
-                  "mid": 0.47,
-                  "volume": 2606.06,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "CLE",
-                  "ticker": "KXMLBGAME-26AUG141910SDCLE-CLE",
-                  "bid": 0.54,
-                  "ask": 0.56,
-                  "bid_american": -117,
-                  "ask_american": -127,
-                  "spread": 0.02,
-                  "mid": 0.55,
-                  "volume": 44.52,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0348,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 2650.58,
-              "best_spread": 0.02,
-              "overround": 1.04,
-              "maker_sides": [
-                "SD",
-                "CLE"
-              ],
-              "rank_score": 0.02
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-14",
-              "matchup": "Baltimore vs Tampa",
-              "sides": [
-                {
-                  "team": "TB",
-                  "ticker": "KXMLBGAME-26AUG141910BALTB-TB",
-                  "bid": 0.6,
-                  "ask": 0.62,
-                  "bid_american": -150,
-                  "ask_american": -163,
-                  "spread": 0.02,
-                  "mid": 0.61,
-                  "volume": 731.59,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.0334,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "BAL",
-                  "ticker": "KXMLBGAME-26AUG141910BALTB-BAL",
-                  "bid": 0.39,
-                  "ask": 0.4,
-                  "bid_american": 156,
-                  "ask_american": 150,
-                  "spread": 0.01,
-                  "mid": 0.395,
-                  "volume": 860.31,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.0336,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 1591.9,
-              "best_spread": 0.02,
-              "overround": 1.02,
-              "maker_sides": [
-                "TB"
-              ],
-              "rank_score": 0.02
-            },
             {
               "sport": "mlb",
               "game_date": "2026-08-14",
@@ -2628,7 +2415,7 @@
                   "ask_american": 186,
                   "spread": 0.01,
                   "mid": 0.345,
-                  "volume": 1426.95,
+                  "volume": 1553.01,
                   "maker_rt": 0.008,
                   "taker_rt": 0.0318,
                   "verdict": "marginal"
@@ -2636,107 +2423,23 @@
                 {
                   "team": "ATL",
                   "ticker": "KXMLBGAME-26AUG141915AZATL-ATL",
-                  "bid": 0.63,
-                  "ask": 0.65,
-                  "bid_american": -170,
-                  "ask_american": -186,
+                  "bid": 0.65,
+                  "ask": 0.67,
+                  "bid_american": -186,
+                  "ask_american": -203,
                   "spread": 0.02,
-                  "mid": 0.64,
-                  "volume": 818.17,
-                  "maker_rt": 0.0082,
-                  "taker_rt": 0.0324,
+                  "mid": 0.66,
+                  "volume": 1889.33,
+                  "maker_rt": 0.008,
+                  "taker_rt": 0.0316,
                   "verdict": "maker room"
                 }
               ],
-              "total_volume": 2245.12,
-              "best_spread": 0.02,
-              "overround": 1.0,
-              "maker_sides": [
-                "ATL"
-              ],
-              "rank_score": 0.02
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-14",
-              "matchup": "St. Louis vs Chicago",
-              "sides": [
-                {
-                  "team": "STL",
-                  "ticker": "KXMLBGAME-26AUG141420STLCHC-STL",
-                  "bid": 0.38,
-                  "ask": 0.39,
-                  "bid_american": 163,
-                  "ask_american": 156,
-                  "spread": 0.01,
-                  "mid": 0.385,
-                  "volume": 969.25,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.0332,
-                  "verdict": "marginal"
-                },
-                {
-                  "team": "CHC",
-                  "ticker": "KXMLBGAME-26AUG141420STLCHC-CHC",
-                  "bid": 0.61,
-                  "ask": 0.63,
-                  "bid_american": -156,
-                  "ask_american": -170,
-                  "spread": 0.02,
-                  "mid": 0.62,
-                  "volume": 411.37,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.033,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 1380.62,
+              "total_volume": 3442.34,
               "best_spread": 0.02,
               "overround": 1.02,
               "maker_sides": [
-                "CHC"
-              ],
-              "rank_score": 0.02
-            },
-            {
-              "sport": "wnba",
-              "game_date": "2026-08-14",
-              "matchup": "Dallas vs Indiana",
-              "sides": [
-                {
-                  "team": "IND",
-                  "ticker": "KXWNBAGAME-26AUG14DALIND-IND",
-                  "bid": 0.7,
-                  "ask": 0.72,
-                  "bid_american": -233,
-                  "ask_american": -257,
-                  "spread": 0.02,
-                  "mid": 0.71,
-                  "volume": 15418.81,
-                  "maker_rt": 0.0074,
-                  "taker_rt": 0.029,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "DAL",
-                  "ticker": "KXWNBAGAME-26AUG14DALIND-DAL",
-                  "bid": 0.3,
-                  "ask": 0.31,
-                  "bid_american": 233,
-                  "ask_american": 223,
-                  "spread": 0.01,
-                  "mid": 0.305,
-                  "volume": 9583.38,
-                  "maker_rt": 0.0076,
-                  "taker_rt": 0.0298,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 25002.19,
-              "best_spread": 0.02,
-              "overround": 1.03,
-              "maker_sides": [
-                "IND"
+                "ATL"
               ],
               "rank_score": 0.02
             },
@@ -2762,111 +2465,25 @@
                 {
                   "team": "KC",
                   "ticker": "KXMLBGAME-26AUG142138KCLAA-KC",
-                  "bid": 0.46,
-                  "ask": 0.48,
-                  "bid_american": 117,
-                  "ask_american": 108,
+                  "bid": 0.47,
+                  "ask": 0.49,
+                  "bid_american": 113,
+                  "ask_american": 104,
                   "spread": 0.02,
-                  "mid": 0.47,
-                  "volume": 912.19,
+                  "mid": 0.48,
+                  "volume": 932.28,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.035,
                   "verdict": "maker room"
                 }
               ],
-              "total_volume": 935.7900000000001,
+              "total_volume": 955.88,
               "best_spread": 0.02,
-              "overround": 1.0,
+              "overround": 1.01,
               "maker_sides": [
                 "KC"
               ],
-              "rank_score": 0.019037
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-14",
-              "matchup": "Miami vs Cincinnati",
-              "sides": [
-                {
-                  "team": "MIA",
-                  "ticker": "KXMLBGAME-26AUG141810MIACIN-MIA",
-                  "bid": 0.46,
-                  "ask": 0.48,
-                  "bid_american": 117,
-                  "ask_american": 108,
-                  "spread": 0.02,
-                  "mid": 0.47,
-                  "volume": 767.9,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "CIN",
-                  "ticker": "KXMLBGAME-26AUG141810MIACIN-CIN",
-                  "bid": 0.5,
-                  "ask": 0.52,
-                  "bid_american": -100,
-                  "ask_american": -108,
-                  "spread": 0.02,
-                  "mid": 0.51,
-                  "volume": 78.38,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 846.28,
-              "best_spread": 0.02,
-              "overround": 1.0,
-              "maker_sides": [
-                "MIA",
-                "CIN"
-              ],
-              "rank_score": 0.017694
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-14",
-              "matchup": "Washington vs New",
-              "sides": [
-                {
-                  "team": "WSH",
-                  "ticker": "KXMLBGAME-26AUG141910WSHNYM-WSH",
-                  "bid": 0.46,
-                  "ask": 0.48,
-                  "bid_american": 117,
-                  "ask_american": 108,
-                  "spread": 0.02,
-                  "mid": 0.47,
-                  "volume": 273.12,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "NYM",
-                  "ticker": "KXMLBGAME-26AUG141910WSHNYM-NYM",
-                  "bid": 0.51,
-                  "ask": 0.54,
-                  "bid_american": -104,
-                  "ask_american": -117,
-                  "spread": 0.03,
-                  "mid": 0.525,
-                  "volume": 67.83,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 340.95,
-              "best_spread": 0.03,
-              "overround": 1.02,
-              "maker_sides": [
-                "WSH",
-                "NYM"
-              ],
-              "rank_score": 0.015171
+              "rank_score": 0.019338
             },
             {
               "sport": "mlb",
@@ -2882,7 +2499,7 @@
                   "ask_american": -127,
                   "spread": 0.02,
                   "mid": 0.55,
-                  "volume": 121.7,
+                  "volume": 142.42,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0348,
                   "verdict": "maker room"
@@ -2896,20 +2513,106 @@
                   "ask_american": 117,
                   "spread": 0.02,
                   "mid": 0.45,
-                  "volume": 362.97,
+                  "volume": 426.97,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0348,
                   "verdict": "maker room"
                 }
               ],
-              "total_volume": 484.67,
+              "total_volume": 569.39,
               "best_spread": 0.02,
               "overround": 1.02,
               "maker_sides": [
                 "DET",
                 "CWS"
               ],
-              "rank_score": 0.01227
+              "rank_score": 0.013541
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-14",
+              "matchup": "Texas vs A's",
+              "sides": [
+                {
+                  "team": "TEX",
+                  "ticker": "KXMLBGAME-26AUG142140TEXATH-TEX",
+                  "bid": 0.52,
+                  "ask": 0.55,
+                  "bid_american": -108,
+                  "ask_american": -122,
+                  "spread": 0.03,
+                  "mid": 0.535,
+                  "volume": 47.1,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "maker room"
+                },
+                {
+                  "team": "ATH",
+                  "ticker": "KXMLBGAME-26AUG142140TEXATH-ATH",
+                  "bid": 0.45,
+                  "ask": 0.47,
+                  "bid_american": 122,
+                  "ask_american": 113,
+                  "spread": 0.02,
+                  "mid": 0.45999999999999996,
+                  "volume": 207.37,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0348,
+                  "verdict": "maker room"
+                }
+              ],
+              "total_volume": 254.47,
+              "best_spread": 0.03,
+              "overround": 1.02,
+              "maker_sides": [
+                "TEX",
+                "ATH"
+              ],
+              "rank_score": 0.013226
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-14",
+              "matchup": "Washington vs New",
+              "sides": [
+                {
+                  "team": "WSH",
+                  "ticker": "KXMLBGAME-26AUG141910WSHNYM-WSH",
+                  "bid": 0.46,
+                  "ask": 0.48,
+                  "bid_american": 117,
+                  "ask_american": 108,
+                  "spread": 0.02,
+                  "mid": 0.47,
+                  "volume": 375.12,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "maker room"
+                },
+                {
+                  "team": "NYM",
+                  "ticker": "KXMLBGAME-26AUG141910WSHNYM-NYM",
+                  "bid": 0.52,
+                  "ask": 0.54,
+                  "bid_american": -108,
+                  "ask_american": -117,
+                  "spread": 0.02,
+                  "mid": 0.53,
+                  "volume": 67.83,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "maker room"
+                }
+              ],
+              "total_volume": 442.95,
+              "best_spread": 0.02,
+              "overround": 1.02,
+              "maker_sides": [
+                "WSH",
+                "NYM"
+              ],
+              "rank_score": 0.011644
             },
             {
               "sport": "mlb",
@@ -2925,7 +2628,7 @@
                   "ask_american": 122,
                   "spread": 0.01,
                   "mid": 0.445,
-                  "volume": 37.0,
+                  "volume": 47.92,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0346,
                   "verdict": "marginal"
@@ -2933,25 +2636,505 @@
                 {
                   "team": "BOS",
                   "ticker": "KXMLBGAME-26AUG141840BOSPIT-BOS",
-                  "bid": 0.53,
+                  "bid": 0.54,
                   "ask": 0.56,
-                  "bid_american": -113,
+                  "bid_american": -117,
                   "ask_american": -127,
-                  "spread": 0.03,
-                  "mid": 0.545,
-                  "volume": 168.82,
+                  "spread": 0.02,
+                  "mid": 0.55,
+                  "volume": 379.22,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0348,
                   "verdict": "maker room"
                 }
               ],
-              "total_volume": 205.82,
-              "best_spread": 0.03,
+              "total_volume": 427.14000000000004,
+              "best_spread": 0.02,
               "overround": 1.01,
               "maker_sides": [
                 "BOS"
               ],
-              "rank_score": 0.012131
+              "rank_score": 0.011407
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-14",
+              "matchup": "Milwaukee vs Los",
+              "sides": [
+                {
+                  "team": "MIL",
+                  "ticker": "KXMLBGAME-26AUG142210MILLAD-MIL",
+                  "bid": 0.37,
+                  "ask": 0.38,
+                  "bid_american": 170,
+                  "ask_american": 163,
+                  "spread": 0.01,
+                  "mid": 0.375,
+                  "volume": 1573.32,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.033,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "LAD",
+                  "ticker": "KXMLBGAME-26AUG142210MILLAD-LAD",
+                  "bid": 0.62,
+                  "ask": 0.63,
+                  "bid_american": -163,
+                  "ask_american": -170,
+                  "spread": 0.01,
+                  "mid": 0.625,
+                  "volume": 829.42,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.033,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 2402.74,
+              "best_spread": 0.01,
+              "overround": 1.01,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-14",
+              "matchup": "Seattle vs Houston",
+              "sides": [
+                {
+                  "team": "SEA",
+                  "ticker": "KXMLBGAME-26AUG142010SEAHOU-SEA",
+                  "bid": 0.47,
+                  "ask": 0.48,
+                  "bid_american": 113,
+                  "ask_american": 108,
+                  "spread": 0.01,
+                  "mid": 0.475,
+                  "volume": 355.24,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "HOU",
+                  "ticker": "KXMLBGAME-26AUG142010SEAHOU-HOU",
+                  "bid": 0.51,
+                  "ask": 0.52,
+                  "bid_american": -104,
+                  "ask_american": -108,
+                  "spread": 0.01,
+                  "mid": 0.515,
+                  "volume": 3574.95,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 3930.1899999999996,
+              "best_spread": 0.01,
+              "overround": 1.0,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-14",
+              "matchup": "San Diego vs Cleveland",
+              "sides": [
+                {
+                  "team": "SD",
+                  "ticker": "KXMLBGAME-26AUG141910SDCLE-SD",
+                  "bid": 0.46,
+                  "ask": 0.47,
+                  "bid_american": 117,
+                  "ask_american": 113,
+                  "spread": 0.01,
+                  "mid": 0.46499999999999997,
+                  "volume": 2842.6,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "CLE",
+                  "ticker": "KXMLBGAME-26AUG141910SDCLE-CLE",
+                  "bid": 0.53,
+                  "ask": 0.54,
+                  "bid_american": -113,
+                  "ask_american": -117,
+                  "spread": 0.01,
+                  "mid": 0.535,
+                  "volume": 110.12,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 2952.72,
+              "best_spread": 0.01,
+              "overround": 1.01,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-14",
+              "matchup": "Baltimore vs Tampa",
+              "sides": [
+                {
+                  "team": "TB",
+                  "ticker": "KXMLBGAME-26AUG141910BALTB-TB",
+                  "bid": 0.61,
+                  "ask": 0.62,
+                  "bid_american": -156,
+                  "ask_american": -163,
+                  "spread": 0.01,
+                  "mid": 0.615,
+                  "volume": 1073.99,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.0332,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "BAL",
+                  "ticker": "KXMLBGAME-26AUG141910BALTB-BAL",
+                  "bid": 0.39,
+                  "ask": 0.4,
+                  "bid_american": 156,
+                  "ask_american": 150,
+                  "spread": 0.01,
+                  "mid": 0.395,
+                  "volume": 909.7,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.0336,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 1983.69,
+              "best_spread": 0.01,
+              "overround": 1.02,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-14",
+              "matchup": "St. Louis vs Chicago",
+              "sides": [
+                {
+                  "team": "STL",
+                  "ticker": "KXMLBGAME-26AUG141420STLCHC-STL",
+                  "bid": 0.38,
+                  "ask": 0.39,
+                  "bid_american": 163,
+                  "ask_american": 156,
+                  "spread": 0.01,
+                  "mid": 0.385,
+                  "volume": 1079.17,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.0332,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "CHC",
+                  "ticker": "KXMLBGAME-26AUG141420STLCHC-CHC",
+                  "bid": 0.62,
+                  "ask": 0.63,
+                  "bid_american": -163,
+                  "ask_american": -170,
+                  "spread": 0.01,
+                  "mid": 0.625,
+                  "volume": 603.14,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.033,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 1682.31,
+              "best_spread": 0.01,
+              "overround": 1.02,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "wnba",
+              "game_date": "2026-08-14",
+              "matchup": "Portland vs Seattle",
+              "sides": [
+                {
+                  "team": "SEA",
+                  "ticker": "KXWNBAGAME-26AUG14PDXSEA-SEA",
+                  "bid": 0.55,
+                  "ask": 0.56,
+                  "bid_american": -122,
+                  "ask_american": -127,
+                  "spread": 0.01,
+                  "mid": 0.555,
+                  "volume": 2599.77,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "PDX",
+                  "ticker": "KXWNBAGAME-26AUG14PDXSEA-PDX",
+                  "bid": 0.43,
+                  "ask": 0.44,
+                  "bid_american": 133,
+                  "ask_american": 127,
+                  "spread": 0.01,
+                  "mid": 0.435,
+                  "volume": 1975.91,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 4575.68,
+              "best_spread": 0.01,
+              "overround": 1.0,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "wnba",
+              "game_date": "2026-08-14",
+              "matchup": "Dallas vs Indiana",
+              "sides": [
+                {
+                  "team": "IND",
+                  "ticker": "KXWNBAGAME-26AUG14DALIND-IND",
+                  "bid": 0.69,
+                  "ask": 0.7,
+                  "bid_american": -223,
+                  "ask_american": -233,
+                  "spread": 0.01,
+                  "mid": 0.695,
+                  "volume": 17801.3,
+                  "maker_rt": 0.0076,
+                  "taker_rt": 0.0298,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "DAL",
+                  "ticker": "KXWNBAGAME-26AUG14DALIND-DAL",
+                  "bid": 0.3,
+                  "ask": 0.31,
+                  "bid_american": 233,
+                  "ask_american": 223,
+                  "spread": 0.01,
+                  "mid": 0.305,
+                  "volume": 10418.38,
+                  "maker_rt": 0.0076,
+                  "taker_rt": 0.0298,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 28219.68,
+              "best_spread": 0.01,
+              "overround": 1.01,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "nfl",
+              "game_date": "2026-08-14",
+              "matchup": "Will Denver win the Denver vs Atlanta",
+              "sides": [
+                {
+                  "team": "DEN",
+                  "ticker": "KXNFLGAME-26AUG14DENATL-DEN",
+                  "bid": 0.64,
+                  "ask": 0.65,
+                  "bid_american": -178,
+                  "ask_american": -186,
+                  "spread": 0.01,
+                  "mid": 0.645,
+                  "volume": 23882.36,
+                  "maker_rt": 0.0082,
+                  "taker_rt": 0.0322,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "ATL",
+                  "ticker": "KXNFLGAME-26AUG14DENATL-ATL",
+                  "bid": 0.35,
+                  "ask": 0.36,
+                  "bid_american": 186,
+                  "ask_american": 178,
+                  "spread": 0.01,
+                  "mid": 0.355,
+                  "volume": 53887.1,
+                  "maker_rt": 0.0082,
+                  "taker_rt": 0.0322,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 77769.45999999999,
+              "best_spread": 0.01,
+              "overround": 1.01,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "nfl",
+              "game_date": "2026-08-14",
+              "matchup": "Will Tampa Bay win the Tampa Bay vs New",
+              "sides": [
+                {
+                  "team": "TB",
+                  "ticker": "KXNFLGAME-26AUG14TBNYJ-TB",
+                  "bid": 0.29,
+                  "ask": 0.3,
+                  "bid_american": 245,
+                  "ask_american": 233,
+                  "spread": 0.01,
+                  "mid": 0.295,
+                  "volume": 19616.77,
+                  "maker_rt": 0.0074,
+                  "taker_rt": 0.0292,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "NYJ",
+                  "ticker": "KXNFLGAME-26AUG14TBNYJ-NYJ",
+                  "bid": 0.7,
+                  "ask": 0.71,
+                  "bid_american": -233,
+                  "ask_american": -245,
+                  "spread": 0.01,
+                  "mid": 0.705,
+                  "volume": 16502.78,
+                  "maker_rt": 0.0074,
+                  "taker_rt": 0.0292,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 36119.55,
+              "best_spread": 0.01,
+              "overround": 1.01,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "nfl",
+              "game_date": "2026-08-14",
+              "matchup": "Will Washington win the Miami vs Washington",
+              "sides": [
+                {
+                  "team": "WAS",
+                  "ticker": "KXNFLGAME-26AUG14MIAWAS-WAS",
+                  "bid": 0.38,
+                  "ask": 0.39,
+                  "bid_american": 163,
+                  "ask_american": 156,
+                  "spread": 0.01,
+                  "mid": 0.385,
+                  "volume": 19486.92,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.0332,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "MIA",
+                  "ticker": "KXNFLGAME-26AUG14MIAWAS-MIA",
+                  "bid": 0.6,
+                  "ask": 0.61,
+                  "bid_american": -150,
+                  "ask_american": -156,
+                  "spread": 0.01,
+                  "mid": 0.605,
+                  "volume": 18861.86,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.0336,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 38348.78,
+              "best_spread": 0.01,
+              "overround": 1.0,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-14",
+              "matchup": "Miami vs Cincinnati",
+              "sides": [
+                {
+                  "team": "MIA",
+                  "ticker": "KXMLBGAME-26AUG141810MIACIN-MIA",
+                  "bid": 0.47,
+                  "ask": 0.48,
+                  "bid_american": 113,
+                  "ask_american": 108,
+                  "spread": 0.01,
+                  "mid": 0.475,
+                  "volume": 808.59,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "CIN",
+                  "ticker": "KXMLBGAME-26AUG141810MIACIN-CIN",
+                  "bid": 0.51,
+                  "ask": 0.52,
+                  "bid_american": -104,
+                  "ask_american": -108,
+                  "spread": 0.01,
+                  "mid": 0.515,
+                  "volume": 82.14,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 890.73,
+              "best_spread": 0.01,
+              "overround": 1.0,
+              "maker_sides": [],
+              "rank_score": 0.00918
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-14",
+              "matchup": "Colorado vs San",
+              "sides": [
+                {
+                  "team": "SF",
+                  "ticker": "KXMLBGAME-26AUG142215COLSF-SF",
+                  "bid": 0.56,
+                  "ask": 0.57,
+                  "bid_american": -127,
+                  "ask_american": -133,
+                  "spread": 0.01,
+                  "mid": 0.565,
+                  "volume": 619.25,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "COL",
+                  "ticker": "KXMLBGAME-26AUG142215COLSF-COL",
+                  "bid": 0.43,
+                  "ask": 0.44,
+                  "bid_american": 133,
+                  "ask_american": 127,
+                  "spread": 0.01,
+                  "mid": 0.435,
+                  "volume": 125.61,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 744.86,
+              "best_spread": 0.01,
+              "overround": 1.01,
+              "maker_sides": [],
+              "rank_score": 0.008086
             },
             {
               "sport": "mlb",
@@ -2975,225 +3158,23 @@
                 {
                   "team": "NYY",
                   "ticker": "KXMLBGAME-26AUG141915NYYTOR-NYY",
-                  "bid": 0.57,
-                  "ask": 0.6,
-                  "bid_american": -133,
-                  "ask_american": -150,
-                  "spread": 0.03,
+                  "bid": 0.58,
+                  "ask": 0.59,
+                  "bid_american": -138,
+                  "ask_american": -144,
+                  "spread": 0.01,
                   "mid": 0.585,
-                  "volume": 87.22,
+                  "volume": 170.1,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.034,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 135.65,
-              "best_spread": 0.03,
-              "overround": 1.03,
-              "maker_sides": [
-                "NYY"
-              ],
-              "rank_score": 0.010552
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-14",
-              "matchup": "Milwaukee vs Los",
-              "sides": [
-                {
-                  "team": "MIL",
-                  "ticker": "KXMLBGAME-26AUG142210MILLAD-MIL",
-                  "bid": 0.37,
-                  "ask": 0.38,
-                  "bid_american": 170,
-                  "ask_american": 163,
-                  "spread": 0.01,
-                  "mid": 0.375,
-                  "volume": 1091.49,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.033,
-                  "verdict": "marginal"
-                },
-                {
-                  "team": "LAD",
-                  "ticker": "KXMLBGAME-26AUG142210MILLAD-LAD",
-                  "bid": 0.61,
-                  "ask": 0.62,
-                  "bid_american": -156,
-                  "ask_american": -163,
-                  "spread": 0.01,
-                  "mid": 0.615,
-                  "volume": 686.62,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.0332,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 1778.1100000000001,
+              "total_volume": 218.53,
               "best_spread": 0.01,
-              "overround": 1.0,
+              "overround": 1.02,
               "maker_sides": [],
-              "rank_score": 0.01
-            },
-            {
-              "sport": "wnba",
-              "game_date": "2026-08-14",
-              "matchup": "Portland vs Seattle",
-              "sides": [
-                {
-                  "team": "SEA",
-                  "ticker": "KXWNBAGAME-26AUG14PDXSEA-SEA",
-                  "bid": 0.55,
-                  "ask": 0.56,
-                  "bid_american": -122,
-                  "ask_american": -127,
-                  "spread": 0.01,
-                  "mid": 0.555,
-                  "volume": 2537.29,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
-                  "verdict": "marginal"
-                },
-                {
-                  "team": "PDX",
-                  "ticker": "KXWNBAGAME-26AUG14PDXSEA-PDX",
-                  "bid": 0.43,
-                  "ask": 0.44,
-                  "bid_american": 133,
-                  "ask_american": 127,
-                  "spread": 0.01,
-                  "mid": 0.435,
-                  "volume": 1792.18,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 4329.47,
-              "best_spread": 0.01,
-              "overround": 1.0,
-              "maker_sides": [],
-              "rank_score": 0.01
-            },
-            {
-              "sport": "nfl",
-              "game_date": "2026-08-14",
-              "matchup": "Will Denver win the Denver vs Atlanta",
-              "sides": [
-                {
-                  "team": "DEN",
-                  "ticker": "KXNFLGAME-26AUG14DENATL-DEN",
-                  "bid": 0.64,
-                  "ask": 0.65,
-                  "bid_american": -178,
-                  "ask_american": -186,
-                  "spread": 0.01,
-                  "mid": 0.645,
-                  "volume": 23661.8,
-                  "maker_rt": 0.0082,
-                  "taker_rt": 0.0322,
-                  "verdict": "marginal"
-                },
-                {
-                  "team": "ATL",
-                  "ticker": "KXNFLGAME-26AUG14DENATL-ATL",
-                  "bid": 0.35,
-                  "ask": 0.36,
-                  "bid_american": 186,
-                  "ask_american": 178,
-                  "spread": 0.01,
-                  "mid": 0.355,
-                  "volume": 53438.74,
-                  "maker_rt": 0.0082,
-                  "taker_rt": 0.0322,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 77100.54,
-              "best_spread": 0.01,
-              "overround": 1.01,
-              "maker_sides": [],
-              "rank_score": 0.01
-            },
-            {
-              "sport": "nfl",
-              "game_date": "2026-08-14",
-              "matchup": "Will Tampa Bay win the Tampa Bay vs New",
-              "sides": [
-                {
-                  "team": "TB",
-                  "ticker": "KXNFLGAME-26AUG14TBNYJ-TB",
-                  "bid": 0.29,
-                  "ask": 0.3,
-                  "bid_american": 245,
-                  "ask_american": 233,
-                  "spread": 0.01,
-                  "mid": 0.295,
-                  "volume": 18817.41,
-                  "maker_rt": 0.0074,
-                  "taker_rt": 0.0292,
-                  "verdict": "marginal"
-                },
-                {
-                  "team": "NYJ",
-                  "ticker": "KXNFLGAME-26AUG14TBNYJ-NYJ",
-                  "bid": 0.7,
-                  "ask": 0.71,
-                  "bid_american": -233,
-                  "ask_american": -245,
-                  "spread": 0.01,
-                  "mid": 0.705,
-                  "volume": 16435.16,
-                  "maker_rt": 0.0074,
-                  "taker_rt": 0.0292,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 35252.57,
-              "best_spread": 0.01,
-              "overround": 1.01,
-              "maker_sides": [],
-              "rank_score": 0.01
-            },
-            {
-              "sport": "nfl",
-              "game_date": "2026-08-14",
-              "matchup": "Will Washington win the Miami vs Washington",
-              "sides": [
-                {
-                  "team": "WAS",
-                  "ticker": "KXNFLGAME-26AUG14MIAWAS-WAS",
-                  "bid": 0.38,
-                  "ask": 0.39,
-                  "bid_american": 163,
-                  "ask_american": 156,
-                  "spread": 0.01,
-                  "mid": 0.385,
-                  "volume": 18564.77,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.0332,
-                  "verdict": "marginal"
-                },
-                {
-                  "team": "MIA",
-                  "ticker": "KXNFLGAME-26AUG14MIAWAS-MIA",
-                  "bid": 0.6,
-                  "ask": 0.61,
-                  "bid_american": -150,
-                  "ask_american": -156,
-                  "spread": 0.01,
-                  "mid": 0.605,
-                  "volume": 18814.01,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.0336,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 37378.78,
-              "best_spread": 0.01,
-              "overround": 1.0,
-              "maker_sides": [],
-              "rank_score": 0.01
+              "rank_score": 0.004139
             }
           ]
         },
@@ -3201,7 +3182,7 @@
           "date": "2026-08-15",
           "is_today": false,
           "games": 25,
-          "maker_candidates": 24,
+          "maker_candidates": 14,
           "events": [
             {
               "sport": "wnba",
@@ -3212,39 +3193,122 @@
                   "team": "MIN",
                   "ticker": "KXWNBAGAME-26AUG15MINLV-MIN",
                   "bid": 0.5,
-                  "ask": 0.72,
+                  "ask": 0.56,
                   "bid_american": -100,
-                  "ask_american": -257,
-                  "spread": 0.22,
-                  "mid": 0.61,
-                  "volume": 866.98,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.0334,
+                  "ask_american": -127,
+                  "spread": 0.06,
+                  "mid": 0.53,
+                  "volume": 1035.57,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
                   "verdict": "maker room"
                 },
                 {
                   "team": "LV",
                   "ticker": "KXWNBAGAME-26AUG15MINLV-LV",
-                  "bid": 0.3,
-                  "ask": 0.53,
-                  "bid_american": 233,
-                  "ask_american": -113,
-                  "spread": 0.23,
-                  "mid": 0.41500000000000004,
-                  "volume": 279.27,
-                  "maker_rt": 0.0086,
-                  "taker_rt": 0.034,
+                  "bid": 0.42,
+                  "ask": 0.52,
+                  "bid_american": 138,
+                  "ask_american": -108,
+                  "spread": 0.1,
+                  "mid": 0.47,
+                  "volume": 320.27,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
                   "verdict": "maker room"
                 }
               ],
-              "total_volume": 1146.25,
-              "best_spread": 0.23,
-              "overround": 1.25,
+              "total_volume": 1355.84,
+              "best_spread": 0.1,
+              "overround": 1.08,
               "maker_sides": [
                 "MIN",
                 "LV"
               ],
-              "rank_score": 0.23
+              "rank_score": 0.1
+            },
+            {
+              "sport": "wnba",
+              "game_date": "2026-08-15",
+              "matchup": "New York vs Connecticut",
+              "sides": [
+                {
+                  "team": "NY",
+                  "ticker": "KXWNBAGAME-26AUG15NYCONN-NY",
+                  "bid": 0.77,
+                  "ask": 0.81,
+                  "bid_american": -335,
+                  "ask_american": -426,
+                  "spread": 0.04,
+                  "mid": 0.79,
+                  "volume": 701.46,
+                  "maker_rt": 0.006,
+                  "taker_rt": 0.0234,
+                  "verdict": "maker room"
+                },
+                {
+                  "team": "CONN",
+                  "ticker": "KXWNBAGAME-26AUG15NYCONN-CONN",
+                  "bid": 0.2,
+                  "ask": 0.23,
+                  "bid_american": 400,
+                  "ask_american": 335,
+                  "spread": 0.03,
+                  "mid": 0.21500000000000002,
+                  "volume": 128.21,
+                  "maker_rt": 0.006,
+                  "taker_rt": 0.0238,
+                  "verdict": "maker room"
+                }
+              ],
+              "total_volume": 829.6700000000001,
+              "best_spread": 0.04,
+              "overround": 1.04,
+              "maker_sides": [
+                "NY",
+                "CONN"
+              ],
+              "rank_score": 0.03489
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-15",
+              "matchup": "Seattle vs Houston",
+              "sides": [
+                {
+                  "team": "SEA",
+                  "ticker": "KXMLBGAME-26AUG151910SEAHOU-SEA",
+                  "bid": 0.42,
+                  "ask": 0.46,
+                  "bid_american": 138,
+                  "ask_american": 117,
+                  "spread": 0.04,
+                  "mid": 0.44,
+                  "volume": 12.61,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "no volume"
+                },
+                {
+                  "team": "HOU",
+                  "ticker": "KXMLBGAME-26AUG151910SEAHOU-HOU",
+                  "bid": 0.55,
+                  "ask": 0.56,
+                  "bid_american": -122,
+                  "ask_american": -127,
+                  "spread": 0.01,
+                  "mid": 0.555,
+                  "volume": 473.0,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 485.61,
+              "best_spread": 0.04,
+              "overround": 1.02,
+              "maker_sides": [],
+              "rank_score": 0.024568
             },
             {
               "sport": "mlb",
@@ -3255,11 +3319,11 @@
                   "team": "LAA",
                   "ticker": "KXMLBGAME-26AUG152138KCLAA-LAA",
                   "bid": 0.54,
-                  "ask": 0.59,
+                  "ask": 0.57,
                   "bid_american": -117,
-                  "ask_american": -144,
-                  "spread": 0.05,
-                  "mid": 0.565,
+                  "ask_american": -133,
+                  "spread": 0.03,
+                  "mid": 0.5549999999999999,
                   "volume": 42.74,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0346,
@@ -3268,68 +3332,26 @@
                 {
                   "team": "KC",
                   "ticker": "KXMLBGAME-26AUG152138KCLAA-KC",
-                  "bid": 0.42,
-                  "ask": 0.44,
-                  "bid_american": 138,
-                  "ask_american": 127,
+                  "bid": 0.44,
+                  "ask": 0.46,
+                  "bid_american": 127,
+                  "ask_american": 117,
                   "spread": 0.02,
-                  "mid": 0.43,
+                  "mid": 0.45,
                   "volume": 663.16,
-                  "maker_rt": 0.0086,
-                  "taker_rt": 0.0344,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0348,
                   "verdict": "maker room"
                 }
               ],
               "total_volume": 705.9,
-              "best_spread": 0.05,
+              "best_spread": 0.03,
               "overround": 1.03,
               "maker_sides": [
                 "LAA",
                 "KC"
               ],
-              "rank_score": 0.038971
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-15",
-              "matchup": "Seattle vs Houston",
-              "sides": [
-                {
-                  "team": "SEA",
-                  "ticker": "KXMLBGAME-26AUG151910SEAHOU-SEA",
-                  "bid": 0.4,
-                  "ask": 0.45,
-                  "bid_american": 150,
-                  "ask_american": 122,
-                  "spread": 0.05,
-                  "mid": 0.42500000000000004,
-                  "volume": 12.61,
-                  "maker_rt": 0.0086,
-                  "taker_rt": 0.0344,
-                  "verdict": "no volume"
-                },
-                {
-                  "team": "HOU",
-                  "ticker": "KXMLBGAME-26AUG151910SEAHOU-HOU",
-                  "bid": 0.55,
-                  "ask": 0.58,
-                  "bid_american": -122,
-                  "ask_american": -138,
-                  "spread": 0.03,
-                  "mid": 0.565,
-                  "volume": 473.0,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 485.61,
-              "best_spread": 0.05,
-              "overround": 1.03,
-              "maker_sides": [
-                "HOU"
-              ],
-              "rank_score": 0.03071
+              "rank_score": 0.023383
             },
             {
               "sport": "mlb",
@@ -3339,13 +3361,13 @@
                 {
                   "team": "MIL",
                   "ticker": "KXMLBGAME-26AUG151915MILLAD-MIL",
-                  "bid": 0.5,
-                  "ask": 0.55,
-                  "bid_american": -100,
-                  "ask_american": -122,
-                  "spread": 0.05,
+                  "bid": 0.51,
+                  "ask": 0.54,
+                  "bid_american": -104,
+                  "ask_american": -117,
+                  "spread": 0.03,
                   "mid": 0.525,
-                  "volume": 61.0,
+                  "volume": 66.38,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.035,
                   "verdict": "maker room"
@@ -3359,147 +3381,19 @@
                   "ask_american": 108,
                   "spread": 0.01,
                   "mid": 0.475,
-                  "volume": 317.82,
+                  "volume": 563.07,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.035,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 378.82,
-              "best_spread": 0.05,
-              "overround": 1.03,
+              "total_volume": 629.45,
+              "best_spread": 0.03,
+              "overround": 1.02,
               "maker_sides": [
                 "MIL"
               ],
-              "rank_score": 0.026706
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-15",
-              "matchup": "Washington vs New",
-              "sides": [
-                {
-                  "team": "WSH",
-                  "ticker": "KXMLBGAME-26AUG151610WSHNYM-WSH",
-                  "bid": 0.43,
-                  "ask": 0.47,
-                  "bid_american": 133,
-                  "ask_american": 113,
-                  "spread": 0.04,
-                  "mid": 0.44999999999999996,
-                  "volume": 366.74,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0348,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "NYM",
-                  "ticker": "KXMLBGAME-26AUG151610WSHNYM-NYM",
-                  "bid": 0.53,
-                  "ask": 0.55,
-                  "bid_american": -113,
-                  "ask_american": -122,
-                  "spread": 0.02,
-                  "mid": 0.54,
-                  "volume": 20.75,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0348,
-                  "verdict": "no volume"
-                }
-              ],
-              "total_volume": 387.49,
-              "best_spread": 0.04,
-              "overround": 1.02,
-              "maker_sides": [
-                "WSH"
-              ],
-              "rank_score": 0.021625
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-15",
-              "matchup": "Philadelphia vs Minnesota",
-              "sides": [
-                {
-                  "team": "PHI",
-                  "ticker": "KXMLBGAME-26AUG151910PHIMIN-PHI",
-                  "bid": 0.56,
-                  "ask": 0.6,
-                  "bid_american": -127,
-                  "ask_american": -150,
-                  "spread": 0.04,
-                  "mid": 0.5800000000000001,
-                  "volume": 31.42,
-                  "maker_rt": 0.0086,
-                  "taker_rt": 0.0342,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "MIN",
-                  "ticker": "KXMLBGAME-26AUG151910PHIMIN-MIN",
-                  "bid": 0.41,
-                  "ask": 0.43,
-                  "bid_american": 144,
-                  "ask_american": 133,
-                  "spread": 0.02,
-                  "mid": 0.42,
-                  "volume": 318.12,
-                  "maker_rt": 0.0086,
-                  "taker_rt": 0.0342,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 349.54,
-              "best_spread": 0.04,
-              "overround": 1.03,
-              "maker_sides": [
-                "PHI",
-                "MIN"
-              ],
-              "rank_score": 0.020486
-            },
-            {
-              "sport": "nfl",
-              "game_date": "2026-08-15",
-              "matchup": "Will Philadelphia win the Philadelphia vs Baltimore",
-              "sides": [
-                {
-                  "team": "PHI",
-                  "ticker": "KXNFLGAME-26AUG15PHIBAL-PHI",
-                  "bid": 0.62,
-                  "ask": 0.64,
-                  "bid_american": -163,
-                  "ask_american": -178,
-                  "spread": 0.02,
-                  "mid": 0.63,
-                  "volume": 10791.6,
-                  "maker_rt": 0.0082,
-                  "taker_rt": 0.0328,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "BAL",
-                  "ticker": "KXNFLGAME-26AUG15PHIBAL-BAL",
-                  "bid": 0.35,
-                  "ask": 0.37,
-                  "bid_american": 186,
-                  "ask_american": 170,
-                  "spread": 0.02,
-                  "mid": 0.36,
-                  "volume": 9510.67,
-                  "maker_rt": 0.0082,
-                  "taker_rt": 0.0324,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 20302.27,
-              "best_spread": 0.02,
-              "overround": 1.01,
-              "maker_sides": [
-                "PHI",
-                "BAL"
-              ],
-              "rank_score": 0.02
+              "rank_score": 0.021663
             },
             {
               "sport": "nfl",
@@ -3515,7 +3409,7 @@
                   "ask_american": 122,
                   "spread": 0.01,
                   "mid": 0.445,
-                  "volume": 9156.37,
+                  "volume": 9461.37,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0346,
                   "verdict": "marginal"
@@ -3529,13 +3423,13 @@
                   "ask_american": -127,
                   "spread": 0.02,
                   "mid": 0.55,
-                  "volume": 12200.09,
+                  "volume": 12314.41,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0348,
                   "verdict": "maker room"
                 }
               ],
-              "total_volume": 21356.46,
+              "total_volume": 21775.78,
               "best_spread": 0.02,
               "overround": 1.01,
               "maker_sides": [
@@ -3551,79 +3445,37 @@
                 {
                   "team": "NO",
                   "ticker": "KXNFLGAME-26AUG15JACNO-NO",
-                  "bid": 0.55,
+                  "bid": 0.54,
                   "ask": 0.56,
-                  "bid_american": -122,
+                  "bid_american": -117,
                   "ask_american": -127,
-                  "spread": 0.01,
-                  "mid": 0.555,
-                  "volume": 28974.99,
+                  "spread": 0.02,
+                  "mid": 0.55,
+                  "volume": 28979.48,
                   "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
-                  "verdict": "marginal"
+                  "taker_rt": 0.0348,
+                  "verdict": "maker room"
                 },
                 {
                   "team": "JAC",
                   "ticker": "KXNFLGAME-26AUG15JACNO-JAC",
-                  "bid": 0.43,
+                  "bid": 0.44,
                   "ask": 0.45,
-                  "bid_american": 133,
+                  "bid_american": 127,
                   "ask_american": 122,
-                  "spread": 0.02,
-                  "mid": 0.44,
-                  "volume": 6091.43,
+                  "spread": 0.01,
+                  "mid": 0.445,
+                  "volume": 6159.5,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0346,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 35066.42,
-              "best_spread": 0.02,
-              "overround": 1.01,
-              "maker_sides": [
-                "JAC"
-              ],
-              "rank_score": 0.02
-            },
-            {
-              "sport": "nfl",
-              "game_date": "2026-08-15",
-              "matchup": "Will Carolina win the Carolina vs Buffalo",
-              "sides": [
-                {
-                  "team": "CAR",
-                  "ticker": "KXNFLGAME-26AUG15CARBUF-CAR",
-                  "bid": 0.47,
-                  "ask": 0.49,
-                  "bid_american": 113,
-                  "ask_american": 104,
-                  "spread": 0.02,
-                  "mid": 0.48,
-                  "volume": 17364.31,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "BUF",
-                  "ticker": "KXNFLGAME-26AUG15CARBUF-BUF",
-                  "bid": 0.52,
-                  "ask": 0.53,
-                  "bid_american": -108,
-                  "ask_american": -113,
-                  "spread": 0.01,
-                  "mid": 0.525,
-                  "volume": 19691.21,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 37055.520000000004,
+              "total_volume": 35138.979999999996,
               "best_spread": 0.02,
-              "overround": 1.02,
+              "overround": 1.01,
               "maker_sides": [
-                "CAR"
+                "NO"
               ],
               "rank_score": 0.02
             },
@@ -3641,7 +3493,7 @@
                   "ask_american": -300,
                   "spread": 0.06,
                   "mid": 0.72,
-                  "volume": 50.76,
+                  "volume": 57.76,
                   "maker_rt": 0.0072,
                   "taker_rt": 0.0284,
                   "verdict": "maker room"
@@ -3649,25 +3501,25 @@
                 {
                   "team": "LA",
                   "ticker": "KXWNBAGAME-26AUG15LAWSH-LA",
-                  "bid": 0.26,
+                  "bid": 0.25,
                   "ask": 0.31,
-                  "bid_american": 285,
+                  "bid_american": 300,
                   "ask_american": 223,
-                  "spread": 0.05,
-                  "mid": 0.28500000000000003,
-                  "volume": 4.0,
+                  "spread": 0.06,
+                  "mid": 0.28,
+                  "volume": 10.15,
                   "maker_rt": 0.0072,
-                  "taker_rt": 0.0286,
+                  "taker_rt": 0.0284,
                   "verdict": "no volume"
                 }
               ],
-              "total_volume": 54.76,
+              "total_volume": 67.91,
               "best_spread": 0.06,
               "overround": 1.06,
               "maker_sides": [
                 "WSH"
               ],
-              "rank_score": 0.017464
+              "rank_score": 0.018056
             },
             {
               "sport": "mlb",
@@ -3677,124 +3529,39 @@
                 {
                   "team": "SF",
                   "ticker": "KXMLBGAME-26AUG151605COLSF-SF",
-                  "bid": 0.59,
-                  "ask": 0.61,
-                  "bid_american": -144,
-                  "ask_american": -156,
-                  "spread": 0.02,
-                  "mid": 0.6,
-                  "volume": 166.1,
+                  "bid": 0.61,
+                  "ask": 0.62,
+                  "bid_american": -156,
+                  "ask_american": -163,
+                  "spread": 0.01,
+                  "mid": 0.615,
+                  "volume": 179.61,
                   "maker_rt": 0.0084,
-                  "taker_rt": 0.0336,
-                  "verdict": "maker room"
+                  "taker_rt": 0.0332,
+                  "verdict": "marginal"
                 },
                 {
                   "team": "COL",
                   "ticker": "KXMLBGAME-26AUG151605COLSF-COL",
                   "bid": 0.37,
-                  "ask": 0.41,
+                  "ask": 0.4,
                   "bid_american": 170,
-                  "ask_american": 144,
-                  "spread": 0.04,
-                  "mid": 0.39,
+                  "ask_american": 150,
+                  "spread": 0.03,
+                  "mid": 0.385,
                   "volume": 46.19,
                   "maker_rt": 0.0084,
-                  "taker_rt": 0.0334,
+                  "taker_rt": 0.0332,
                   "verdict": "maker room"
                 }
               ],
-              "total_volume": 212.29,
-              "best_spread": 0.04,
+              "total_volume": 225.8,
+              "best_spread": 0.03,
               "overround": 1.02,
               "maker_sides": [
-                "SF",
                 "COL"
               ],
-              "rank_score": 0.016369
-            },
-            {
-              "sport": "wnba",
-              "game_date": "2026-08-15",
-              "matchup": "New York vs Connecticut",
-              "sides": [
-                {
-                  "team": "NY",
-                  "ticker": "KXWNBAGAME-26AUG15NYCONN-NY",
-                  "bid": 0.76,
-                  "ask": 0.78,
-                  "bid_american": -317,
-                  "ask_american": -355,
-                  "spread": 0.02,
-                  "mid": 0.77,
-                  "volume": 657.1,
-                  "maker_rt": 0.0062,
-                  "taker_rt": 0.0248,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "CONN",
-                  "ticker": "KXWNBAGAME-26AUG15NYCONN-CONN",
-                  "bid": 0.24,
-                  "ask": 0.25,
-                  "bid_american": 317,
-                  "ask_american": 300,
-                  "spread": 0.01,
-                  "mid": 0.245,
-                  "volume": 73.71,
-                  "maker_rt": 0.0066,
-                  "taker_rt": 0.026,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 730.8100000000001,
-              "best_spread": 0.02,
-              "overround": 1.03,
-              "maker_sides": [
-                "NY"
-              ],
-              "rank_score": 0.015962
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-15",
-              "matchup": "St. Louis vs Chicago",
-              "sides": [
-                {
-                  "team": "STL",
-                  "ticker": "KXMLBGAME-26AUG151420STLCHC-STL",
-                  "bid": 0.37,
-                  "ask": 0.41,
-                  "bid_american": 170,
-                  "ask_american": 144,
-                  "spread": 0.04,
-                  "mid": 0.39,
-                  "volume": 34.17,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.0334,
-                  "verdict": "maker room"
-                },
-                {
-                  "team": "CHC",
-                  "ticker": "KXMLBGAME-26AUG151420STLCHC-CHC",
-                  "bid": 0.62,
-                  "ask": 0.63,
-                  "bid_american": -163,
-                  "ask_american": -170,
-                  "spread": 0.01,
-                  "mid": 0.625,
-                  "volume": 90.26,
-                  "maker_rt": 0.0084,
-                  "taker_rt": 0.033,
-                  "verdict": "marginal"
-                }
-              ],
-              "total_volume": 124.43,
-              "best_spread": 0.04,
-              "overround": 1.04,
-              "maker_sides": [
-                "STL"
-              ],
-              "rank_score": 0.013733
+              "rank_score": 0.01258
             },
             {
               "sport": "mlb",
@@ -3819,65 +3586,64 @@
                   "team": "CLE",
                   "ticker": "KXMLBGAME-26AUG151910SDCLE-CLE",
                   "bid": 0.55,
-                  "ask": 0.57,
+                  "ask": 0.56,
                   "bid_american": -122,
-                  "ask_american": -133,
-                  "spread": 0.02,
-                  "mid": 0.56,
-                  "volume": 77.78,
+                  "ask_american": -127,
+                  "spread": 0.01,
+                  "mid": 0.555,
+                  "volume": 78.78,
                   "maker_rt": 0.0088,
                   "taker_rt": 0.0346,
-                  "verdict": "maker room"
+                  "verdict": "marginal"
                 }
               ],
-              "total_volume": 397.51,
+              "total_volume": 398.51,
               "best_spread": 0.02,
-              "overround": 1.03,
+              "overround": 1.02,
               "maker_sides": [
-                "SD",
-                "CLE"
+                "SD"
               ],
-              "rank_score": 0.010963
+              "rank_score": 0.010978
             },
             {
               "sport": "mlb",
               "game_date": "2026-08-15",
-              "matchup": "Boston vs Pittsburgh",
+              "matchup": "Washington vs New",
               "sides": [
                 {
-                  "team": "PIT",
-                  "ticker": "KXMLBGAME-26AUG151915BOSPIT-PIT",
-                  "bid": 0.44,
-                  "ask": 0.45,
-                  "bid_american": 127,
-                  "ask_american": 122,
+                  "team": "WSH",
+                  "ticker": "KXMLBGAME-26AUG151610WSHNYM-WSH",
+                  "bid": 0.45,
+                  "ask": 0.46,
+                  "bid_american": 122,
+                  "ask_american": 117,
                   "spread": 0.01,
-                  "mid": 0.445,
-                  "volume": 7.54,
+                  "mid": 0.455,
+                  "volume": 366.74,
                   "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
-                  "verdict": "no volume"
+                  "taker_rt": 0.0348,
+                  "verdict": "marginal"
                 },
                 {
-                  "team": "BOS",
-                  "ticker": "KXMLBGAME-26AUG151915BOSPIT-BOS",
-                  "bid": 0.54,
-                  "ask": 0.58,
-                  "bid_american": -117,
-                  "ask_american": -138,
-                  "spread": 0.04,
-                  "mid": 0.56,
-                  "volume": 20.01,
+                  "team": "NYM",
+                  "ticker": "KXMLBGAME-26AUG151610WSHNYM-NYM",
+                  "bid": 0.53,
+                  "ask": 0.55,
+                  "bid_american": -113,
+                  "ask_american": -122,
+                  "spread": 0.02,
+                  "mid": 0.54,
+                  "volume": 20.75,
                   "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
+                  "taker_rt": 0.0348,
                   "verdict": "no volume"
                 }
               ],
-              "total_volume": 27.55,
-              "best_spread": 0.04,
-              "overround": 1.03,
+              "total_volume": 387.49,
+              "best_spread": 0.02,
+              "overround": 1.01,
               "maker_sides": [],
-              "rank_score": 0.010827
+              "rank_score": 0.010812
             },
             {
               "sport": "mlb",
@@ -3922,42 +3688,44 @@
             {
               "sport": "mlb",
               "game_date": "2026-08-15",
-              "matchup": "Chicago WS vs Detroit",
+              "matchup": "St. Louis vs Chicago",
               "sides": [
                 {
-                  "team": "DET",
-                  "ticker": "KXMLBGAME-26AUG151310CWSDET-DET",
-                  "bid": 0.51,
-                  "ask": 0.55,
-                  "bid_american": -104,
-                  "ask_american": -122,
-                  "spread": 0.04,
-                  "mid": 0.53,
-                  "volume": 11.75,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.035,
-                  "verdict": "no volume"
+                  "team": "STL",
+                  "ticker": "KXMLBGAME-26AUG151420STLCHC-STL",
+                  "bid": 0.37,
+                  "ask": 0.4,
+                  "bid_american": 170,
+                  "ask_american": 150,
+                  "spread": 0.03,
+                  "mid": 0.385,
+                  "volume": 34.17,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.0332,
+                  "verdict": "maker room"
                 },
                 {
-                  "team": "CWS",
-                  "ticker": "KXMLBGAME-26AUG151310CWSDET-CWS",
-                  "bid": 0.44,
-                  "ask": 0.48,
-                  "bid_american": 127,
-                  "ask_american": 108,
-                  "spread": 0.04,
-                  "mid": 0.45999999999999996,
-                  "volume": 0.0,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0348,
-                  "verdict": "no volume"
+                  "team": "CHC",
+                  "ticker": "KXMLBGAME-26AUG151420STLCHC-CHC",
+                  "bid": 0.62,
+                  "ask": 0.63,
+                  "bid_american": -163,
+                  "ask_american": -170,
+                  "spread": 0.01,
+                  "mid": 0.625,
+                  "volume": 95.26,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.033,
+                  "verdict": "marginal"
                 }
               ],
-              "total_volume": 11.75,
-              "best_spread": 0.04,
+              "total_volume": 129.43,
+              "best_spread": 0.03,
               "overround": 1.03,
-              "maker_sides": [],
-              "rank_score": 0.010353
+              "maker_sides": [
+                "STL"
+              ],
+              "rank_score": 0.010412
             },
             {
               "sport": "nfl",
@@ -3973,7 +3741,7 @@
                   "ask_american": -144,
                   "spread": 0.01,
                   "mid": 0.585,
-                  "volume": 25561.53,
+                  "volume": 25790.23,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.034,
                   "verdict": "marginal"
@@ -3987,15 +3755,95 @@
                   "ask_american": 144,
                   "spread": 0.01,
                   "mid": 0.405,
-                  "volume": 23472.71,
+                  "volume": 23871.02,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.0338,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 49034.24,
+              "total_volume": 49661.25,
               "best_spread": 0.01,
               "overround": 1.0,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "nfl",
+              "game_date": "2026-08-15",
+              "matchup": "Will Philadelphia win the Philadelphia vs Baltimore",
+              "sides": [
+                {
+                  "team": "PHI",
+                  "ticker": "KXNFLGAME-26AUG15PHIBAL-PHI",
+                  "bid": 0.62,
+                  "ask": 0.63,
+                  "bid_american": -163,
+                  "ask_american": -170,
+                  "spread": 0.01,
+                  "mid": 0.625,
+                  "volume": 10838.08,
+                  "maker_rt": 0.0084,
+                  "taker_rt": 0.033,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "BAL",
+                  "ticker": "KXNFLGAME-26AUG15PHIBAL-BAL",
+                  "bid": 0.36,
+                  "ask": 0.37,
+                  "bid_american": 178,
+                  "ask_american": 170,
+                  "spread": 0.01,
+                  "mid": 0.365,
+                  "volume": 9652.18,
+                  "maker_rt": 0.0082,
+                  "taker_rt": 0.0326,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 20490.260000000002,
+              "best_spread": 0.01,
+              "overround": 1.0,
+              "maker_sides": [],
+              "rank_score": 0.01
+            },
+            {
+              "sport": "nfl",
+              "game_date": "2026-08-15",
+              "matchup": "Will Carolina win the Carolina vs Buffalo",
+              "sides": [
+                {
+                  "team": "CAR",
+                  "ticker": "KXNFLGAME-26AUG15CARBUF-CAR",
+                  "bid": 0.47,
+                  "ask": 0.48,
+                  "bid_american": 113,
+                  "ask_american": 108,
+                  "spread": 0.01,
+                  "mid": 0.475,
+                  "volume": 17655.1,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "BUF",
+                  "ticker": "KXNFLGAME-26AUG15CARBUF-BUF",
+                  "bid": 0.52,
+                  "ask": 0.53,
+                  "bid_american": -108,
+                  "ask_american": -113,
+                  "spread": 0.01,
+                  "mid": 0.525,
+                  "volume": 19746.0,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 37401.1,
+              "best_spread": 0.01,
+              "overround": 1.01,
               "maker_sides": [],
               "rank_score": 0.01
             },
@@ -4013,7 +3861,7 @@
                   "ask_american": 133,
                   "spread": 0.01,
                   "mid": 0.425,
-                  "volume": 39306.78,
+                  "volume": 40404.96,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.0344,
                   "verdict": "marginal"
@@ -4027,13 +3875,13 @@
                   "ask_american": -138,
                   "spread": 0.01,
                   "mid": 0.575,
-                  "volume": 29996.39,
+                  "volume": 30091.88,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.0344,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 69303.17,
+              "total_volume": 70496.84,
               "best_spread": 0.01,
               "overround": 1.01,
               "maker_sides": [],
@@ -4053,7 +3901,7 @@
                   "ask_american": -138,
                   "spread": 0.01,
                   "mid": 0.575,
-                  "volume": 19909.65,
+                  "volume": 19998.72,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.0344,
                   "verdict": "marginal"
@@ -4067,17 +3915,137 @@
                   "ask_american": 133,
                   "spread": 0.01,
                   "mid": 0.425,
-                  "volume": 28847.8,
+                  "volume": 29347.26,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.0344,
                   "verdict": "marginal"
                 }
               ],
-              "total_volume": 48757.45,
+              "total_volume": 49345.979999999996,
               "best_spread": 0.01,
               "overround": 1.01,
               "maker_sides": [],
               "rank_score": 0.01
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-15",
+              "matchup": "Chicago WS vs Detroit",
+              "sides": [
+                {
+                  "team": "DET",
+                  "ticker": "KXMLBGAME-26AUG151310CWSDET-DET",
+                  "bid": 0.54,
+                  "ask": 0.55,
+                  "bid_american": -117,
+                  "ask_american": -122,
+                  "spread": 0.01,
+                  "mid": 0.545,
+                  "volume": 83.75,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0348,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "CWS",
+                  "ticker": "KXMLBGAME-26AUG151310CWSDET-CWS",
+                  "bid": 0.44,
+                  "ask": 0.47,
+                  "bid_american": 127,
+                  "ask_american": 113,
+                  "spread": 0.03,
+                  "mid": 0.45499999999999996,
+                  "volume": 19.46,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0348,
+                  "verdict": "no volume"
+                }
+              ],
+              "total_volume": 103.21000000000001,
+              "best_spread": 0.03,
+              "overround": 1.02,
+              "maker_sides": [],
+              "rank_score": 0.009822
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-15",
+              "matchup": "Arizona vs Atlanta",
+              "sides": [
+                {
+                  "team": "AZ",
+                  "ticker": "KXMLBGAME-26AUG151915AZATL-AZ",
+                  "bid": 0.43,
+                  "ask": 0.45,
+                  "bid_american": 133,
+                  "ask_american": 122,
+                  "spread": 0.02,
+                  "mid": 0.44,
+                  "volume": 10.39,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "no volume"
+                },
+                {
+                  "team": "ATL",
+                  "ticker": "KXMLBGAME-26AUG151915AZATL-ATL",
+                  "bid": 0.55,
+                  "ask": 0.56,
+                  "bid_american": -122,
+                  "ask_american": -127,
+                  "spread": 0.01,
+                  "mid": 0.555,
+                  "volume": 226.73,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 237.12,
+              "best_spread": 0.02,
+              "overround": 1.01,
+              "maker_sides": [],
+              "rank_score": 0.008557
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-15",
+              "matchup": "Boston vs Pittsburgh",
+              "sides": [
+                {
+                  "team": "PIT",
+                  "ticker": "KXMLBGAME-26AUG151915BOSPIT-PIT",
+                  "bid": 0.44,
+                  "ask": 0.45,
+                  "bid_american": 127,
+                  "ask_american": 122,
+                  "spread": 0.01,
+                  "mid": 0.445,
+                  "volume": 7.54,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "no volume"
+                },
+                {
+                  "team": "BOS",
+                  "ticker": "KXMLBGAME-26AUG151915BOSPIT-BOS",
+                  "bid": 0.52,
+                  "ask": 0.55,
+                  "bid_american": -108,
+                  "ask_american": -122,
+                  "spread": 0.03,
+                  "mid": 0.535,
+                  "volume": 20.01,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.035,
+                  "verdict": "no volume"
+                }
+              ],
+              "total_volume": 27.55,
+              "best_spread": 0.03,
+              "overround": 1.0,
+              "maker_sides": [],
+              "rank_score": 0.00812
             },
             {
               "sport": "mlb",
@@ -4087,16 +4055,16 @@
                 {
                   "team": "TB",
                   "ticker": "KXMLBGAME-26AUG151810BALTB-TB",
-                  "bid": 0.57,
-                  "ask": 0.6,
-                  "bid_american": -133,
-                  "ask_american": -150,
-                  "spread": 0.03,
+                  "bid": 0.58,
+                  "ask": 0.59,
+                  "bid_american": -138,
+                  "ask_american": -144,
+                  "spread": 0.01,
                   "mid": 0.585,
-                  "volume": 66.65,
+                  "volume": 159.99,
                   "maker_rt": 0.0086,
                   "taker_rt": 0.034,
-                  "verdict": "maker room"
+                  "verdict": "marginal"
                 },
                 {
                   "team": "BAL",
@@ -4113,95 +4081,11 @@
                   "verdict": "no volume"
                 }
               ],
-              "total_volume": 77.73,
-              "best_spread": 0.03,
-              "overround": 1.02,
-              "maker_sides": [
-                "TB"
-              ],
-              "rank_score": 0.009249
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-15",
-              "matchup": "Arizona vs Atlanta",
-              "sides": [
-                {
-                  "team": "AZ",
-                  "ticker": "KXMLBGAME-26AUG151915AZATL-AZ",
-                  "bid": 0.42,
-                  "ask": 0.45,
-                  "bid_american": 138,
-                  "ask_american": 122,
-                  "spread": 0.03,
-                  "mid": 0.435,
-                  "volume": 10.39,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
-                  "verdict": "no volume"
-                },
-                {
-                  "team": "ATL",
-                  "ticker": "KXMLBGAME-26AUG151915AZATL-ATL",
-                  "bid": 0.53,
-                  "ask": 0.56,
-                  "bid_american": -113,
-                  "ask_american": -127,
-                  "spread": 0.03,
-                  "mid": 0.545,
-                  "volume": 39.74,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0348,
-                  "verdict": "maker room"
-                }
-              ],
-              "total_volume": 50.13,
-              "best_spread": 0.03,
+              "total_volume": 171.07000000000002,
+              "best_spread": 0.02,
               "overround": 1.01,
-              "maker_sides": [
-                "ATL"
-              ],
-              "rank_score": 0.008628
-            },
-            {
-              "sport": "mlb",
-              "game_date": "2026-08-15",
-              "matchup": "Texas vs A's",
-              "sides": [
-                {
-                  "team": "TEX",
-                  "ticker": "KXMLBGAME-26AUG152140TEXATH-TEX",
-                  "bid": 0.53,
-                  "ask": 0.56,
-                  "bid_american": -113,
-                  "ask_american": -127,
-                  "spread": 0.03,
-                  "mid": 0.545,
-                  "volume": 19.07,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0348,
-                  "verdict": "no volume"
-                },
-                {
-                  "team": "ATH",
-                  "ticker": "KXMLBGAME-26AUG152140TEXATH-ATH",
-                  "bid": 0.43,
-                  "ask": 0.44,
-                  "bid_american": 133,
-                  "ask_american": 127,
-                  "spread": 0.01,
-                  "mid": 0.435,
-                  "volume": 1.0,
-                  "maker_rt": 0.0088,
-                  "taker_rt": 0.0346,
-                  "verdict": "no volume"
-                }
-              ],
-              "total_volume": 20.07,
-              "best_spread": 0.03,
-              "overround": 1.0,
               "maker_sides": [],
-              "rank_score": 0.007952
+              "rank_score": 0.007566
             },
             {
               "sport": "mlb",
@@ -4244,6 +4128,86 @@
                 "NYY"
               ],
               "rank_score": 0.005912
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-15",
+              "matchup": "Philadelphia vs Minnesota",
+              "sides": [
+                {
+                  "team": "PHI",
+                  "ticker": "KXMLBGAME-26AUG151910PHIMIN-PHI",
+                  "bid": 0.58,
+                  "ask": 0.59,
+                  "bid_american": -138,
+                  "ask_american": -144,
+                  "spread": 0.01,
+                  "mid": 0.585,
+                  "volume": 31.42,
+                  "maker_rt": 0.0086,
+                  "taker_rt": 0.034,
+                  "verdict": "marginal"
+                },
+                {
+                  "team": "MIN",
+                  "ticker": "KXMLBGAME-26AUG151910PHIMIN-MIN",
+                  "bid": 0.41,
+                  "ask": 0.42,
+                  "bid_american": 144,
+                  "ask_american": 138,
+                  "spread": 0.01,
+                  "mid": 0.415,
+                  "volume": 341.45,
+                  "maker_rt": 0.0086,
+                  "taker_rt": 0.034,
+                  "verdict": "marginal"
+                }
+              ],
+              "total_volume": 372.87,
+              "best_spread": 0.01,
+              "overround": 1.01,
+              "maker_sides": [],
+              "rank_score": 0.005297
+            },
+            {
+              "sport": "mlb",
+              "game_date": "2026-08-15",
+              "matchup": "Texas vs A's",
+              "sides": [
+                {
+                  "team": "TEX",
+                  "ticker": "KXMLBGAME-26AUG152140TEXATH-TEX",
+                  "bid": 0.54,
+                  "ask": 0.55,
+                  "bid_american": -117,
+                  "ask_american": -122,
+                  "spread": 0.01,
+                  "mid": 0.545,
+                  "volume": 19.07,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0348,
+                  "verdict": "no volume"
+                },
+                {
+                  "team": "ATH",
+                  "ticker": "KXMLBGAME-26AUG152140TEXATH-ATH",
+                  "bid": 0.43,
+                  "ask": 0.44,
+                  "bid_american": 133,
+                  "ask_american": 127,
+                  "spread": 0.01,
+                  "mid": 0.435,
+                  "volume": 1.0,
+                  "maker_rt": 0.0088,
+                  "taker_rt": 0.0346,
+                  "verdict": "no volume"
+                }
+              ],
+              "total_volume": 20.07,
+              "best_spread": 0.01,
+              "overround": 0.99,
+              "maker_sides": [],
+              "rank_score": 0.002651
             }
           ]
         }
@@ -4252,91 +4216,61 @@
     "crossvenue": [
       {
         "series": "MLBPLAYOFFS",
+        "team": "COL",
+        "kalshi_ask": 0.010700000000000001,
+        "poly_ask": 0.099,
+        "kalshi_bid": null,
+        "poly_bid": 0.009,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.010700000000000001,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.009,
+        "saving": 0.0883,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
         "team": "AZ",
-        "kalshi_ask": 0.5275,
+        "kalshi_ask": 0.47740000000000005,
         "poly_ask": 0.42,
-        "kalshi_bid": 0.39249999999999996,
+        "kalshi_bid": 0.40259999999999996,
         "poly_bid": 0.41,
         "best_buy": "polymarket",
         "best_buy_price": 0.42,
         "best_sell": "polymarket",
         "best_sell_price": 0.41,
-        "saving": 0.1075,
+        "saving": 0.0574,
         "lock": null,
         "suspect": false
       },
       {
         "series": "MLBPLAYOFFS",
         "team": "CLE",
-        "kalshi_ask": 0.2942,
+        "kalshi_ask": 0.325,
         "poly_ask": 0.38,
-        "kalshi_bid": 0.2558,
-        "poly_bid": 0.21,
+        "kalshi_bid": 0.255,
+        "poly_bid": 0.22,
         "best_buy": "kalshi",
-        "best_buy_price": 0.2942,
+        "best_buy_price": 0.325,
         "best_sell": "kalshi",
-        "best_sell_price": 0.2558,
-        "saving": 0.0858,
+        "best_sell_price": 0.255,
+        "saving": 0.055,
         "lock": null,
         "suspect": false
       },
       {
         "series": "MLBPLAYOFFS",
-        "team": "STL",
-        "kalshi_ask": 0.1169,
-        "poly_ask": 0.18,
-        "kalshi_bid": 0.0931,
-        "poly_bid": 0.11,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.1169,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.11,
-        "saving": 0.0631,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
-        "team": "DET",
-        "kalshi_ask": 0.4472,
-        "poly_ask": 0.51,
-        "kalshi_bid": 0.38280000000000003,
-        "poly_bid": 0.42,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.4472,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.42,
-        "saving": 0.0628,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
-        "team": "HOU",
-        "kalshi_ask": 0.7244999999999999,
-        "poly_ask": 0.67,
-        "kalshi_bid": 0.6655000000000001,
-        "poly_bid": 0.54,
+        "team": "MIN",
+        "kalshi_ask": 0.2942,
+        "poly_ask": 0.24,
+        "kalshi_bid": 0.2358,
+        "poly_bid": 0.19,
         "best_buy": "polymarket",
-        "best_buy_price": 0.67,
+        "best_buy_price": 0.24,
         "best_sell": "kalshi",
-        "best_sell_price": 0.6655000000000001,
-        "saving": 0.0545,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
-        "team": "PHI",
-        "kalshi_ask": 0.6562,
-        "poly_ask": 0.71,
-        "kalshi_bid": 0.6138,
-        "poly_bid": 0.65,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.6562,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.65,
-        "saving": 0.0538,
+        "best_sell_price": 0.2358,
+        "saving": 0.0542,
         "lock": null,
         "suspect": false
       },
@@ -4361,6 +4295,96 @@
       },
       {
         "series": "MLBPLAYOFFS",
+        "team": "DET",
+        "kalshi_ask": 0.3762,
+        "poly_ask": 0.42,
+        "kalshi_bid": 0.3038,
+        "poly_bid": 0.35,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.3762,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.35,
+        "saving": 0.0438,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
+        "team": "CWS",
+        "kalshi_ask": 0.6464,
+        "poly_ask": 0.69,
+        "kalshi_bid": 0.5436000000000001,
+        "poly_bid": 0.61,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.6464,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.61,
+        "saving": 0.0436,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
+        "team": "STL",
+        "kalshi_ask": 0.1169,
+        "poly_ask": 0.16,
+        "kalshi_bid": 0.0931,
+        "poly_bid": 0.11,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.1169,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.11,
+        "saving": 0.0431,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
+        "team": "HOU",
+        "kalshi_ask": 0.705,
+        "poly_ask": 0.67,
+        "kalshi_bid": 0.655,
+        "poly_bid": 0.56,
+        "best_buy": "polymarket",
+        "best_buy_price": 0.67,
+        "best_sell": "kalshi",
+        "best_sell_price": 0.655,
+        "saving": 0.035,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
+        "team": "MIA",
+        "kalshi_ask": 0.19039999999999999,
+        "poly_ask": 0.16,
+        "kalshi_bid": 0.1396,
+        "poly_bid": 0.13,
+        "best_buy": "polymarket",
+        "best_buy_price": 0.16,
+        "best_sell": "kalshi",
+        "best_sell_price": 0.1396,
+        "saving": 0.0304,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
+        "team": "SEA",
+        "kalshi_ask": 0.2321,
+        "poly_ask": 0.26,
+        "kalshi_bid": 0.1979,
+        "poly_bid": 0.23,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.2321,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.23,
+        "saving": 0.0279,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
         "team": "PIT",
         "kalshi_ask": 0.0427,
         "poly_ask": 0.07,
@@ -4380,47 +4404,36 @@
       },
       {
         "series": "MLBPLAYOFFS",
-        "team": "BOS",
-        "kalshi_ask": 0.8969,
-        "poly_ask": 0.87,
-        "kalshi_bid": 0.8531,
-        "poly_bid": 0.8,
-        "best_buy": "polymarket",
-        "best_buy_price": 0.87,
-        "best_sell": "kalshi",
-        "best_sell_price": 0.8531,
-        "saving": 0.0269,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
         "team": "NYY",
         "kalshi_ask": 0.9721,
-        "poly_ask": 0.993,
+        "poly_ask": 0.994,
         "kalshi_bid": 0.9579,
-        "poly_bid": 0.884,
+        "poly_bid": 0.934,
         "best_buy": "kalshi",
         "best_buy_price": 0.9721,
         "best_sell": "kalshi",
         "best_sell_price": 0.9579,
-        "saving": 0.0209,
+        "saving": 0.0219,
         "lock": null,
         "suspect": false
       },
       {
         "series": "MLBPLAYOFFS",
-        "team": "MIA",
-        "kalshi_ask": 0.1799,
-        "poly_ask": 0.16,
-        "kalshi_bid": 0.1401,
-        "poly_bid": 0.13,
-        "best_buy": "polymarket",
-        "best_buy_price": 0.16,
-        "best_sell": "kalshi",
-        "best_sell_price": 0.1401,
-        "saving": 0.0199,
-        "lock": null,
+        "team": "CIN",
+        "kalshi_ask": 0.021400000000000002,
+        "poly_ask": 0.043,
+        "kalshi_bid": 0.0086,
+        "poly_bid": 0.028,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.021400000000000002,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.028,
+        "saving": 0.0216,
+        "lock": {
+          "buy": "kalshi",
+          "sell": "polymarket",
+          "edge": 0.0066
+        },
         "suspect": false
       },
       {
@@ -4440,16 +4453,31 @@
       },
       {
         "series": "MLBPLAYOFFS",
-        "team": "TEX",
-        "kalshi_ask": 0.5674,
-        "poly_ask": 0.55,
-        "kalshi_bid": 0.48260000000000003,
-        "poly_bid": 0.49,
+        "team": "BOS",
+        "kalshi_ask": 0.8874,
+        "poly_ask": 0.87,
+        "kalshi_bid": 0.8426,
+        "poly_bid": 0.82,
         "best_buy": "polymarket",
-        "best_buy_price": 0.55,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.49,
+        "best_buy_price": 0.87,
+        "best_sell": "kalshi",
+        "best_sell_price": 0.8426,
         "saving": 0.0174,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
+        "team": "LAA",
+        "kalshi_ask": 0.010700000000000001,
+        "poly_ask": 0.028,
+        "kalshi_bid": null,
+        "poly_bid": 0.003,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.010700000000000001,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.003,
+        "saving": 0.0173,
         "lock": null,
         "suspect": false
       },
@@ -4459,42 +4487,12 @@
         "kalshi_ask": 0.1063,
         "poly_ask": 0.089,
         "kalshi_bid": 0.0837,
-        "poly_bid": 0.088,
+        "poly_bid": 0.087,
         "best_buy": "polymarket",
         "best_buy_price": 0.089,
         "best_sell": "polymarket",
-        "best_sell_price": 0.088,
+        "best_sell_price": 0.087,
         "saving": 0.0173,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
-        "team": "SEA",
-        "kalshi_ask": 0.25279999999999997,
-        "poly_ask": 0.27,
-        "kalshi_bid": 0.2172,
-        "poly_bid": 0.23,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.25279999999999997,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.23,
-        "saving": 0.0172,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
-        "team": "LAA",
-        "kalshi_ask": 0.010700000000000001,
-        "poly_ask": 0.026,
-        "kalshi_bid": null,
-        "poly_bid": 0.003,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.010700000000000001,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.003,
-        "saving": 0.0153,
         "lock": null,
         "suspect": false
       },
@@ -4519,16 +4517,65 @@
       },
       {
         "series": "MLBPLAYOFFS",
-        "team": "COL",
-        "kalshi_ask": 0.010700000000000001,
-        "poly_ask": 0.023,
-        "kalshi_bid": null,
-        "poly_bid": 0.008,
+        "team": "PHI",
+        "kalshi_ask": 0.666,
+        "poly_ask": 0.68,
+        "kalshi_bid": 0.624,
+        "poly_bid": 0.66,
         "best_buy": "kalshi",
-        "best_buy_price": 0.010700000000000001,
+        "best_buy_price": 0.666,
         "best_sell": "polymarket",
-        "best_sell_price": 0.008,
-        "saving": 0.0123,
+        "best_sell_price": 0.66,
+        "saving": 0.014,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "WNBA",
+        "team": "IND",
+        "kalshi_ask": 0.1063,
+        "poly_ask": 0.12,
+        "kalshi_bid": 0.0837,
+        "poly_bid": 0.11,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.1063,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.11,
+        "saving": 0.0137,
+        "lock": {
+          "buy": "kalshi",
+          "sell": "polymarket",
+          "edge": 0.0037
+        },
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
+        "team": "TOR",
+        "kalshi_ask": 0.25279999999999997,
+        "poly_ask": 0.24,
+        "kalshi_bid": 0.1772,
+        "poly_bid": 0.21,
+        "best_buy": "polymarket",
+        "best_buy_price": 0.24,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.21,
+        "saving": 0.0128,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
+        "team": "BAL",
+        "kalshi_ask": 0.1695,
+        "poly_ask": 0.18,
+        "kalshi_bid": 0.09050000000000001,
+        "poly_bid": 0.16,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.1695,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.16,
+        "saving": 0.0105,
         "lock": null,
         "suspect": false
       },
@@ -4639,6 +4686,21 @@
       },
       {
         "series": "MLBPLAYOFFS",
+        "team": "MIL",
+        "kalshi_ask": 1.0,
+        "poly_ask": 0.991,
+        "kalshi_bid": 0.97,
+        "poly_bid": 0.941,
+        "best_buy": "polymarket",
+        "best_buy_price": 0.991,
+        "best_sell": "kalshi",
+        "best_sell_price": 0.97,
+        "saving": 0.009,
+        "lock": null,
+        "suspect": false
+      },
+      {
+        "series": "MLBPLAYOFFS",
         "team": "KC",
         "kalshi_ask": 0.021400000000000002,
         "poly_ask": 0.014,
@@ -4683,32 +4745,17 @@
         "suspect": false
       },
       {
-        "series": "MLBPLAYOFFS",
-        "team": "CWS",
-        "kalshi_ask": 0.6464,
-        "poly_ask": 0.64,
-        "kalshi_bid": 0.5236000000000001,
-        "poly_bid": 0.61,
-        "best_buy": "polymarket",
-        "best_buy_price": 0.64,
+        "series": "WNBA",
+        "team": "DAL",
+        "kalshi_ask": 0.0321,
+        "poly_ask": 0.038,
+        "kalshi_bid": 0.0179,
+        "poly_bid": 0.027,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.0321,
         "best_sell": "polymarket",
-        "best_sell_price": 0.61,
-        "saving": 0.0064,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
-        "team": "MIL",
-        "kalshi_ask": 1.0,
-        "poly_ask": 0.994,
-        "kalshi_bid": 0.97,
-        "poly_bid": 0.941,
-        "best_buy": "polymarket",
-        "best_buy_price": 0.994,
-        "best_sell": "kalshi",
-        "best_sell_price": 0.97,
-        "saving": 0.006,
+        "best_sell_price": 0.027,
+        "saving": 0.0059,
         "lock": null,
         "suspect": false
       },
@@ -4746,44 +4793,14 @@
         "series": "MLBPLAYOFFS",
         "team": "SD",
         "kalshi_ask": 0.705,
-        "poly_ask": 0.71,
-        "kalshi_bid": 0.635,
+        "poly_ask": 0.7,
+        "kalshi_bid": 0.655,
         "poly_bid": 0.58,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.705,
+        "best_buy": "polymarket",
+        "best_buy_price": 0.7,
         "best_sell": "kalshi",
-        "best_sell_price": 0.635,
+        "best_sell_price": 0.655,
         "saving": 0.005,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
-        "team": "NYM",
-        "kalshi_ask": 0.0321,
-        "poly_ask": 0.037,
-        "kalshi_bid": 0.0079,
-        "poly_bid": 0.009,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.0321,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.009,
-        "saving": 0.0049,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "WNBA",
-        "team": "DAL",
-        "kalshi_ask": 0.0321,
-        "poly_ask": 0.037,
-        "kalshi_bid": 0.0179,
-        "poly_bid": 0.027,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.0321,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.027,
-        "saving": 0.0049,
         "lock": null,
         "suspect": false
       },
@@ -4804,46 +4821,31 @@
       },
       {
         "series": "MLBPLAYOFFS",
-        "team": "TOR",
-        "kalshi_ask": 0.2838,
-        "poly_ask": 0.28,
-        "kalshi_bid": 0.2462,
-        "poly_bid": 0.2,
-        "best_buy": "polymarket",
-        "best_buy_price": 0.28,
-        "best_sell": "kalshi",
-        "best_sell_price": 0.2462,
-        "saving": 0.0038,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "WNBA",
-        "team": "IND",
-        "kalshi_ask": 0.1169,
-        "poly_ask": 0.12,
-        "kalshi_bid": 0.0931,
-        "poly_bid": 0.11,
+        "team": "NYM",
+        "kalshi_ask": 0.0321,
+        "poly_ask": 0.036,
+        "kalshi_bid": 0.0079,
+        "poly_bid": 0.012,
         "best_buy": "kalshi",
-        "best_buy_price": 0.1169,
+        "best_buy_price": 0.0321,
         "best_sell": "polymarket",
-        "best_sell_price": 0.11,
-        "saving": 0.0031,
+        "best_sell_price": 0.012,
+        "saving": 0.0039,
         "lock": null,
         "suspect": false
       },
       {
         "series": "MLBPLAYOFFS",
-        "team": "MIN",
-        "kalshi_ask": 0.2424,
-        "poly_ask": 0.24,
-        "kalshi_bid": 0.2076,
-        "poly_bid": 0.15,
-        "best_buy": "polymarket",
-        "best_buy_price": 0.24,
-        "best_sell": "kalshi",
-        "best_sell_price": 0.2076,
-        "saving": 0.0024,
+        "team": "TEX",
+        "kalshi_ask": 0.5475,
+        "poly_ask": 0.55,
+        "kalshi_bid": 0.4325,
+        "poly_bid": 0.49,
+        "best_buy": "kalshi",
+        "best_buy_price": 0.5475,
+        "best_sell": "polymarket",
+        "best_sell_price": 0.49,
+        "saving": 0.0025,
         "lock": null,
         "suspect": false
       },
@@ -4889,36 +4891,6 @@
         "best_sell": "polymarket",
         "best_sell_price": 0.015,
         "saving": 0.0004,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
-        "team": "CIN",
-        "kalshi_ask": 0.0427,
-        "poly_ask": 0.043,
-        "kalshi_bid": 0.0173,
-        "poly_bid": 0.027,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.0427,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.027,
-        "saving": 0.0003,
-        "lock": null,
-        "suspect": false
-      },
-      {
-        "series": "MLBPLAYOFFS",
-        "team": "BAL",
-        "kalshi_ask": 0.1799,
-        "poly_ask": 0.18,
-        "kalshi_bid": 0.1001,
-        "poly_bid": 0.16,
-        "best_buy": "kalshi",
-        "best_buy_price": 0.1799,
-        "best_sell": "polymarket",
-        "best_sell_price": 0.16,
-        "saving": 0.0001,
         "lock": null,
         "suspect": false
       }
