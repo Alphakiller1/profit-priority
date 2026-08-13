@@ -148,7 +148,7 @@
     padding:9px 11px;border-bottom:1px solid var(--line-soft)}
   .gtop b{font-size:12.5px}
   .gtop span{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
-  .grow{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;
+  .grow{display:grid;grid-template-columns:1fr auto auto auto auto;gap:8px;
     align-items:center;padding:7px 11px;font-size:12px}
   .grow + .grow{border-top:1px solid var(--line-soft)}
   .grow .tm{font-weight:600}
@@ -161,6 +161,32 @@
   .vd.mg{background:rgba(250,178,25,.14);color:#f5c451}
   .vd.tt{background:rgba(208,59,59,.13);color:#e57373}
   .vd.nv{background:rgba(124,132,146,.15);color:var(--muted)}
+
+  /* ── your book ────────────────────────────────────────────────────────── */
+  .stake{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.03em;
+    padding:3px 8px;border-radius:4px;cursor:pointer;white-space:nowrap;
+    background:transparent;color:var(--muted);border:1px solid var(--line);
+    transition:background .12s,color .12s,border-color .12s}
+  .stake:hover{background:var(--s1);border-color:var(--s1);color:#fff}
+  .gcard:hover .stake{color:var(--ink);border-color:var(--line-soft)}
+  .gcard:hover .stake:hover{color:#fff}
+  button.mini{font-family:var(--mono);font-size:9.5px;font-weight:700;cursor:pointer;
+    padding:3px 8px;border-radius:4px;background:transparent;color:var(--muted);
+    border:1px solid var(--line)}
+  button.mini:hover{color:var(--ink);border-color:var(--line-soft)}
+  button.mini.go{border-color:var(--s1);color:var(--s1)}
+  button.mini.go:hover{background:var(--s1);color:#fff}
+  .bookbar{display:flex;gap:26px;align-items:center;flex-wrap:wrap;
+    padding:12px 16px;border-bottom:1px solid var(--line)}
+  .bookbar>div{display:flex;flex-direction:column;gap:1px}
+  .bookbar b{font-family:var(--mono);font-size:16px;font-variant-numeric:tabular-nums}
+  .bookbar i{font-style:normal;font-size:9.5px;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.06em}
+  .bookbar .bookact{margin-left:auto;flex-direction:row;gap:8px}
+  .us{font-style:normal;color:var(--muted);margin-left:5px;font-size:10.5px}
+  .sub{color:var(--muted);font-size:10.5px}
+  .good{color:var(--good)}.bad{color:var(--critical)}
+
   @media (max-width:640px){
     main{grid-template-columns:1fr;padding:14px}
     header{padding:11px 14px;gap:16px}.kpis{gap:16px}
@@ -181,6 +207,25 @@
 </header>
 
 <main>
+  <section class="wide" id="s-book">
+    <div class="hd">
+      <h2>Your book <span class="tag neutral">private &middot; this browser only</span></h2>
+      <p class="lede">Click any price on the board below to stake a position. Entries are
+        marked against every refresh, so the last price seen before a market settles
+        becomes its <b>closing line</b> &mdash; that number cannot be recovered afterwards,
+        which is why the deck records it as it goes. <b>CLV leads, P&amp;L follows</b>: over a
+        few hundred positions P&amp;L is mostly variance, while CLV tells you whether you
+        bought better than the market's last word.</p>
+    </div>
+    <div id="t-book"></div>
+    <p class="note"><b>Nothing here leaves your machine.</b> Stakes and P&amp;L live in this
+      browser's local storage and in a gitignored local ledger. This repository is public,
+      so the published <code>data.json</code> carries market data only &mdash; never your
+      position sizes. <b>Export</b> writes a file for
+      <code>python -m profit_priority.positions import</code>, which hands the ledger to the
+      scheduled job that marks it and captures closing lines.</p>
+  </section>
+
   <section class="wide">
     <div class="hd">
       <h2>Game events <span class="tag">today first</span></h2>
@@ -393,6 +438,137 @@ function chartGap(host,parts){
 
 /* ── render ─────────────────────────────────────────────────────────────── */
 
+/* ── your book: staked positions, marked client-side ──────────────────────────
+   Stakes never reach the published payload. This repo is public, so the ledger
+   lives in localStorage here and in a gitignored file locally. Export hands it
+   to the Python ledger, which marks it on a schedule and captures closing lines.
+
+   The fee and sizing math below MUST mirror profit_priority/fees.py exactly. If
+   the deck sizes a position differently from the ledger that later grades it,
+   every CLV and P&L number is computed against a position the user never held. */
+const LS_KEY='pp.book.v1', FEE_RATE=0.07, MAKER_RATIO=0.25;
+
+function kalshiFee(contracts, price, maker){
+  if(contracts<=0 || !(price>0 && price<1)) return 0;
+  const rate = FEE_RATE*(maker?MAKER_RATIO:1);
+  /* ceiling applied to the ORDER total, which is what penalises small orders */
+  return Math.ceil(+(rate*contracts*price*(1-price)*100).toFixed(6))/100;
+}
+function sizeFor(stake, price, maker){
+  if(stake<=0 || !(price>0 && price<1)) return {n:0,fee:0};
+  let n = Math.floor(stake/price);
+  while(n>0){
+    const fee = kalshiFee(n,price,maker);
+    if(n*price+fee <= stake+1e-9) return {n,fee};
+    n--;
+  }
+  return {n:0,fee:0};
+}
+const loadBook = () => { try{ return JSON.parse(localStorage.getItem(LS_KEY)||'[]'); }
+                         catch(e){ return []; } };
+const saveBook = b => localStorage.setItem(LS_KEY, JSON.stringify(b));
+
+function addTicket(ticker, team, price, sport, matchup){
+  const raw = prompt(`Stake on ${team} @ ${(+price).toFixed(2)} (${us(probToUS(price))})\n\n`+
+                     `Dollars to risk:`, '25');
+  if(raw===null) return;
+  const stake = parseFloat(raw);
+  if(!isFinite(stake) || stake<=0){ alert('Enter a dollar amount above zero.'); return; }
+  const {n,fee} = sizeFor(stake, price, false);
+  if(n<=0){ alert(`$${stake.toFixed(2)} does not cover one contract at ${(+price).toFixed(2)}.`); return; }
+  const book = loadBook();
+  book.push({cid:(crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random())).slice(0,18),
+             ticker, team, sport:sport||'', matchup:matchup||'',
+             price:+(+price).toFixed(4), stake:+(n*price+fee).toFixed(2),
+             contracts:n, fee:+fee.toFixed(2), maker:false,
+             opened_at:new Date().toISOString()});
+  saveBook(book);
+  renderBook(lastData);
+}
+function dropTicket(cid){
+  if(!confirm('Remove this position from your book?')) return;
+  saveBook(loadBook().filter(t=>t.cid!==cid));
+  renderBook(lastData);
+}
+function probToUS(p){
+  if(p==null || !(p>0 && p<1)) return null;
+  return p>=0.5 ? Math.round(-100*p/(1-p)) : Math.round(100*(1-p)/p);
+}
+function exportBook(){
+  const book = loadBook();
+  if(!book.length){ alert('Your book is empty.'); return; }
+  const blob = new Blob([JSON.stringify({exported_at:new Date().toISOString(),
+                                          tickets:book}, null, 2)],
+                        {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `deck-export-${new Date().toISOString().slice(0,10)}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+}
+
+/* Current mid for a ticker, from this snapshot. */
+function markFor(d, ticker){
+  const days = ((d&&d.structure&&d.structure.games)||{}).days||[];
+  for(const day of days) for(const e of (day.events||[])) for(const s of (e.sides||[]))
+    if(s.ticker===ticker && s.bid!=null && s.ask!=null) return (s.bid+s.ask)/2;
+  return null;
+}
+
+function renderBook(d){
+  const host=$('#t-book'), book=loadBook();
+  if(!book.length){
+    host.innerHTML=`<div class="empty"><b>No positions yet.</b>
+      Click any price on the game board to stake one. Your book is stored in this
+      browser and is never published.</div>`;
+    return;
+  }
+  let cost=0, mtm=0, nClv=0, sumClv=0, unmarked=0;
+  const rows = book.map(t=>{
+    const mark = markFor(d, t.ticker);
+    const c = t.contracts*t.price + t.fee;
+    cost += c;
+    let clv=null, pnl=null;
+    if(mark!=null){
+      clv = mark - t.price; sumClv += clv; nClv++;
+      pnl = t.contracts*mark - c - kalshiFee(t.contracts, mark, false);
+      mtm += t.contracts*mark;
+    } else { unmarked++; mtm += c; }
+    const cl = clv==null?'':(clv>0?'good':(clv<0?'bad':''));
+    return `<tr>
+      <td><b>${esc(t.team)}</b><br><span class="sub">${esc(t.matchup||t.ticker)}</span></td>
+      <td class="num">${t.contracts}</td>
+      <td class="num">${t.price.toFixed(2)}<i class="us">${us(probToUS(t.price))}</i></td>
+      <td class="num">${mark==null?'<span class="sub">no quote</span>':mark.toFixed(2)}</td>
+      <td class="num ${cl}">${clv==null?'–':(clv>=0?'+':'')+clv.toFixed(3)}</td>
+      <td class="num">$${c.toFixed(2)}</td>
+      <td class="num ${pnl==null?'':(pnl>0?'good':(pnl<0?'bad':''))}">${
+          pnl==null?'–':(pnl>=0?'+':'')+pnl.toFixed(2)}</td>
+      <td><button class="mini" onclick="dropTicket('${t.cid}')">remove</button></td>
+    </tr>`;}).join('');
+  const meanClv = nClv?sumClv/nClv:null;
+  host.innerHTML=`
+    <div class="bookbar">
+      <div><b>${book.length}</b><i>positions</i></div>
+      <div><b>$${cost.toFixed(2)}</b><i>at risk</i></div>
+      <div><b class="${meanClv==null?'':(meanClv>0?'good':'bad')}">${
+        meanClv==null?'–':(meanClv>=0?'+':'')+meanClv.toFixed(4)}</b><i>mean CLV</i></div>
+      <div><b class="${mtm-cost>0?'good':(mtm-cost<0?'bad':'')}">${
+        (mtm-cost>=0?'+':'')+(mtm-cost).toFixed(2)}</b><i>open P&amp;L</i></div>
+      <div class="bookact">
+        <button class="mini go" onclick="exportBook()">Export for ledger</button>
+      </div>
+    </div>
+    <div class="scroll"><table><thead><tr>
+      <th>position</th><th class="r">qty</th><th class="r">entry</th><th class="r">mark</th>
+      <th class="r">CLV</th><th class="r">cost</th><th class="r">open P&amp;L</th><th></th>
+    </tr></thead><tbody>${rows}</tbody></table></div>
+    ${unmarked?`<p class="note">${unmarked} position(s) have no quote in this snapshot —
+      the market has closed or moved out of the board's window. Their closing line was
+      captured by the scheduled ledger, not here.</p>`:''}
+    ${nClv&&nClv<30?`<p class="note"><b>n=${nClv} is too small to read.</b> Mean CLV needs
+      roughly 30 marked positions before it says anything; P&amp;L needs far more.</p>`:''}`;
+}
+
 /* ── day-grouped game board ───────────────────────────────────────────────── */
 const VD = {"maker room":["mk","MAKER"],"marginal":["mg","MARGINAL"],
             "too tight":["tt","TOO TIGHT"],"no volume":["nv","NO VOL"],
@@ -408,11 +584,21 @@ function renderDays(host, g){
       const hot = (e.maker_sides||[]).length > 0;
       const rows = (e.sides||[]).map(sd=>{
         const [cls,label] = VD[sd.verdict] || ["nv", String(sd.verdict||"").toUpperCase()];
+        /* The ask is the executable buy price. Clicking a midpoint would open a
+           position at a price nobody is offering, which is the exact defect this
+           engine was built to remove. */
+        const arg = v => JSON.stringify(String(v==null?'':v)).replace(/'/g,'&#39;');
+        const buy = sd.ask!=null && sd.ask>0 && sd.ask<1
+          ? `<button class="stake" title="Stake on ${esc(sd.team)} at the ask"
+               onclick='addTicket(${arg(sd.ticker)},${arg(sd.team)},${+sd.ask},
+                        ${arg(e.sport)},${arg(e.matchup)})'>+ stake</button>`
+          : `<span class="vd nv">NO ASK</span>`;
         return `<div class="grow">
           <span class="tm">${esc(sd.team)}</span>
           <span class="px">${f2s(sd.bid)}<i>${us(sd.bid_american)}</i></span>
           <span class="px">${f2s(sd.ask)}<i>${us(sd.ask_american)}</i></span>
           <span class="vd ${cls}">${label}</span>
+          ${buy}
         </div>`;}).join('');
       const vol = e.total_volume>=1000
         ? (e.total_volume/1000).toFixed(0)+'k' : String(Math.round(e.total_volume));
@@ -429,7 +615,9 @@ function renderDays(host, g){
 }
 const f2s = v => v==null ? '–' : (+v).toFixed(2);
 
+let lastData={};
 function render(d){
+  lastData=d;
   const st=d.structure||{},board=st.board||[],parts=st.partitions||[],
         locks=st.locks||[],poly=st.polymarket||[],cross=st.crossvenue||[],
         g=st.games||{};
@@ -455,6 +643,7 @@ function render(d){
   else{chip.className='chip stale';
     txt.textContent=age<2880?`stale · ${(age/60).toFixed(1)}h`:`stale · ${(age/1440).toFixed(1)}d`;}
 
+  renderBook(d);
   renderDays($('#t-days'), g);
   chartSaving($('#c-save'),cross);
   chartMaker($('#c-maker'),board);
