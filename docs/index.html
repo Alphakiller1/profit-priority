@@ -318,6 +318,9 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const f4=v=>v==null?'–':(+v).toFixed(4);
 const f2=v=>v==null?'–':(+v).toFixed(2);
 const us=v=>v==null?'–':((+v>0?'+':'')+v);
+// Cross-venue rows carry raw probabilities, not the precomputed *_american the
+// board rows carry — so they need the conversion here rather than a lookup.
+const amer=p=>us(probToUS(p));
 const NS='http://www.w3.org/2000/svg';
 const el=(n,a={})=>{const e=document.createElementNS(NS,n);
   for(const k in a)e.setAttribute(k,a[k]);return e;};
@@ -642,6 +645,10 @@ function render(d){
   else if(age<180){chip.className='chip ok';txt.textContent=`snapshot · ${age.toFixed(0)}m`;}
   else{chip.className='chip stale';
     txt.textContent=age<2880?`stale · ${(age/60).toFixed(1)}h`:`stale · ${(age/1440).toFixed(1)}d`;}
+  // A fresh timestamp on a snapshot that never reached a sportsbook is the most
+  // misleading state this page can be in, so the source outranks the age.
+  if(d.source && d.source!=='live'){chip.className='chip stale';
+    txt.textContent=`${d.source} · ${age==null?'no timestamp':age.toFixed(0)+'m'}`;}
 
   renderBook(d);
   renderDays($('#t-days'), g);
@@ -711,7 +718,8 @@ function render(d){
       <td style="color:var(--muted)">${esc(v.selection)} @ ${esc(v.venue)}</td>
       <td class="num">${((v.edge||0)*100).toFixed(2)}%</td></tr>`).join('')}
     </tbody></table></div>`
-    :'<div class="empty"><b>No executable arbs or value</b>Both legs must clear fees.</div>';
+    :`<div class="empty"><b>${d.source==='live'||!d.source_note?'No executable arbs or value'
+        :'No sportsbook run'}</b>${esc(d.source_note||'Both legs must clear fees.')}</div>`;
 
   const manu=d.manufactured||[];
   $('#t-manu').innerHTML=manu.length?`<div class="scroll"><table><thead><tr>
@@ -720,15 +728,31 @@ function render(d){
       <td class="num">${f4(m.entry_cost)} <span style="color:var(--dim)">${esc(m.entry_venue)}</span></td>
       <td class="num" style="color:var(--muted)">${f4(m.target_hedge_cost)}</td>
       <td class="num">${f2(m.score)}</td></tr>`).join('')}</tbody></table></div>`
-    :'<div class="empty"><b>No staged candidates</b>Class C is logged, never traded blind.</div>';
+    :`<div class="empty"><b>${d.source==='live'||!d.source_note?'No staged candidates'
+        :'No sportsbook run'}</b>${esc(d.source_note
+        ||'Class C is logged, never traded blind.')}</div>`;
+}
+
+/* Banner, not takeover: replacing <main> means one broken cell blanks the whole
+   deck, and the message then blames the data for a fault in the drawing. */
+function fail(title, sub){
+  const b=document.createElement('section');
+  b.className='wide';
+  b.innerHTML=`<div class="empty"><b>${esc(title)}</b>${esc(sub)}</div>`;
+  document.querySelector('main').prepend(b);
 }
 
 fetch('data.json?t='+Date.now())
-  .then(r=>r.ok?r.json():Promise.reject(r.status))
-  .then(render)
-  .catch(e=>{document.querySelector('main').innerHTML=
-    `<section class="wide"><div class="empty"><b>Could not load data.json</b>
-     Run: python -m profit_priority dashboard (${esc(e)})</div></section>`;});
+  .then(r=>r.ok?r.json():Promise.reject(new Error('HTTP '+r.status)))
+  .then(d=>{
+    try{ render(d); }
+    catch(e){ console.error(e);
+      fail(`Dashboard render failed — ${e}`,
+           'The data loaded; a panel threw while drawing it. Panels below may be '+
+           'incomplete or stale. This is a bug in index.html, not in the run.'); }
+  })
+  .catch(e=>fail('Could not load data.json',
+                 `Run: python -m profit_priority dashboard (${e})`));
 </script>
 </body>
 </html>
