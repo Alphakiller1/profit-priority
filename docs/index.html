@@ -113,6 +113,9 @@
   .badge.dead{background:rgba(208,59,59,.15);color:#e57373}
   .badge.warn{background:rgba(250,178,25,.15);color:#f5c451}
   .save{font-family:var(--mono);font-weight:600}
+  /* Inline American odds beside every probability. A price is shown both ways
+     everywhere: reading 0.5773 and -137 as one number avoids a mental convert. */
+  .am{font-style:normal;color:var(--muted);margin-left:6px;font-size:10.5px}
   .empty{padding:34px 20px;color:var(--dim);text-align:center;line-height:1.7;
     font-size:12.5px}
   .empty b{display:block;color:var(--ink-2);margin-bottom:5px;font-size:13px}
@@ -469,10 +472,12 @@ function render(d){
     <th>Kalshi bid</th><th>Poly bid</th><th>Sell at</th><th>Lock</th></tr></thead><tbody>
     ${cross.slice(0,40).map(r=>`<tr>
       <td><b>${esc(r.team)}</b> <span style="color:var(--dim)">${esc(r.series)}</span></td>
-      <td class="num">${f4(r.kalshi_ask)}</td><td class="num">${f4(r.poly_ask)}</td>
+      <td class="num">${f4(r.kalshi_ask)}<i class="am">${amer(r.kalshi_ask)}</i></td>
+      <td class="num">${f4(r.poly_ask)}<i class="am">${amer(r.poly_ask)}</i></td>
       <td>${venueTag(r.best_buy)}</td>
       <td class="save" style="color:${r.saving>0.01?'var(--good)':'var(--muted)'}">${f4(r.saving)}</td>
-      <td class="num">${f4(r.kalshi_bid)}</td><td class="num">${f4(r.poly_bid)}</td>
+      <td class="num">${f4(r.kalshi_bid)}<i class="am">${amer(r.kalshi_bid)}</i></td>
+      <td class="num">${f4(r.poly_bid)}<i class="am">${amer(r.poly_bid)}</i></td>
       <td>${venueTag(r.best_sell)}</td>
       <td>${r.lock?`<span class="badge warn">◆ +${f4(r.lock.edge)}</span>`
         :(r.suspect?'<span class="badge dead">✕ suspect</span>':'<span style="color:var(--dim)">—</span>')}</td>
@@ -492,16 +497,14 @@ function render(d){
     :'<div class="empty"><b>No Polymarket families</b></div>';
 
   $('#t-board').innerHTML=board.length?`<table><thead><tr>
-    <th>Contract</th><th>Series</th><th>Bid</th><th>Bid US</th><th>Ask</th><th>Ask US</th>
+    <th>Contract</th><th>Series</th><th>Bid</th><th>Ask</th>
     <th>Spread</th><th>Maker RT</th><th>Taker RT</th><th>Verdict</th></tr></thead><tbody>
     ${board.slice(0,70).map(b=>{
       const wide=b.spread>b.maker_rt*2,mid=b.spread>b.maker_rt;
       return `<tr><td><b>${esc(b.team)}</b> <span style="color:var(--dim)">${esc(String(b.ticker||'').slice(-13))}</span></td>
       <td style="color:var(--muted)">${esc(String(b.series).replace('KX',''))}</td>
-      <td class="num">${f4(b.bid)}</td>
-      <td class="num" style="color:var(--muted)">${us(b.bid_american)}</td>
-      <td class="num">${f4(b.ask)}</td>
-      <td class="num" style="color:var(--muted)">${us(b.ask_american)}</td>
+      <td class="num">${f4(b.bid)}<i class="am">${us(b.bid_american)}</i></td>
+      <td class="num">${f4(b.ask)}<i class="am">${us(b.ask_american)}</i></td>
       <td class="num" style="color:${wide?'var(--good)':'var(--ink)'}">${f4(b.spread)}</td>
       <td class="num" style="color:var(--muted)">${f4(b.maker_rt)}</td>
       <td class="num" style="color:var(--muted)">${f4(b.taker_rt)}</td>

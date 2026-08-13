@@ -279,7 +279,8 @@ def nesting_locks(board: dict[str, list[Contract]], bankroll: float,
                         locks.append(Lock(
                             "nesting", f"{team}: {narrow_t} <= {broad_t}", 2,
                             gross, fee, sets, capital, profit, roi,
-                            f"sell {narrow_t} @ {nc.bid:.4f}, buy {broad_t} @ {bc.ask:.4f}",
+                            f"sell {narrow_t} @ {nc.bid:.4f}/{fees.fmt_american(nc.bid)}, "
+                            f"buy {broad_t} @ {bc.ask:.4f}/{fees.fmt_american(bc.ask)}",
                             ["upside leg is free optionality"]))
             elif near > 0 and gross > -near:
                 misses.append({"team": team, "narrow": narrow_t, "broad": broad_t,
@@ -333,8 +334,11 @@ def run(bankroll: float = 350.0, min_roi: float = 0.005, near: float = 0.0) -> N
     if near > 0:
         print(f"\n  NESTING NEAR-MISSES (within {near:.3f}): {len(misses)}")
         for m in misses[:10]:
-            print(f"    {m['team']:<5} {m['narrow']} bid {m['narrow_bid']:.4f} vs "
-                  f"{m['broad']} ask {m['broad_ask']:.4f}  gap {m['gap']:+.4f}")
+            print(f"    {m['team']:<5} {m['narrow']} bid "
+                  f"{m['narrow_bid']:.4f}/{fees.fmt_american(m['narrow_bid'])} vs "
+                  f"{m['broad']} ask "
+                  f"{m['broad_ask']:.4f}/{fees.fmt_american(m['broad_ask'])}  "
+                  f"gap {m['gap']:+.4f}")
     print()
 
 

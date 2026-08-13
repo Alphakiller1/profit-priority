@@ -118,8 +118,15 @@ def prob_to_american(p: float | None) -> int | None:
 
 
 def fmt_american(p: float | None) -> str:
+    """Display string with an explicit sign; ASCII '-' when there is no price.
+
+    A 0.00 bid has no American equivalent — you cannot quote odds on something
+    nobody will pay for — so the placeholder is honest rather than a fabricated
+    number. ASCII deliberately: the Windows console is cp1252 and an en-dash
+    renders as a replacement character in every CLI report.
+    """
     a = prob_to_american(p)
-    return "–" if a is None else f"{a:+d}"
+    return "-" if a is None else f"{a:+d}"
 
 
 def kalshi_exec_cost(contracts: float, price: float, fee_rate: float = DEFAULT_KALSHI_FEE_RATE) -> float:

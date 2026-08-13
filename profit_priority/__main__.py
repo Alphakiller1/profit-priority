@@ -64,9 +64,13 @@ def _report():
 def _fees(argv):
     price = float(argv[0]) if argv else 0.40
     contracts = float(argv[1]) if len(argv) > 1 else 100.0
-    print(f"  Kalshi @ {price:.2f} x {contracts:g} contracts (rate {config.KALSHI_FEE_RATE})")
+    from .fees import fmt_american
+    print(f"  Kalshi @ {price:.2f}/{fmt_american(price)} x {contracts:g} contracts "
+          f"(rate {config.KALSHI_FEE_RATE})")
     print(f"   fee total           ${kalshi_fee(contracts, price, config.KALSHI_FEE_RATE):.2f}")
-    print(f"   cost per $1 payout  {kalshi_cost_per_payout(price, config.KALSHI_FEE_RATE):.4f}  (vs raw {price:.2f})")
+    _cpp = kalshi_cost_per_payout(price, config.KALSHI_FEE_RATE)
+    print(f"   cost per $1 payout  {_cpp:.4f}/{fmt_american(_cpp)}  "
+          f"(vs raw {price:.2f}/{fmt_american(price)})")
 
 
 def _dashboard(argv):
