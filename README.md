@@ -62,6 +62,13 @@ game key. Point at it with `PP_SHARP_SIGNALS=/path/to/sharp_signals.csv` (defaul
 sibling repo). The validated edge (vault Market-Edge-Engine): enter-at-open on **steam-up
 underdog** sides survived FDR at +20–48% ROI/u — the scorer rewards exactly that pattern.
 
+### NFL Genesis context
+`profit_priority.feeds.nfl_model` reads the market-forecast contract and refuses to turn an
+unpromoted or zero-lambda forecast into a value edge. The companion Genesis outlook is a
+separate, read-only research artifact: inspect it with
+`python -m profit_priority.feeds.genesis_outlook --outlook path/to/genesis_outlook_2026.json`.
+It is deliberately excluded from value detection, structural-arbitrage sizing, and staking.
+
 ### Dashboard (Phase 6)
 `docs/index.html` renders four panels from `docs/data.json`: **Pure Arbs**, **Cross-Venue
 Value**, **Manufactured Candidates**, and a **Funnel/Postmortem** (logged vs accepted per
